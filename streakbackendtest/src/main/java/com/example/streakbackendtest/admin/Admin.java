@@ -1,6 +1,22 @@
 package com.example.streakbackendtest.admin;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table
 public class Admin {
+
+    @Id
+    @SequenceGenerator(
+            name = "admin_sequence",
+            sequenceName = "admin_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "admin_sequence"
+    )
+
     private Long id;
     private String adminName;
     private String adminEmail;

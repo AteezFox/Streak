@@ -1,6 +1,22 @@
 package com.example.streakbackendtest.companyceo;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table
 public class CompanyCeo {
+
+    @Id
+    @SequenceGenerator(
+            name = "companyceo_sequence",
+            sequenceName = "companyceo_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = jakarta.persistence.GenerationType.SEQUENCE,
+            generator = "companyceo_sequence"
+    )
+
     private Long id;
     private String ceoName;
     private String ceoEmail;
