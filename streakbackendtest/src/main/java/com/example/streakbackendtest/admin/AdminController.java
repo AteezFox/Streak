@@ -1,5 +1,6 @@
 package com.example.streakbackendtest.admin;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,11 +11,16 @@ import java.util.List;
 @RequestMapping(path = "api/admin")
 public class AdminController {
 
+    private final AdminService adminService;
+
+    @Autowired
+    public AdminController(AdminService adminService) {
+        this.adminService = adminService;
+    }
+
+
     @GetMapping
     public List<Admin> getAdmins() {
-        return List.of(
-                new Admin(1L, "admin", "example@example.com", "example"),
-                new Admin(2L, "admin2", "bela@gmail.com", "example2")
-        );
+        return adminService.getAdmins();
     }
 }

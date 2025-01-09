@@ -1,5 +1,6 @@
 package com.example.streakbackendtest.customer;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,22 +12,15 @@ import java.util.List;
 @RequestMapping(path = "api/customer")
 public class CustomerController {
 
+    private final CustomerService customerService;
+
+    @Autowired
+    public CustomerController(CustomerService customerService) {
+        this.customerService = customerService;
+    }
+
         @GetMapping
         public List<Customer> getCustomers() {
-            return List.of(
-                    new Customer(
-                            1L,
-                            "customer",
-                            "example@example.com",
-                            "example",
-                            LocalDate.of(2000, 1, 1),
-                            "+123456789",
-                            12345L,
-                            "city",
-                            "example street 1",
-                            1,
-                            1
-                    )
-            );
+            return customerService.getCustomers();
         }
 }

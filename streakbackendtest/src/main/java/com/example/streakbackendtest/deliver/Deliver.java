@@ -1,6 +1,21 @@
 package com.example.streakbackendtest.deliver;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table
 public class Deliver {
+
+    @Id
+    @SequenceGenerator(
+            name = "deliver_sequence",
+            sequenceName = "deliver_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "deliver_sequence"
+    )
     private Long id;
     private String name;
     private String email;
