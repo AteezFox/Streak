@@ -1,1 +1,2 @@
-# Streak
+# Streak Adatbázis
+under constuction
