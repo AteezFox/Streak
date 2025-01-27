@@ -76,20 +76,20 @@ create table if not exists customer
 #customer vége
 
 
-#deliver eleje
+#courier eleje
 create table if not exists deliver
 (
-    deliver_id BIGINT primary key auto_increment,
-    deliver_name varchar(50) not null,
-    deliver_email varbinary(100) UNIQUE not null,
-    deliver_username varchar(50) UNIQUE not null,
-    deliver_password varchar(50) UNIQUE not null,
-    deliver_pfp varchar(100) not null,
+    courier_id BIGINT primary key auto_increment,
+    courier_name varchar(50) not null,
+    courier_email varbinary(100) UNIQUE not null,
+    courier_username varchar(50) UNIQUE not null,
+    courier_password varchar(50) UNIQUE not null,
+    courier_pfp varchar(100) not null,
     customer_id BIGINT not null,
     constraint fk_customer_id
         foreign key (customer_id) references customer(customer_id)
 );
-#deliver vége
+#courier vége
 
 #order eleje
 create table if not exists `order`
