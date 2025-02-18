@@ -1,0 +1,1 @@
+//itt lesz a ceo dashboard, ahol a ceo láthatja a cégeit, és tudja őket törölni, vagy módosítani és azok termékeit is

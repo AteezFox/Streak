@@ -1,11 +1,12 @@
-import React from 'react';
-import './App.css';
+import './App.css'
+function App() {
 
-export default App(){
-    return (
-        <div>
-            <h1>My React App</h1>
-            <p>This is my first React App</p>
-        </div>
-    )
+  return (
+    <>
+        <h1>Teszt szöveg</h1>
+        <p>Itt egy teszt szöveg, hogy lássuk működik-e a dolog.</p>
+    </>
+  )
 }
+
+export default App
