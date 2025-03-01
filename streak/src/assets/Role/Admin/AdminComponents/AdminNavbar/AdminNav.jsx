@@ -16,9 +16,12 @@ export default function AdminNav() {
 
                     <Box className={styles.navLinks}>
                         <Button color="inherit" className={styles.navLink}>Home</Button>
-                        <Button color="inherit" className={styles.navLink}>About</Button>
-                        <Button color="inherit" className={styles.navLink}>Contact</Button>
-                        <Button color={""} className={styles.goDashboard}>Dashboard</Button>
+                        <Button color="inherit" className={styles.navLink}>Shops</Button>
+                        <Button color="inherit" className={styles.navLink}>Orders</Button>
+                        <Button color="inherit" className={styles.navLink}>Support</Button>
+                        <div className={styles.dash}>
+                            <Button color={"inherit"} className={styles.goDashboard} onClick={<a href="../AdminDashboard/AdminDash.jsx"></a>}>Go to Workspace</Button>
+                        </div>
                     </Box>
                 </Toolbar>
             </AppBar>

@@ -42,10 +42,31 @@
 .navLinks {
     display: flex;
     width: 100%;
+    margin: 0 auto;
+}
+
+.navLink {
+    display: flex;
+    width: 100%;
+    max-width: 7pc;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    font-weight: lighter !important;
+    font-size: 20px !important;
 }
 
 .goDashboard{
     background-color: saddlebrown !important;
+}
+
+.dash{
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    width: 100%;
+    margin: 0 auto;
+    margin-left: 5pc;
 }
 
 .goDashboard:hover{
