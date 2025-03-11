@@ -1,9 +1,18 @@
 import React from 'react';
-import { Container } from "@mui/material";
+import { Container, Button } from "@mui/material";
 import styles from './body.module.css';
 import Navbar from "../Navbar/Navbar.jsx";
 
 export default function Body() {
+    const openRegister = () => {
+        try {
+
+            console.log("sikeres regisztráció megnyitás");
+        }catch (e) {
+            console.error(e);
+            console.log("regisztáció nem nyílt meg")
+        }
+    }
     return (
         <>
             <Navbar />
@@ -18,7 +27,7 @@ export default function Body() {
                             </h2>
                             <h3>Kezd meg a regisztrációt!</h3>
                             <div className={styles.start}>
-                                <p><a href="">ITT</a></p>
+                                <Button className={styles.button} onClick={openRegister}>ITT</Button>
                             </div>
                             <p>Vagy a fejlécen a regisztációnál</p>
                         </div>

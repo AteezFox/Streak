@@ -1,7 +1,4 @@
-.hidden {
-    display: none;
-}
-
+/* General styles for larger screens */
 .appBar {
     position: fixed;
     top: 0;
@@ -59,7 +56,7 @@
     font-size: 20px !important;
 }
 
-.login{
+.login {
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -68,7 +65,7 @@
     margin-left: 5pc;
 }
 
-.work{
+.work {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -79,6 +76,7 @@
     font-size: 20px !important;
 }
 
+/* Responsive styles for smaller screens */
 @media (max-width: 720px) {
     .appBar {
         position: fixed;
