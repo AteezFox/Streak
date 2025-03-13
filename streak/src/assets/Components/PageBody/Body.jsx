@@ -1,7 +1,9 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import { Container, Button } from "@mui/material";
 import styles from './body.module.css';
 import Navbar from "../Navbar/Navbar.jsx";
+import DialogSupport from "../DialogSupport/DialogSupport.jsx";
+import Devs from "../Devs/Devs.jsx";
 
 export default function Body() {
     const openRegister = () => {
@@ -15,6 +17,7 @@ export default function Body() {
     }
     return (
         <>
+            <DialogSupport />
             <Navbar />
                 <Container className={styles.container}>
                     <div className={styles.body}>
@@ -33,21 +36,7 @@ export default function Body() {
                         </div>
                     </div>
                 </Container>
-            <Container className={styles.container}>
-                <div className={styles.body}>
-                    <h1>Mit kell tudni a St®eak-ről</h1>
-                    <div className={styles.desc2}></div>
-                    <p>
-                        A St®eak egy ételfutárszolglat, mely könnyen tud munkaerőt <strong>NEKED</strong> vagy <strong>ISMERŐSÖDNEK</strong> biztosítani.
-                        <br/>
-                        Nem csak éttermeknek kináljuk szolgáltatásunkat hanem bolt tulajdonosoknak is!
-                        <br/>
-                    </p>
-                    <br/>
-                    <p>Vagy esetleg ha simán vásárolnál magadnak vagy rendelnél valami finomat <br/> főleg <strong>NEKED</strong> ajánljuk a St®eak-et</p>
-                    <h2>Elkezded a sorozatot?</h2>
-                </div>
-            </Container>
+
             <Container className={styles.container}>
                 <div className={styles.body}>
                     <h1>Dolgozz velünk!</h1>
@@ -70,13 +59,24 @@ export default function Body() {
                     </div>
                 </div>
             </Container>
+
             <Container className={styles.container}>
                 <div className={styles.body}>
-                    <h1>Segítségre van szükséged?</h1>
-                    <div className={styles.support}>
-                        <h2>Elakadtál vagy hibát észleltél ne habozz velünk is tudatni!</h2>
+                    <h1>Mit kell tudni a St®eak-ről</h1>
+                    <div className={styles.desc2}></div>
+                    <p>
+                        A St®eak egy ételfutárszolglat, mely könnyen tud munkaerőt <strong>NEKED</strong> vagy <strong>ISMERŐSÖDNEK</strong> biztosítani.
+                        <br/>
+                        Nem csak éttermeknek kináljuk szolgáltatásunkat hanem bolt tulajdonosoknak is!
+                        <br/>
+                    </p>
+                    <br/>
+                    <p>Vagy esetleg ha simán vásárolnál magadnak vagy rendelnél valami finomat <br/> főleg <strong>NEKED</strong> ajánljuk a St®eak-et</p>
+                    <div className={styles.desc2}>
+                        <h1>Fejlesztők</h1>
+                        <Devs />
+                        <h2>Elkezded a sorozatot?</h2>
                     </div>
-                    <h1>FORM-OT IDE</h1>
                 </div>
             </Container>
         </>

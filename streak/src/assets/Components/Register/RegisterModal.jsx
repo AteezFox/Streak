@@ -26,49 +26,44 @@ export default function RegisterModal({ isOpen, onClose }) {
                 <div className={styles.inputGroup}>
                     <TextField
                         id="outlined-basic"
-                        label="Keresztnév"
-                        variant="outlined"
+                        variant={"outlined"}
+                        placeholder={"Keresztnév"}
                         className={styles.input}
                         required={true}
-                        color={"error"}
                         type="text"
                     />
                     <TextField
                         id="outlined-basic"
-                        label="Vezetéknév"
+                        placeholder={"Vezetéknév"}
                         variant="outlined"
                         className={styles.input}
                         required={true}
-                        color={"error"}
                         type="text"
                     />
                 </div>
                 <TextField
                     id="outlined-basic"
-                    label="Telefonszám"
+                    placeholder={"Telefonszám"}
                     variant="outlined"
                     className={styles.input}
                     required={true}
-                    color={"error"}
                     type="tel"
                 />
                 <TextField
                     id="outlined-basic"
-                    label="Email"
+                    placeholder={"Email"}
                     variant="outlined"
                     className={styles.input}
                     type="email"
                     required={true}
-                    color={"error"}
                 />
                 <TextField
                     id="outlined-basic"
-                    label="Jelszó"
+                    placeholder={"Jelszó"}
                     variant="outlined"
                     className={styles.input}
                     type="password"
                     required={true}
-                    color={"error"}
                 />
                 <div className={styles.buttons}>
                     <Button className={styles.button}>Bejelentkezés</Button>

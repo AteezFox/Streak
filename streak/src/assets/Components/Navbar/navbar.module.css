@@ -1,4 +1,7 @@
-/* General styles for larger screens */
+#root{
+    font-family: 'Roboto', sans-serif;
+}
+
 .appBar {
     position: fixed;
     top: 0;
@@ -6,6 +9,11 @@
     width: 100%;
     z-index: 1000;
     background-color: #4E342E !important;
+    transition: top 0.3s ease-out, height 0.3s ease-out;
+}
+
+.appBar.hidden {
+    top: -100px;
 }
 
 .toolbar {
@@ -29,7 +37,7 @@
 }
 
 .title {
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
     margin: 0 auto;
@@ -45,54 +53,39 @@
     margin: 0 auto;
 }
 
-.navLink {
-    display: flex;
-    width: 100%;
-    max-width: 7pc;
-    justify-content: center;
-    align-items: center;
-    margin: 0 auto;
-    font-weight: lighter !important;
-    font-size: 20px !important;
-}
-
-.login {
+.navLinks .login {
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    width: 100%;
-    margin: 0 auto;
-    margin-left: 5pc;
+    width: auto;
+    margin-left: auto;
+    gap: 10px;
 }
 
-.work {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    max-width: 200px;
-    margin: 0 auto;
-    font-weight: bolder !important;
-    font-size: 20px !important;
+.menuWrapper {
+    position: absolute;
+    top: 0;
+    right: 10px;
 }
 
-/* Responsive styles for smaller screens */
 @media (max-width: 720px) {
     .appBar {
         position: fixed;
         width: 100%;
         background-color: #4E342E !important;
+        height: 50px;
     }
 
     .toolbar {
-        flex-direction: column;
+        flex-direction: row;
         align-items: center;
-        padding: 10px;
+        justify-content: space-between;
+        padding: 5px;
     }
 
     .menuButton {
         display: block;
-        margin: 10px auto;
+        margin: 5px auto;
         max-width: 50px;
     }
 
@@ -102,39 +95,16 @@
     }
 
     .title {
-        max-width: 100px;
-        margin: 10px auto;
-    }
-
-    .title img {
-        width: 100%;
-        height: auto;
+        display: flex;
     }
 
     .navLinks {
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
-        margin: 10px 0;
+        display: none;
     }
 
-    .navLink {
-        width: 100%;
-        max-width: none;
-        justify-content: center;
-        font-size: 16px !important;
-        margin: 5px 0;
-    }
-
-    .login {
-        width: 100%;
-        justify-content: center;
-        margin: 10px 0;
-    }
-
-    .work {
-        max-width: none;
-        font-size: 16px !important;
-        margin: 10px 0;
+    .menuWrapper {
+        position: absolute;
+        top: 5px;
+        right: 5px;
     }
 }

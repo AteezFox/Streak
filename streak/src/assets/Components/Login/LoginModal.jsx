@@ -17,28 +17,28 @@ export default function LoginModal({ isOpen, onClose }) {
         <Modal
             open={isOpen}
             onClose={onClose}
-            aria-labelledby="modal-modal-title"
-            aria-describedby="modal-modal-description"
+            aria-labelledby="spring-modal-title"
+            aria-describedby="spring-modal-description"
         >
             <Box className={`${styles.modal} ${openClass}`}>
                 <h1>Bejelentkezés</h1>
                 <TextField
                     id="outlined-basic"
-                    label="Email"
-                    variant="outlined"
+                    variant={"outlined"}
+                    placeholder="Email"
                     className={styles.input}
                     type="email"
-                    color={"error"}
                     required={true}
                 />
                 <TextField
                     id="outlined-basic"
-                    label="Jelszó"
-                    variant="outlined"
+                    variant={"outlined"}
+                    placeholder={"Jelszó"}
                     className={styles.input}
                     type="password"
                     required={true}
-                    color={"error"}
+                    minRows={3}
+                    maxRows={5}
                 />
                 <div className={styles.buttons}>
                     <Button className={styles.button}>Bejelentkezés</Button>

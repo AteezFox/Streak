@@ -1,0 +1,33 @@
+*{
+    opacity: 1 !important;
+}
+
+.cardContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 20px; /* Optional: Adds space between cards */
+}
+
+.card {
+    flex: 1;
+    margin: 10px;
+    padding: 10px;
+    background-color: white;
+    border-radius: 1rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    height: auto;
+    max-width: 300px;
+    text-align: center;
+    border: 5px solid #8B0000;
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+    border-radius: 1rem;
+    border: 5px solid black;
+    max-width: 300px;
+    max-height: 300px;
+}

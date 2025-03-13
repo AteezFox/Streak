@@ -1,3 +1,7 @@
+#root{
+    position: relative;
+    font-family: 'Roboto', sans-serif;
+}
 .modal {
     background-color: #F5E1C8;
     width: 100%;
@@ -28,14 +32,14 @@
     margin-top: 1rem;
     margin-bottom: 1rem;
     border: #8B0000 solid 1px !important;
-    border-radius: 1rem;
+    border-radius: 0.5rem;
     padding: 0.5rem;
     background-color: #f9f9f9 !important;
 }
 
 .inputGroup {
     display: flex;
-    gap: 1rem;
+    gap: 10px;
     margin-bottom: 1rem;
 }
 
