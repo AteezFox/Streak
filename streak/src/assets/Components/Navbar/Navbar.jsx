@@ -35,9 +35,9 @@ export default function Navbar() {
     const handleMenuClose = () => setAnchorEl(null);
 
     const navItems = [
-        { label: "Home" },
-        { label: "Work with us!" },
-        { label: "About" },
+        { label: "Home", onClick: () => window.location.href = "#home" },
+        { label: "Work with us!" , onClick: () => window.location.href = "#work" },
+        { label: "About", onClick: () => window.location.href = "#about" },
         { label: "Login", onClick: openLogin, className: styles.login },
         { label: "Register", onClick: openRegister, className: styles.register }
     ];
@@ -46,7 +46,7 @@ export default function Navbar() {
         <>
             <AppBar position="fixed" className={`${styles.appBar} ${hidden ? styles.hidden : ''}` }>
                 <Toolbar className={styles.toolBar}>
-                    <IconButton edge="start" aria-label="logo" className={styles.menuButton}>
+                    <IconButton edge="start" aria-label="logo" className={styles.menuButton} href={"#home"}>
                         <img src="/public/icons/logo_icon.png" alt="logo" className={styles.menuButton}/>
                     </IconButton>
                     <Typography component={"img"} className={styles.title} alt={"logo felirat"} src={"/public/icons/logo_felirat.png"}/>

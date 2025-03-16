@@ -1,43 +1,30 @@
-import React, {Fragment} from 'react';
-import { Container, Button } from "@mui/material";
+import React from 'react';
+import { Container } from "@mui/material";
 import styles from './body.module.css';
 import Navbar from "../Navbar/Navbar.jsx";
 import DialogSupport from "../DialogSupport/DialogSupport.jsx";
 import Devs from "../Devs/Devs.jsx";
 
 export default function Body() {
-    const openRegister = () => {
-        try {
-
-            console.log("sikeres regisztráció megnyitás");
-        }catch (e) {
-            console.error(e);
-            console.log("regisztáció nem nyílt meg")
-        }
-    }
     return (
         <>
             <DialogSupport />
             <Navbar />
-                <Container className={styles.container}>
-                    <div className={styles.body}>
-                        <h1>Üdvözlet! A St®eak futárszolgálatnál!</h1>
-                        <div className={styles.desc}>
-                            <h2>
-                                Ugorj fejest a vásárlás új korszákába!
-                                <br/>
-                                Itt nálunk a Streaknél!
-                            </h2>
-                            <h3>Kezd meg a regisztrációt!</h3>
-                            <div className={styles.start}>
-                                <Button className={styles.button} onClick={openRegister}>ITT</Button>
-                            </div>
-                            <p>Vagy a fejlécen a regisztációnál</p>
-                        </div>
+            <Container className={styles.container} id={"home"}>
+                <div className={styles.body}>
+                    <h1>Üdvözlet! A St®eak futárszolgálatnál!</h1>
+                    <div className={styles.desc}>
+                        <h2>
+                            Ugorj fejest a vásárlás új korszákába!
+                            <br/>
+                            Itt nálunk a Streaknél!
+                        </h2>
+                        <h3>Kezd meg a regisztrációt!</h3>
                     </div>
-                </Container>
+                </div>
+            </Container>
 
-            <Container className={styles.container}>
+            <Container className={styles.container} id={"work"}>
                 <div className={styles.body}>
                     <h1>Dolgozz velünk!</h1>
                     <div className={styles.desc2}>
@@ -60,7 +47,7 @@ export default function Body() {
                 </div>
             </Container>
 
-            <Container className={styles.container}>
+            <Container className={styles.container} id={"about"}>
                 <div className={styles.body}>
                     <h1>Mit kell tudni a St®eak-ről</h1>
                     <div className={styles.desc2}></div>
