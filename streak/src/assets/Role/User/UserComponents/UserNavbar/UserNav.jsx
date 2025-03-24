@@ -3,12 +3,14 @@ import { AppBar, Toolbar, IconButton, Typography, Box, Button, Menu, MenuItem } 
 import MenuIcon from '@mui/icons-material/Menu';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import MeetingRoomSharpIcon from '@mui/icons-material/MeetingRoomSharp';
+import { useNavigate, Link } from "react-router-dom";
 import styles from './usernav.module.css';
 
 export default function UserNav() {
     const [anchorEl, setAnchorEl] = useState(null);
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 720);
     const [hidden, setHidden] = useState(false);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const handleResize = () => setIsMobile(window.innerWidth <= 720);
@@ -31,10 +33,10 @@ export default function UserNav() {
     const handleMenuClose = () => setAnchorEl(null);
 
     const navItems = [
-        { label: "Home", onClick: () => window.location.href = "../UserInterface/UserInterface.jsx" },
+        { label: "Home", onClick: () => navigate("/") },
         { label: "Shops" },
         { label: "Orders" },
-        { label: <AccountCircleIcon />, className: styles.login, onClick: () => window.location.href = "../UserProfile/UserProfile.jsx" },
+        { label: <Link to={"/profile"} className={styles.login}><AccountCircleIcon /></Link>, onClick: () => navigate("/profile") },
         { label: <MeetingRoomSharpIcon /> }
     ];
 
@@ -43,9 +45,9 @@ export default function UserNav() {
             <AppBar position="fixed" className={`${styles.appBar} ${hidden ? styles.hidden : ''}`}>
                 <Toolbar className={styles.toolBar}>
                     <IconButton edge="start" aria-label="logo" className={styles.menuButton} component="a" href="#home">
-                        <img src="/public/icons/logo_icon.png" alt="logo" className={styles.menuButton}/>
+                        <img src="/icons/logo_icon.png" alt="logo" className={styles.menuButton}/>
                     </IconButton>
-                    <Typography component={"img"} className={styles.title} alt={"logo felirat"} src={"/public/icons/logo_felirat.png"}/>
+                    <Typography component={"img"} className={styles.title} alt={"logo felirat"} src={"/icons/logo_felirat.png"}/>
                     {
                         isMobile ? (
                             <Box className={styles.menuWrapper}>

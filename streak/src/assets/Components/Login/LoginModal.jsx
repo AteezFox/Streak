@@ -12,7 +12,7 @@ export default function LoginModal({ isOpen, onClose }) {
             setOpenClass('');
         }
     }, [isOpen]);
-
+    
     return (
         <Modal
             open={isOpen}
@@ -41,7 +41,7 @@ export default function LoginModal({ isOpen, onClose }) {
                     maxRows={5}
                 />
                 <div className={styles.buttons}>
-                    <Button className={styles.button}>Bejelentkezés</Button>
+                    <Button className={styles.button} >Bejelentkezés</Button>
                     <Button className={styles.button} onClick={onClose}>Bezár</Button>
                 </div>
             </Box>
