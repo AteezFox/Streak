@@ -7,10 +7,8 @@ import UserInterface from "./assets/Role/User/UserComponents/UserInterface/UserI
 function App() {
     return (
         <Router>
-            <UserInterface />
             <Routes>
-                <Route path="/" element={<Navigate to="/main" />} />
-                <Route path="/main" element={<Body />} />
+                <Route path="/yourhome" index={true} element={<UserInterface/>} />
                 <Route path="/profile" element={<UserProfile />} />
             </Routes>
         </Router>

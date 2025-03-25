@@ -33,21 +33,21 @@ export default function UserNav() {
     const handleMenuClose = () => setAnchorEl(null);
 
     const navItems = [
-        { label: "Home", onClick: () => navigate("/") },
+        { label: "Home", onClick: () => navigate("/yourhome") },
         { label: "Shops" },
-        { label: "Orders" },
-        { label: <Link to={"/profile"} className={styles.login}><AccountCircleIcon /></Link>, onClick: () => navigate("/profile") },
-        { label: <MeetingRoomSharpIcon /> }
+        { label: <Link to={"/profile"} className={styles.login}><AccountCircleIcon /></Link>, onClick: () => navigate("/profile"), className: styles.login },
+        { label: <MeetingRoomSharpIcon />, onClick: () => navigate("/") }
     ];
 
     return (
         <>
             <AppBar position="fixed" className={`${styles.appBar} ${hidden ? styles.hidden : ''}`}>
                 <Toolbar className={styles.toolBar}>
-                    <IconButton edge="start" aria-label="logo" className={styles.menuButton} component="a" href="#home">
+                    <IconButton edge="start" aria-label="logo" className={styles.menuButton} onClick={() => navigate("/yourhome")}>
                         <img src="/icons/logo_icon.png" alt="logo" className={styles.menuButton}/>
                     </IconButton>
                     <Typography component={"img"} className={styles.title} alt={"logo felirat"} src={"/icons/logo_felirat.png"}/>
+                    <Typography variant={"p"} display={"flex"} flex={"content"}>Welcome: User</Typography>
                     {
                         isMobile ? (
                             <Box className={styles.menuWrapper}>
