@@ -1,15 +1,17 @@
 import './App.css';
-import UserInterface from "./assets/Role/User/UserComponents/UserInterface/UserInterface.jsx";
-import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
+import {BrowserRouter as Router, Route, Routes, Navigate} from "react-router-dom";
 import UserProfile from "./assets/Role/User/UserComponents/UserProfile/UserProfile.jsx";
+import Body from "./assets/Components/PageBody/Body.jsx"
+import UserInterface from "./assets/Role/User/UserComponents/UserInterface/UserInterface.jsx";
 
 function App() {
     return (
         <Router>
             <UserInterface />
             <Routes>
-                <Route path={"/"} element={<UserInterface />}></Route>
-                <Route path={"/profile"} element={<UserProfile />}></Route>
+                <Route path="/" element={<Navigate to="/main" />} />
+                <Route path="/main" element={<Body />} />
+                <Route path="/profile" element={<UserProfile />} />
             </Routes>
         </Router>
     );

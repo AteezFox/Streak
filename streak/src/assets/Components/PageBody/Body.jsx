@@ -4,6 +4,7 @@ import styles from './body.module.css';
 import Navbar from "../Navbar/Navbar.jsx";
 import DialogSupport from "../DialogSupport/DialogSupport.jsx";
 import Devs from "../Devs/Devs.jsx";
+import { Link } from "react-router-dom";
 
 export default function Body() {
     return (
@@ -11,6 +12,7 @@ export default function Body() {
             <DialogSupport />
             <Navbar />
             <Container className={styles.container} id={"home"}>
+                <Link to={"/main"}></Link>
                 <div className={styles.body}>
                     <h1>Üdvözlet! A St®eak futárszolgálatnál!</h1>
                     <div className={styles.desc}>
