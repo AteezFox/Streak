@@ -6,7 +6,6 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import { useNavigate } from "react-router-dom";
 import styles from './usernav.module.css';
-s
 
 export default function UserNav() {
     const [anchorEl, setAnchorEl] = useState(null);
@@ -60,8 +59,9 @@ export default function UserNav() {
                     <IconButton edge="start" aria-label="logo" className={styles.menuButton} onClick={() => navigate("/yourhome")}>
                         <img src="/icons/logo_icon.png" alt="logo" className={styles.menuButton}/>
                     </IconButton>
-                    <IconButton className={styles.menuButton} color={"inherit"} onClick={() => navigate("/yourhome")}><HomeIcon /></IconButton>
-                    <Button color="inherit" onClick={handleAddressMenuOpen} className={styles.navLink} className={styles.addressMenu}>
+                    <img src="/icons/logo_felirat.png" className={styles.title} alt=""/>
+                    <IconButton className={styles.home} color={"inherit"} onClick={() => navigate("/yourhome")}><HomeIcon /></IconButton>
+                    <Button color="inherit" onClick={handleAddressMenuOpen} className={styles.addressMenu} >
                         {selectedAddress} {addressAnchorEl ? <ExpandLessIcon /> : <ExpandMoreIcon />}
                     </Button>
                     <Menu
@@ -77,7 +77,7 @@ export default function UserNav() {
                     </Menu>
                     {
                         isMobile ? (
-                            <Box className={styles.menuWrapper}>
+                            <Box className={styles.profile}>
                                 <IconButton edge="end" color="inherit" onClick={handleMenuOpen}>
                                     <AccountCircleIcon />
                                 </IconButton>
@@ -95,7 +95,7 @@ export default function UserNav() {
                             </Box>
                         ) : (
                             <Box className={styles.navLinks}>
-                                <IconButton edge="end" color="inherit" onClick={handleMenuOpen} className={styles.login}>
+                                <IconButton edge="end" color="inherit" onClick={handleMenuOpen} className={styles.profile}>
                                     <AccountCircleIcon />
                                 </IconButton>
                                 <Menu

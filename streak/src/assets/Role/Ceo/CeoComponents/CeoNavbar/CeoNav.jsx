@@ -1,14 +1,16 @@
 import { useEffect, useState } from 'react';
-import { AppBar, Toolbar, IconButton, Typography, Box, Button, Menu, MenuItem, TextField } from "@mui/material";
-import MenuIcon from '@mui/icons-material/Menu';
+import {AppBar, Toolbar, IconButton, Typography, Box, Button, TextField, Menu, MenuItem} from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import LogoutIcon from '@mui/icons-material/Logout';
 import SearchIcon from '@mui/icons-material/Search';
 import styles from './ceonav.module.css';
 
 export default function Navbar() {
-    const [anchorEl, setAnchorEl] = useState(null);
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 720);
     const [hidden, setHidden] = useState(false);
     const [showSearch, setShowSearch] = useState(false);
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         const handleResize = () => setIsMobile(window.innerWidth <= 720);
@@ -27,15 +29,6 @@ export default function Navbar() {
         return () => window.removeEventListener('scroll', onScroll);
     }, []);
 
-    const handleMenuOpen = (event) => setAnchorEl(event.currentTarget);
-    const handleMenuClose = () => setAnchorEl(null);
-
-    const navItems = [
-        { label: "Welcome to Dashboard", onClick: () => window.location.href = "/AdminDash" },
-        { label: <SearchIcon />, onClick: () => setShowSearch(!showSearch) },
-        { label: "Logout", onClick: () => window.location.href = "/AdminDash", className: styles.login },
-    ];
-
     return (
         <>
             <AppBar position="fixed" className={`${styles.appBar} ${hidden ? styles.hidden : ''}`}>
@@ -43,34 +36,23 @@ export default function Navbar() {
                     <IconButton edge="start" aria-label="logo" className={styles.menuButton} component="a" href="#home">
                         <img src="/public/icons/logo_icon.png" alt="logo" className={styles.menuButton}/>
                     </IconButton>
-                    <Typography component={"img"} className={styles.title} alt={"logo felirat"} src={"/public/icons/logo_felirat.png"}/>
+                    <img src="/icons/logo_felirat.png" className={styles.title} alt=""/>
+                    <Typography component={"h6"} className={styles.home}> Ceo Dashboard </Typography>
+                    <Button onClick={() => setShowSearch(!showSearch)} color={"inherit"} className={styles.searchButton}>
+                        <SearchIcon />
+                    </Button>
                     {
                         isMobile ? (
-                            <Box className={styles.menuWrapper}>
-                                <IconButton edge="end" color="inherit" onClick={handleMenuOpen}>
-                                    <MenuIcon />
+                            <Box className={styles.profile}>
+                                <IconButton edge="end" color="inherit" onClick={() => navigate("/")} className={styles.profile}>
+                                    <LogoutIcon />
                                 </IconButton>
-                                <Menu
-                                    anchorEl={anchorEl}
-                                    open={Boolean(anchorEl)}
-                                    onClose={handleMenuClose}
-                                    anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-                                    transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-                                >
-                                    {navItems.map((item, index) => (
-                                        <MenuItem key={index} onClick={item.onClick || handleMenuClose} className={item.className}>
-                                            {item.label}
-                                        </MenuItem>
-                                    ))}
-                                </Menu>
                             </Box>
                         ) : (
                             <Box className={styles.navLinks}>
-                                {navItems.map((item, index) => (
-                                    <Button key={index} color="inherit" className={item.className || styles.navLink} onClick={item.onClick}>
-                                        {item.label}
-                                    </Button>
-                                ))}
+                                <IconButton edge="end" color="inherit" onClick={() => navigate("/")} className={styles.profile}>
+                                    <LogoutIcon />
+                                </IconButton>
                             </Box>
                         )
                     }
@@ -80,8 +62,8 @@ export default function Navbar() {
                         <TextField variant="outlined" placeholder="Search..." fullWidth />
                         <p>Használata:</p>
                         <ul>
-                            <li>@szerepkör az adott szerepkörrben keres név alapján pl: @User K. G. Béla</li>
-                            <li>#szerepkörneve az adott szerepkörrben keres id alapján pl: #User 1234</li>
+                            <li>@ az adott szerepkörrben keres név alapján pl: @Company Jócégnév</li>
+                            <li># az adott szerepkörrben keres id alapján pl: #Company 1234</li>
                         </ul>
                     </Box>
                 )}

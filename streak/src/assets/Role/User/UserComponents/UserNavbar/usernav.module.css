@@ -22,18 +22,33 @@
     align-items: center;
 }
 
+.title{
+    display: flex;
+    width: 100%;
+    max-width: 140px;
+    margin: 0 auto;
+    filter: invert(1) brightness(1) grayscale(0%) !important;
+}
+
 .menuButton {
+    cursor: pointer;
+    margin: 0 1pc;
+    max-width: 30px;
+    max-height: 30px;
+
+}
+
+.menuButton img {
+    filter: invert(1) brightness(1) grayscale(0%) !important;
+}
+
+.home{
     cursor: pointer;
     margin: 0 1pc;
     width: 100%;
     height: auto;
-    max-width: 80px;
-}
-
-.menuButton img {
-    width: 100%;
-    height: auto;
-    filter: invert(1) brightness(1) grayscale(0%) !important;
+    max-width: 2.5em;
+    max-height: 5em;
 }
 
 .navLinks {
@@ -42,7 +57,7 @@
     margin: 0 auto;
 }
 
-.navLinks .login {
+.navLinks .profile {
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -52,25 +67,12 @@
     color: white;
 }
 
-.navLink {
-    color: inherit;
-    text-transform: none;
-    font-size: 1rem;
-    font-weight: 500;
-    margin-left: 10px;
-}
-
-.menuWrapper {
-    position: absolute;
-    top: 0;
-    right: 10px;
-}
-
 .addressMenu{
     font-size: 1em !important;
     width: 100%;
-    max-width: 10em;
+    max-width: 5em;
     text-align: center;
+
 }
 
 .searchBar {
@@ -88,7 +90,7 @@
         position: fixed;
         width: 100%;
         background-color: #4E342E !important;
-        height: 50px;
+        height: auto;
     }
 
     .toolbar {
@@ -110,16 +112,20 @@
     }
 
     .title {
-        display: flex;
+        display: none;
     }
 
     .navLinks {
         display: none;
     }
 
-    .menuWrapper {
-        position: absolute;
-        top: 5px;
-        right: 5px;
+    .profile {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        width: auto;
+        margin-left: auto;
+        gap: 10px;
+        color: white;
     }
 }
