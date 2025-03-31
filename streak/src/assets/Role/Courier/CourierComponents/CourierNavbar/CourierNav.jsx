@@ -3,9 +3,9 @@ import {AppBar, Toolbar, IconButton, Typography, Box, Button, TextField } from "
 import { useNavigate } from "react-router-dom";
 import LogoutIcon from '@mui/icons-material/Logout';
 import SearchIcon from '@mui/icons-material/Search';
-import styles from './adminnav.module.css';
+import styles from './couriernav.module.css';
 
-export default function AdminNav() {
+export default function CourierNav() {
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 720);
     const [hidden, setHidden] = useState(false);
     const [showSearch, setShowSearch] = useState(false);
@@ -33,11 +33,11 @@ export default function AdminNav() {
         <>
             <AppBar position="fixed" className={`${styles.appBar} ${hidden ? styles.hidden : ''}`}>
                 <Toolbar className={styles.toolBar}>
-                    <IconButton edge="start" aria-label="logo" className={styles.menuButton} onClick={() => navigate("/admin")}>
-                        <img src="/public/icons/logo_icon.png" alt="logo" className={styles.menuButton}/>
+                    <IconButton edge="start" aria-label="logo" className={styles.menuButton} onClick={() => navigate("/courier")}>
+                        <img src="/icons/logo_icon.png" alt="logo" className={styles.menuButton}/>
                     </IconButton>
                     <img src="/icons/logo_felirat.png" className={styles.title} alt=""/>
-                    <Typography component={"h6"} className={styles.home}>Admin Dashboard</Typography>
+                    <Typography component={"h6"} className={styles.home}> Courier Dashboard </Typography>
                     <Button onClick={() => setShowSearch(!showSearch)} color={"inherit"} className={styles.searchButton}>
                         <SearchIcon />
                     </Button>
@@ -59,12 +59,7 @@ export default function AdminNav() {
                 </Toolbar>
                 {showSearch && (
                     <Box className={styles.searchBar}>
-                        <TextField variant="outlined" placeholder="Search..." fullWidth />
-                        <p>Használata:</p>
-                        <ul>
-                            <li>@ az adott szerepkörben keres név alapján pl: @User K. G. Béla</li>
-                            <li># az adott szerepkörben keres id alapján pl: #User 1234</li>
-                        </ul>
+                        <TextField variant="outlined" placeholder="Search for nearby orders..." fullWidth />
                     </Box>
                 )}
             </AppBar>

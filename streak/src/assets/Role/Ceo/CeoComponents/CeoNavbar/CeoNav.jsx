@@ -5,7 +5,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import SearchIcon from '@mui/icons-material/Search';
 import styles from './ceonav.module.css';
 
-export default function Navbar() {
+export default function CeoNav() {
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 720);
     const [hidden, setHidden] = useState(false);
     const [showSearch, setShowSearch] = useState(false);
@@ -33,7 +33,7 @@ export default function Navbar() {
         <>
             <AppBar position="fixed" className={`${styles.appBar} ${hidden ? styles.hidden : ''}`}>
                 <Toolbar className={styles.toolBar}>
-                    <IconButton edge="start" aria-label="logo" className={styles.menuButton} component="a" href="#home">
+                    <IconButton edge="start" aria-label="logo" className={styles.menuButton} onClick={() => navigate("/ceo")}>
                         <img src="/public/icons/logo_icon.png" alt="logo" className={styles.menuButton}/>
                     </IconButton>
                     <img src="/icons/logo_felirat.png" className={styles.title} alt=""/>
