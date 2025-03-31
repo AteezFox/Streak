@@ -5,6 +5,8 @@ import Body from "./assets/Components/PageBody/Body.jsx"
 import UserInterface from "./assets/Role/User/UserComponents/UserInterface/UserInterface.jsx";
 import ErrorPage from "./assets/Role/User/UserComponents/ErrorPage/ErrorPage.jsx";
 import Orders from "./assets/Role/User/UserComponents/Orders/Order.jsx";
+import AdminDash from "./assets/Role/Admin/AdminComponents/AdminDashboard/AdminDash.jsx";
+import CeoDash from "./assets/Role/Ceo/CeoComponents/CeoDashboard/CeoDash.jsx";
 
 function App() {
     return (
@@ -15,6 +17,8 @@ function App() {
                 <Route path="/profile" element={<UserProfile />} />
                 <Route path="/orders" element={<Orders />} />
                 <Route path="*" ErrorBoundary={true} element={<ErrorPage />} />
+                <Route path="/admin" element={<AdminDash />} />
+                <Route path="/ceo" element={<CeoDash />} />
             </Routes>
         </Router>
     );
