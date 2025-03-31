@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Dialog, DialogTitle, DialogContent, DialogActions, Button, TextField, TextareaAutosize } from '@mui/material';
 import './dialog.module.style.css';
 import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
