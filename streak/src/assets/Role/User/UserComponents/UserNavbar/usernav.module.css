@@ -36,17 +36,6 @@
     filter: invert(1) brightness(1) grayscale(0%) !important;
 }
 
-.title {
-    display: none;
-    justify-content: center;
-    align-items: center;
-    margin: 0 auto;
-    width: 100%;
-    height: auto;
-    max-width: 150px;
-    filter: invert(1) brightness(1) grayscale(0%) !important;
-}
-
 .navLinks {
     display: flex;
     width: 100%;
@@ -63,10 +52,25 @@
     color: white;
 }
 
+.navLink {
+    color: inherit;
+    text-transform: none;
+    font-size: 1rem;
+    font-weight: 500;
+    margin-left: 10px;
+}
+
 .menuWrapper {
     position: absolute;
     top: 0;
     right: 10px;
+}
+
+.addressMenu{
+    font-size: 1em !important;
+    width: 100%;
+    max-width: 10em;
+    text-align: center;
 }
 
 .searchBar {
