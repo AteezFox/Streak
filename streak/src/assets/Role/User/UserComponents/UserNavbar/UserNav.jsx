@@ -1,16 +1,21 @@
 import { useEffect, useState } from 'react';
-import { AppBar, Toolbar, IconButton, Typography, Box, Button, Menu, MenuItem } from "@mui/material";
-import MenuIcon from '@mui/icons-material/Menu';
+import { AppBar, Toolbar, IconButton, Box, Menu, MenuItem, Button } from "@mui/material";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import MeetingRoomSharpIcon from '@mui/icons-material/MeetingRoomSharp';
-import { useNavigate, Link } from "react-router-dom";
+import HomeIcon from '@mui/icons-material/Home';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import ExpandLessIcon from '@mui/icons-material/ExpandLess';
+import { useNavigate } from "react-router-dom";
 import styles from './usernav.module.css';
 
 export default function UserNav() {
     const [anchorEl, setAnchorEl] = useState(null);
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 720);
     const [hidden, setHidden] = useState(false);
+    const [addressAnchorEl, setAddressAnchorEl] = useState(null);
+    const [selectedAddress, setSelectedAddress] = useState(localStorage.getItem('selectedAddress') || "Select Address");
     const navigate = useNavigate();
+
+    const addresses = ["Otthon", "Munkahely", "Cigánylak"];
 
     useEffect(() => {
         const handleResize = () => setIsMobile(window.innerWidth <= 720);
@@ -32,11 +37,19 @@ export default function UserNav() {
     const handleMenuOpen = (event) => setAnchorEl(event.currentTarget);
     const handleMenuClose = () => setAnchorEl(null);
 
+    const handleAddressMenuOpen = (event) => setAddressAnchorEl(event.currentTarget);
+    const handleAddressMenuClose = () => setAddressAnchorEl(null);
+
+    const handleAddressSelect = (address) => {
+        setSelectedAddress(address);
+        localStorage.setItem('selectedAddress', address);
+        handleAddressMenuClose();
+    };
+
     const navItems = [
-        { label: "Home", onClick: () => navigate("/yourhome") },
-        { label: "Shops" },
-        { label: <Link to={"/profile"} className={styles.login}><AccountCircleIcon /></Link>, onClick: () => navigate("/profile"), className: styles.login },
-        { label: <MeetingRoomSharpIcon />, onClick: () => navigate("/") }
+        { label: "Orders", onClick: () => navigate("/orders")},
+        { label: "Profile", onClick: () => navigate("/profile") },
+        { label: "Logout", onClick: () => navigate("/") }
     ];
 
     return (
@@ -46,20 +59,31 @@ export default function UserNav() {
                     <IconButton edge="start" aria-label="logo" className={styles.menuButton} onClick={() => navigate("/yourhome")}>
                         <img src="/icons/logo_icon.png" alt="logo" className={styles.menuButton}/>
                     </IconButton>
-                    <Typography component={"img"} className={styles.title} alt={"logo felirat"} src={"/icons/logo_felirat.png"}/>
-                    <Typography variant={"p"} display={"flex"} flex={"content"}>Welcome: User</Typography>
+                    <IconButton className={styles.menuButton} color={"inherit"} onClick={() => navigate("/yourhome")}><HomeIcon /></IconButton>
+                    <Button color="inherit" onClick={handleAddressMenuOpen} className={styles.navLink} className={styles.addressMenu}>
+                        {selectedAddress} {addressAnchorEl ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+                    </Button>
+                    <Menu
+                        anchorEl={addressAnchorEl}
+                        open={Boolean(addressAnchorEl)}
+                        onClose={handleAddressMenuClose}
+                    >
+                        {addresses.map((address, index) => (
+                            <MenuItem key={index} onClick={() => handleAddressSelect(address)}>
+                                {address}
+                            </MenuItem>
+                        ))}
+                    </Menu>
                     {
                         isMobile ? (
                             <Box className={styles.menuWrapper}>
                                 <IconButton edge="end" color="inherit" onClick={handleMenuOpen}>
-                                    <MenuIcon />
+                                    <AccountCircleIcon />
                                 </IconButton>
                                 <Menu
                                     anchorEl={anchorEl}
                                     open={Boolean(anchorEl)}
                                     onClose={handleMenuClose}
-                                    anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-                                    transformOrigin={{ vertical: 'top', horizontal: 'right' }}
                                 >
                                     {navItems.map((item, index) => (
                                         <MenuItem key={index} onClick={item.onClick || handleMenuClose} className={item.className}>
@@ -70,11 +94,20 @@ export default function UserNav() {
                             </Box>
                         ) : (
                             <Box className={styles.navLinks}>
-                                {navItems.map((item, index) => (
-                                    <Button key={index} color="inherit" className={item.className || styles.navLink} onClick={item.onClick}>
-                                        {item.label}
-                                    </Button>
-                                ))}
+                                <IconButton edge="end" color="inherit" onClick={handleMenuOpen} className={styles.login}>
+                                    <AccountCircleIcon />
+                                </IconButton>
+                                <Menu
+                                    anchorEl={anchorEl}
+                                    open={Boolean(anchorEl)}
+                                    onClose={handleMenuClose}
+                                >
+                                    {navItems.map((item, index) => (
+                                        <MenuItem key={index} onClick={item.onClick || handleMenuClose} className={item.className}>
+                                            {item.label}
+                                        </MenuItem>
+                                    ))}
+                                </Menu>
                             </Box>
                         )
                     }
