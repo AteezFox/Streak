@@ -47,7 +47,7 @@ export default function UserNav() {
     };
 
     const navItems = [
-        { label: "UserOrders", onClick: () => navigate("/orders")},
+        { label: "Orders", onClick: () => navigate("/orders")},
         { label: "Profile", onClick: () => navigate("/profile") },
         { label: "Logout", onClick: () => navigate("/") }
     ];
