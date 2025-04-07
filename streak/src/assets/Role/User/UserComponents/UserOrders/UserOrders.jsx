@@ -2,6 +2,7 @@ import { Container, Box, Button, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import UserNav from "../UserNavbar/UserNav.jsx";
 import styles from "./userorders.module.css";
+import Order from "../../../Order/OrderOrder/Order.jsx"
 
 export default function UserOrders(){
 
@@ -13,7 +14,7 @@ export default function UserOrders(){
             <Container className={styles.container}>
                 <div className={styles.body}>
                     <h1>
-                        Itt lesznek a rendelések
+                        <Order />
                     </h1>
                 </div>
             </Container>

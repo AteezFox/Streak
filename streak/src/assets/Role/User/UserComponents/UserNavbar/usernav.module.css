@@ -77,13 +77,14 @@
     justify-content: center;
     align-items: center;
     margin: 0 1pc !important;
+    margin-left: 4pc;
 }
 
 .searchBar {
     padding: 10px;
     background-color: #fff;
     position: fixed;
-    top: 64px; /* Adjust based on your AppBar height */
+    top: 64px;
     width: 100%;
     z-index: 999;
     color: black;

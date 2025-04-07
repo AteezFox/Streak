@@ -3,6 +3,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Container } from '@mui/material';
 import styles from './courierdash.module.css';
 import CourierNav from "../CourierNavbar/CourierNav.jsx";
+import Order from "../../../Order/OrderOrder/Order.jsx"
 
 export default function CourierDash() {
     return (
@@ -19,7 +20,7 @@ export default function CourierDash() {
                         </AccordionSummary>
                         <AccordionDetails>
                             <Typography>
-                                Acceptable Orders and related actions.
+                                <Order />
                             </Typography>
                         </AccordionDetails>
                     </Accordion>
@@ -30,7 +31,7 @@ export default function CourierDash() {
                         </AccordionSummary>
                         <AccordionDetails>
                             <Typography>
-                                Accepted Orders by you and related actions.
+                                <Order />
                             </Typography>
                         </AccordionDetails>
                     </Accordion>
@@ -41,7 +42,7 @@ export default function CourierDash() {
                         </AccordionSummary>
                         <AccordionDetails>
                             <Typography>
-                                List of orders which is timed out or accepted by someone else
+                                <Order />
                             </Typography>
                         </AccordionDetails>
                     </Accordion>

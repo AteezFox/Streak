@@ -3,6 +3,8 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Container } from '@mui/material';
 import CeoNav from '../CeoNavbar/CeoNav.jsx';
 import styles from './ceodash.module.css';
+import Company from '../../../Company/Company/Company.jsx';
+import Product from '../../../Product/Product/Product.jsx';
 
 export default function CeoDash() {
     return (
@@ -18,7 +20,7 @@ export default function CeoDash() {
                         </AccordionSummary>
                         <AccordionDetails>
                             <Typography>
-                                List of Companies and related actions.
+                                    <Company />
                             </Typography>
                         </AccordionDetails>
                     </Accordion>
@@ -29,7 +31,7 @@ export default function CeoDash() {
                         </AccordionSummary>
                         <AccordionDetails>
                             <Typography>
-                                List of Products and related actions.
+                                    <Product />
                             </Typography>
                         </AccordionDetails>
                     </Accordion>

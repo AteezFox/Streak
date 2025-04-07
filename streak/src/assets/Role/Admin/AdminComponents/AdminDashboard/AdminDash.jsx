@@ -3,6 +3,11 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Container } from '@mui/material';
 import AdminNav from '../AdminNavbar/AdminNav.jsx';
 import styles from './admindash.module.css';
+import Ceo from "../../../Ceo/CeoCeo/Ceo.jsx";
+import User from "../../../User/UserUser/User.jsx";
+import Courier from "../../../Courier/CourierCourier/Courier.jsx";
+import Product from "../../../Product/Product/Product.jsx";
+import Company from "../../../Company/Company/Company.jsx"
 
 export default function AdminDash() {
     return (
@@ -19,7 +24,7 @@ export default function AdminDash() {
                         </AccordionSummary>
                         <AccordionDetails>
                             <Typography>
-                                List of CEOs and related actions.
+                                <Ceo />
                             </Typography>
                         </AccordionDetails>
                     </Accordion>
@@ -30,7 +35,7 @@ export default function AdminDash() {
                         </AccordionSummary>
                         <AccordionDetails>
                             <Typography>
-                                List of Customers and related actions.
+                                <User />
                             </Typography>
                         </AccordionDetails>
                     </Accordion>
@@ -41,7 +46,7 @@ export default function AdminDash() {
                         </AccordionSummary>
                         <AccordionDetails>
                             <Typography>
-                                List of Couriers and related actions.
+                                <Courier />
                             </Typography>
                         </AccordionDetails>
                     </Accordion>
@@ -52,7 +57,7 @@ export default function AdminDash() {
                         </AccordionSummary>
                         <AccordionDetails>
                             <Typography>
-                                List of Companies and related actions.
+                                <Company />
                             </Typography>
                         </AccordionDetails>
                     </Accordion>
@@ -63,7 +68,7 @@ export default function AdminDash() {
                         </AccordionSummary>
                         <AccordionDetails>
                             <Typography>
-                                List of Products and related actions.
+                                <Product />
                             </Typography>
                         </AccordionDetails>
                     </Accordion>
