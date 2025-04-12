@@ -37,4 +37,10 @@ public class CEOController {
         CEODTO updated = ceoService.updateCEO(id, ceo);
         return new ResponseEntity<>(updated, HttpStatus.OK);
     }
+
+    @DeleteMapping
+    public ResponseEntity<Void> deleteCEO(@PathVariable long id) {
+        ceoService.deleteCEOById(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 }
