@@ -8,6 +8,7 @@ import Orders from "./assets/Role/User/UserComponents/UserOrders/UserOrders.jsx"
 import AdminDash from "./assets/Role/Admin/AdminComponents/AdminDashboard/AdminDash.jsx";
 import CeoDash from "./assets/Role/Ceo/CeoComponents/CeoDashboard/CeoDash.jsx";
 import CourierDash from "./assets/Role/Courier/CourierComponents/CourierDashboard/CourierDash.jsx";
+import CompanySite from './assets/Role/Company/CompanyComponents/CompanySite/CompanySite.jsx';
 
 function App() {
     return (
@@ -21,6 +22,7 @@ function App() {
                 <Route path="/admin" element={<AdminDash />} />
                 <Route path="/ceo" element={<CeoDash />} />
                 <Route path="/courier" element={<CourierDash />} />
+                <Route path='/products' element={<CompanySite />} />
             </Routes>
         </Router>
     );
