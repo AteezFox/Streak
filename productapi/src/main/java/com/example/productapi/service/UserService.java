@@ -32,6 +32,17 @@ public class UserService {
         return UserConverter.toDTO(savedUser);
     }
 
+    public UserDTO updateUser(long id, UserDTO userDTO) {
+        User user = userRepository.findById(id).orElseThrow(() ->new RuntimeException("User not found"));
+        user.setFirstName(userDTO.getFirstName());
+        user.setLastName(userDTO.getLastName());
+        user.setEmail(userDTO.getEmail());
+        user.setPassword(userDTO.getPassword());
+        user.setPhone(userDTO.getPhone());
+        user.setAddress(userDTO.getAddress());
+        return UserConverter.toDTO(userRepository.save(user));
+    }
+
     public void deleteUserById(long id) {
         if(!userRepository.existsById(id)) {
             throw new RuntimeException("User not found");
