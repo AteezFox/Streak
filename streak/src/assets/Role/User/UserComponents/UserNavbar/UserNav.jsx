@@ -5,6 +5,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import { useNavigate } from "react-router-dom";
+import UserCart from '../UserCart/UserCart';
 import styles from './usernav.module.css';
 
 export default function UserNav() {
@@ -37,6 +38,7 @@ export default function UserNav() {
     const handleMenuOpen = (event) => setAnchorEl(event.currentTarget);
     const handleMenuClose = () => setAnchorEl(null);
 
+
     const handleAddressMenuOpen = (event) => setAddressAnchorEl(event.currentTarget);
     const handleAddressMenuClose = () => setAddressAnchorEl(null);
 
@@ -60,8 +62,10 @@ export default function UserNav() {
                         <img src="/icons/logo_icon.png" alt="logo" className={styles.menuButton}/>
                     </IconButton>
                     <img src="/icons/logo_felirat.png" className={styles.title} alt=""/>
-                    <IconButton className={styles.home} color={"inherit"} onClick={() => navigate("/yourhome")}><HomeIcon /></IconButton>
-                    <Button color="inherit" onClick={handleAddressMenuOpen} className={styles.addressMenu} >
+                    <IconButton className={styles.home} color="inherit" onClick={() => navigate("/yourhome")}>
+                        <HomeIcon />
+                    </IconButton>
+                    <Button color="inherit" onClick={handleAddressMenuOpen} className={styles.addressMenu}>
                         {selectedAddress} {addressAnchorEl ? <ExpandLessIcon /> : <ExpandMoreIcon />}
                     </Button>
                     <Menu
@@ -75,9 +79,11 @@ export default function UserNav() {
                             </MenuItem>
                         ))}
                     </Menu>
+                    
                     {
                         isMobile ? (
                             <Box className={styles.profile}>
+                                <UserCart></UserCart>
                                 <IconButton edge="end" color="inherit" onClick={handleMenuOpen}>
                                     <AccountCircleIcon />
                                 </IconButton>
@@ -95,9 +101,11 @@ export default function UserNav() {
                             </Box>
                         ) : (
                             <Box className={styles.navLinks}>
+                                <UserCart></UserCart>
                                 <IconButton edge="end" color="inherit" onClick={handleMenuOpen} className={styles.profile}>
                                     <AccountCircleIcon />
                                 </IconButton>
+                                
                                 <Menu
                                     anchorEl={anchorEl}
                                     open={Boolean(anchorEl)}

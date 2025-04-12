@@ -1,42 +1,53 @@
 import React from 'react';
 import Card from '@mui/material/Card';
-import CardHeader from '@mui/material/CardHeader';
 import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import CardActions from '@mui/material/CardActions';
-import CardActionArea from '@mui/material/CardActionArea';
-import Button from '@mui/material/Button'
-import styles from './productcards.module.css'
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import AddIcon from '@mui/icons-material/Add';
+import styles from './productcards.module.css';
 
 export default function ProductCards() {
     const prod = [
-        {name: "Tárgy 1", image: "placeholder", desc: "Lorem ipsum..."},
-        {name: "Tárgy 2", image: "placeholder", desc: "Lorem ipsum..."}
-    ]
+        {
+            name: "30 Strips Kosár",
+            desc: "30db Strips csípős csirkemell csík, 200 gramm rizs, 2 kis adag sült burgonya és 2...",
+            price: "HUF 10,090",
+            image: "/path/to/image.jpg"
+        },
+        {
+            name: "30 Strips Kosár",
+            desc: "30db Strips csípős csirkemell csík, 200 gramm rizs, 2 kis adag sült burgonya és 2...",
+            price: "HUF 10,090",
+            image: "/path/to/image.jpg"
+        },
+        // ... több termék
+    ];
+
     return (
-        <>
-            <div className={styles.cardContainer}>
-                {prod.map((prod, index) => (
-                    <Card className={styles.card} key={index}>
-                    <CardHeader
-                        title={prod.name}
-                        className={styles.cardTitles}
+        <div className={styles.cardContainer}>
+            {prod.map((prod, index) => (
+                <Card key={index} className={styles.card}>
+                    <img 
+                        src={prod.image} 
+                        alt={prod.name}
+                        className={styles.cardImage}
                     />
-                    <CardMedia title="kép ide" image={prod.image} className={styles.cardImage} />
-                    <CardContent className={styles.cardDescription}>
-                        {prod.desc}
+                    <CardContent className={styles.cardContent}>
+                        <Typography variant="h6" className={styles.cardTitle}>
+                            {prod.name}
+                        </Typography>
+                        <Typography className={styles.cardDescription}>
+                            {prod.desc}
+                        </Typography>
+                        <Typography className={styles.cardPrice}>
+                            {prod.price}
+                        </Typography>
                     </CardContent>
-                    <CardActions>
-                        <Button variant="text" color="primary">
-                            Kosárba
-                        </Button>
-                        <Button variant="text" color="primary">
-                            Törlés
-                        </Button>
-                    </CardActions>
+                    <IconButton className={styles.addButton}>
+                        <AddIcon />
+                    </IconButton>
                 </Card>
-                ))}
-            </div>
-        </>
-    )
+            ))}
+        </div>
+    );
 }

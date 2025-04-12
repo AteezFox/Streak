@@ -3,62 +3,161 @@
 }
 
 .cardContainer {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    display: grid;
     gap: 20px;
     padding: 20px;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
 .card {
+    display: flex !important;
+    flex-direction: row !important;
+    background-color: #1c1c1c !important;
+    border: none !important;
+    border-radius: 12px !important;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+}
+
+.cardContent {
     flex: 1;
-    min-width: 250px;
-    max-width: 300px;
-    background-color: white;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-    border: #8B0000 solid 2px;
-}
-
-.card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-}
-
-.cardImage {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 12px 12px 0 0;
-    border: black solid 1px;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    align-items: flex-start !important;
+    padding: 16px !important;
+    gap: 8px;
 }
 
 .cardTitle {
-    margin-top: 10px;
-    font-weight: bold;
+    color: white !important;
+    font-size: 1.25rem !important;
+    font-weight: bold !important;
+    text-align: left !important;
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
-@media (max-width: 480px) {
+.cardDescription {
+    color: #888 !important;
+    font-size: 0.9rem !important;
+    text-align: left !important;
+    margin: 0 !important;
+}
+
+.cardPrice {
+    color: #00a8e1 !important;
+    font-size: 1.1rem !important;
+    font-weight: bold !important;
+    margin-top: auto !important;
+}
+
+.cardImage {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin: 16px;
+}
+
+.addButton {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: transparent !important;
+    color: #00a8e1 !important;
+    font-size: 24px !important;
+    min-width: 40px !important;
+    width: 40px !important;
+    height: 40px !important;
+    padding: 8px !important;
+    border-radius: 50% !important;
+}
+
+/* Asztali nézet */
+@media (min-width: 1024px) {
     .cardContainer {
-        padding: 8px;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 24px;
+        padding: 24px;
     }
 
     .card {
-        padding: 12px;
+        flex-direction: column !important;
+    }
+}
+
+/* Tablet nézet */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .cardContainer {
+        grid-template-columns: repeat(2, 1fr); /* 2 kártya egy sorban */
+        gap: 20px;
+    }
+}
+
+/* Mobil nézet */
+@media (max-width: 767px) {
+    .cardContainer {
+        grid-template-columns: 1fr;
+        gap: 2px;
+        padding: 0;
+        background-color: transparent;
+    }
+
+    .card {
+        margin-bottom: 2px;
+        background-color: #1c1c1c !important;
+    }
+
+    .cardContent {
+        padding: 16px !important;
     }
 
     .cardImage {
         width: 100px;
         height: 100px;
+        margin: 12px;
     }
 
-    .cardTitle {
-        font-size: 1.1rem;
+    .addButton {
+        right: 12px;
+    }
+}
+
+/* Animációk */
+@media (hover: hover) {
+    .card {
+        transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
     }
 
+    .card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    }
+}
+
+/* Sötét mód támogatás */
+@media (prefers-color-scheme: dark) {
+    .card {
+        background-color: #1c1c1c !important;
+        border-color: #333 !important;
+    }
+
+    .cardTitle,
+    .cardContent {
+        border-color: #333;
+    }
+
+    .cardTitle,
     .cardDescription {
-        font-size: 0.85rem;
+        color: #fff !important;
+    }
+
+    .cardActions {
+        background-color: #1c1c1c;
     }
 }

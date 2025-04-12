@@ -90,6 +90,28 @@
     color: black;
 }
 
+.cart {
+    margin-left: auto;
+    margin-right: 16px;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+}
+
+.iconGroup {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    gap: 8px;
+}
+
+.cartIcon {
+    display: flex;
+    align-items: center;
+}
+
 @media (max-width: 720px) {
     .appBar {
         position: fixed;
@@ -132,5 +154,13 @@
         margin-left: auto;
         gap: 10px;
         color: white;
+    }
+
+    .cart {
+        margin-right: 8px;
+    }
+
+    .iconGroup {
+        gap: 4px;
     }
 }
