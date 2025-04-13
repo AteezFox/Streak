@@ -10,7 +10,7 @@ public class AdminDTO {
     private String email;
     private String password;
 
-    public AdminDTO() {};
+    public AdminDTO() {}
 
     public AdminDTO(String firstName, String lastName, String email, String password) {
         this.firstName = firstName;
