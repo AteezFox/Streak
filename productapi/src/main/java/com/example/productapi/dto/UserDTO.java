@@ -1,5 +1,6 @@
 package com.example.productapi.dto;
 
+import com.example.productapi.enums.UserType;
 import lombok.*;
 
 @Getter
@@ -11,16 +12,18 @@ public class UserDTO {
     private String password;
     private String phone;
     private String address;
+    private UserType userType;
 
     public UserDTO() {}
 
-    public UserDTO(String firstName, String lastName, String email, String password, String phone, String address) {
+    public UserDTO(String firstName, String lastName, String email, String password, String phone, String address, UserType userType) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
         this.phone = phone;
         this.address = address;
+        this.userType = userType;
     }
 
 }

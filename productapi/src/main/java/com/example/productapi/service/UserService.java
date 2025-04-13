@@ -40,6 +40,7 @@ public class UserService {
         user.setPassword(userDTO.getPassword());
         user.setPhone(userDTO.getPhone());
         user.setAddress(userDTO.getAddress());
+        user.setUserType(userDTO.getUserType());
         return UserConverter.toDTO(userRepository.save(user));
     }
 

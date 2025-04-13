@@ -1,5 +1,6 @@
 package com.example.productapi.model;
 
+import com.example.productapi.enums.UserType;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -18,17 +19,19 @@ public class User {
     private String password;
     private String phone;
     private String address;
+    private UserType userType;
 
     public User() {
     }
 
-    public User(String firstName, String lastName, String email, String password, String phone, String address) {
+    public User(String firstName, String lastName, String email, String password, String phone, String address, UserType userType) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
         this.phone = phone;
         this.address = address;
+        this.userType = userType;
     }
 
     @Override
