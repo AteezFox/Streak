@@ -4,7 +4,11 @@ import styles from './loginModal.module.css';
 
 export default function LoginModal({ isOpen, onClose }) {
     const [openClass, setOpenClass] = useState('');
-
+    const [login, setLogin] = useState('');
+    const loginArray = [
+        {id: '1', name: "Béla", email: "bela@email.com", password: "1234" }
+    ]
+    
     useEffect(() => {
         if (isOpen) {
             setTimeout(() => setOpenClass(styles['modal-enter']), 10);
@@ -12,7 +16,7 @@ export default function LoginModal({ isOpen, onClose }) {
             setOpenClass('');
         }
     }, [isOpen]);
-    
+        
     return (
         <Modal
             open={isOpen}
@@ -37,8 +41,6 @@ export default function LoginModal({ isOpen, onClose }) {
                     className={styles.input}
                     type="password"
                     required={true}
-                    minRows={3}
-                    maxRows={5}
                 />
                 <div className={styles.buttons}>
                     <Button className={styles.button} >Bejelentkezés</Button>
