@@ -14,6 +14,8 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private Long companyId;
+
     private String name;
     private String description;
     private Category category;
@@ -22,7 +24,8 @@ public class Product {
     public Product() {
     }
 
-    public Product(String name, String description, Category category, Double price) {
+    public Product(Long companyId, String name, String description, Category category, Double price) {
+        this.companyId = companyId;
         this.name = name;
         this.description = description;
         this.category = category;

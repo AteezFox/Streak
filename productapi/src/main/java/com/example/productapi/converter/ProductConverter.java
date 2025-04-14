@@ -6,6 +6,7 @@ import com.example.productapi.model.Product;
 public class ProductConverter {
     public static ProductDTO toDTO(Product product) {
         ProductDTO productDTO = new ProductDTO();
+        productDTO.setCompanyId(product.getCompanyId());
         productDTO.setName(product.getName());
         productDTO.setDescription(product.getDescription());
         productDTO.setCategory(product.getCategory());
@@ -15,6 +16,7 @@ public class ProductConverter {
 
     public static Product toEntity(ProductDTO productDTO) {
         Product product = new Product();
+        product.setCompanyId(productDTO.getCompanyId());
         product.setName(productDTO.getName());
         product.setDescription(productDTO.getDescription());
         product.setCategory(productDTO.getCategory());

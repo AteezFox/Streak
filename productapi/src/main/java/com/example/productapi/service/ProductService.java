@@ -33,6 +33,7 @@ public class ProductService {
 
     public ProductDTO updateProduct(Long id, ProductDTO productDTO) {
         Product product = productRepository.findById(id).orElseThrow(() -> new RuntimeException("Product not found"));
+        product.setCompanyId(productDTO.getCompanyId());
         product.setName(productDTO.getName());
         product.setDescription(productDTO.getDescription());
         product.setCategory(productDTO.getCategory());
