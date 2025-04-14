@@ -11,4 +11,15 @@ public class Company {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    private Long userId;
+    private String name;
+
+    public Company() {
+    }
+
+    public Company(Long userId, String name) {
+        this.userId = userId;
+        this.name = name;
+    }
 }

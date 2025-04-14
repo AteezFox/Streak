@@ -1,5 +1,5 @@
 package com.example.productapi.enums;
 
 public enum UserType {
-    ADMIN, USER, CEO
+    ADMIN, USER, CEO, COURIER
 }
