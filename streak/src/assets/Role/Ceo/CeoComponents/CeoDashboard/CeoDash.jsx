@@ -24,17 +24,6 @@ export default function CeoDash() {
                             </Typography>
                         </AccordionDetails>
                     </Accordion>
-
-                    <Accordion className={styles.list}>
-                        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                            <Typography>Products</Typography>
-                        </AccordionSummary>
-                        <AccordionDetails>
-                            <Typography>
-                                    <Product />
-                            </Typography>
-                        </AccordionDetails>
-                    </Accordion>
                 </div>
             </Container>
         </div>

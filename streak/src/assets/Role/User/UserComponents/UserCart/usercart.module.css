@@ -1,12 +1,35 @@
-.container{
-  background-color: #F5E1C8 !important;
-  width: 100%;
+.container {
+  background-color: #b87333 !important;
+  width: 100% !important;
+  max-width: 100% !important;
   height: auto;
   border-top-left-radius: 1rem;
   border-top-right-radius: 1rem;
-  border-left: #8B0000 1px solid;
-  border-right: #8B0000 1px solid;
-  border-top: #8B0000 1px solid;
+  border-left: #8b0000 1px solid;
+  border-right: #8b0000 1px solid;
+  border-top: #8b0000 1px solid;
+  margin: 0 !important;
+  padding: 1rem !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+.body {
+  display: block;
+  justify-content: center;
+  align-items: center;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: 16px !important;
+  box-sizing: border-box !important;
+  overflow-x: hidden !important;
+  background-color: #f5e1c8;
+  border: #8b0000 solid 5px;
+  border-radius: 10px;
+  color: black;
+  text-align: center;
+  height: auto;
 }
 
 .cart {
@@ -22,14 +45,12 @@
 .drawer > .MuiPaper-root {
   border-top-left-radius: 1rem !important;
   border-top-right-radius: 1rem !important;
-  
 }
 
 /* A tartalmazó div-re is alkalmazzuk */
 .drawer > div {
   border-top-left-radius: 1rem !important;
   border-top-right-radius: 1rem !important;
-  
 }
 
 .drawer .MuiPaper-root {
@@ -40,24 +61,36 @@
   left: 0 !important;
   right: 0 !important;
   overflow-x: hidden;
-  border-left: #8B0000 solid 1px !important;
-  border-right: #8B0000 solid 1px !important;
-  border-top: #8B0000 solid 1px !important;
+  border-left: #8b0000 solid 1px !important;
+  border-right: #8b0000 solid 1px !important;
+  border-top: #8b0000 solid 1px !important;
 
-  background-color: #B87333 !important;
+  background-color: #b87333 !important;
 }
 
-.title{
+.title {
   font-size: 5cap !important;
   font-weight: bolder !important;
 }
 
-.desc{
+.desc {
   font-size: 1.5cap !important;
+  text-align: justify;
+  padding: 1rem;
 }
 
 @media (max-width: 768px) {
-  .desc{
+  .desc {
     font-size: 1cap !important;
+  }
+  .title {
+    font-size: 2.5cap !important;
+  }
+
+  .body {
+    width: 100%;
+    height: auto;
+    max-height: 500px !important;
+    max-width: 500px !important;
   }
 }

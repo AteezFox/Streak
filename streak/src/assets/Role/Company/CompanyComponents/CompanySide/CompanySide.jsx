@@ -1,7 +1,9 @@
 import Drawer from '@mui/material/Drawer'
 import { useState } from 'react'
-import Button from '@mui/material/Button'
+import {Button, Box} from '@mui/material'
 import ViewSidebarIcon from '@mui/icons-material/ViewSidebar';
+import Container from '@mui/material/Container'
+import Typography from '@mui/material/Typography'
 
 export default function CompanySide() {
     const [isSideOpen, setIsSideOpen] = useState(false);
@@ -16,7 +18,11 @@ export default function CompanySide() {
                 <ViewSidebarIcon />
             </Button>
             <Drawer variant="temporary" anchor="left" open={isSideOpen} onClose={toggleSide}>
-                <h1>Test</h1>
+                <Container maxWidth="lg">
+                  <Box>
+                    <Typography variant="h4">Kat</Typography>
+                  </Box>
+                </Container>
             </Drawer>
         </>
     )

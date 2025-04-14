@@ -35,18 +35,6 @@ export default function CourierDash() {
                             </Typography>
                         </AccordionDetails>
                     </Accordion>
-
-                    <Accordion className={styles.list}>
-                        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                            <Typography>Timed out orders</Typography>
-                        </AccordionSummary>
-                        <AccordionDetails>
-                            <Typography>
-                                <Order />
-                            </Typography>
-                        </AccordionDetails>
-                    </Accordion>
-
                 </div>
             </Container>
         </>
