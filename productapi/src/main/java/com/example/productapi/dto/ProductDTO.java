@@ -1,7 +1,6 @@
 package com.example.productapi.dto;
 
 import com.example.productapi.enums.Category;
-import com.example.productapi.enums.UserType;
 import lombok.*;
 
 @Getter
