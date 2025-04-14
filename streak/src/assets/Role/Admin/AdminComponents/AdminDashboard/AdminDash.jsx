@@ -19,24 +19,15 @@ export default function AdminDash() {
                     <h1>Admin Dashboard</h1>
                     <p>Here will be a series of requests at some point</p>
 
-                    <Accordion className={styles.list}>
-                        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                            <Typography>CEOs</Typography>
-                        </AccordionSummary>
-                        <AccordionDetails>
-                            <Typography>
-                                <Ceo />
-                            </Typography>
-                        </AccordionDetails>
-                    </Accordion>
+                    
 
                     <Accordion className={styles.list}>
                         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                            <Typography>Customers</Typography>
+                            <Typography>Companies</Typography>
                         </AccordionSummary>
                         <AccordionDetails>
                             <Typography>
-                                <User />
+                                #111 fasz
                             </Typography>
                         </AccordionDetails>
                     </Accordion>
@@ -54,25 +45,15 @@ export default function AdminDash() {
 
                     <Accordion className={styles.list}>
                         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                            <Typography>Companies</Typography>
+                            <Typography>Customers</Typography>
                         </AccordionSummary>
                         <AccordionDetails>
                             <Typography>
-                                <Company />
+                                <User />
                             </Typography>
                         </AccordionDetails>
                     </Accordion>
 
-                    <Accordion className={styles.list}>
-                        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                            <Typography>Products</Typography>
-                        </AccordionSummary>
-                        <AccordionDetails>
-                            <Typography>
-                                <Product />
-                            </Typography>
-                        </AccordionDetails>
-                    </Accordion>
                 </div>
             </Container>
         </>

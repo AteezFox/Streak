@@ -34,12 +34,7 @@ export default function ProductCards() {
             price: "HUF 10,090",
             image: "/path/to/image.jpg"
         },
-        {
-            name: "30 Strips Kosár",
-            desc: "30db Strips csípős csirkemell csík, 200 gramm rizs, 2 kis adag sült burgonya és 2...",
-            price: "HUF 10,090",
-            image: "/path/to/image.jpg"
-        },
+        
     ];
 
     return (
