@@ -17,6 +17,7 @@ public class ProductConverter {
 
     public static Product toEntity(ProductDTO productDTO) {
         Product product = new Product();
+        product.setId(productDTO.getId());
         product.setCompanyId(productDTO.getCompanyId());
         product.setName(productDTO.getName());
         product.setDescription(productDTO.getDescription());
