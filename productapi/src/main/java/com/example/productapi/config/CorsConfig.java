@@ -7,17 +7,18 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 public class CorsConfig {
-
     @Bean
     public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/streak/api/**")  // vagy "**" ha mindenre
-                        .allowedOrigins("*") // frontend címe
-                        .allowedMethods("GET", "POST", "PUT", "DELETE") // amire szükséged van
-                        .allowedHeaders("*");
+                registry.addMapping("/**")
+                        .allowedOrigins("*") // vagy ahol a React app fut
+                        .allowedMethods("*")
+                        .allowedHeaders("*")
+                        .allowCredentials(true);
             }
         };
     }
 }
+
