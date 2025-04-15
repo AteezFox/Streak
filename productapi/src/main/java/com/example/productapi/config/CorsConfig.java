@@ -14,7 +14,7 @@ public class CorsConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/streak/api/**")  // vagy "**" ha mindenre
-                        .allowedOrigins("http://localhost:3000") // frontend címe
+                        .allowedOrigins("+") // frontend címe
                         .allowedMethods("GET", "POST", "PUT", "DELETE") // amire szükséged van
                         .allowedHeaders("*");
             }
