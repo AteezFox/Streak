@@ -6,6 +6,7 @@ import com.example.productapi.model.Product;
 public class ProductConverter {
     public static ProductDTO toDTO(Product product) {
         ProductDTO productDTO = new ProductDTO();
+        productDTO.setId(product.getId());
         productDTO.setCompanyId(product.getCompanyId());
         productDTO.setName(product.getName());
         productDTO.setDescription(product.getDescription());
