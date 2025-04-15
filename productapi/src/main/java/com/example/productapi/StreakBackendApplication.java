@@ -1,5 +1,6 @@
 package com.example.productapi;
 
+import com.example.productapi.utils.DataInitializer;
 import com.example.productapi.utils.DatabaseCreator;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
