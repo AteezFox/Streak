@@ -17,10 +17,19 @@ public class ProductController {
     ProductService productService;
 
     @GetMapping("/get")
-    public List<ProductDTO> getAllProducts() {return productService.getProducts();}
+    public List<ProductDTO> getAllProducts() {
+        return productService.getProducts();
+    }
+
+    @GetMapping("/get/{size}/{page}")
+    public List<ProductDTO> getProductsByPage(@PathVariable Integer size, @PathVariable Integer page) {
+        return productService.getProductsPaginated(page, size);
+    }
 
     @GetMapping("/get/{id}")
-    public ProductDTO getProductById(@PathVariable Long id) {return productService.getProductById(id);}
+    public ProductDTO getProductById(@PathVariable Long id) {
+        return productService.getProductById(id);
+    }
 
     @PostMapping("/add")
     public ResponseEntity<ProductDTO> addProduct(@RequestBody ProductDTO productDTO) {

@@ -7,6 +7,7 @@ import com.example.productapi.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -18,6 +19,17 @@ public class ProductService {
 
     public List<ProductDTO> getProducts() {
         return productRepository.findAll().stream().map(ProductConverter::toDTO).collect(Collectors.toList());
+    }
+
+    public List<ProductDTO> getProductsPaginated(int page, int size) {
+        List<ProductDTO> listToReturn = new ArrayList<>();
+        int gotPage = page - 1;
+        int iter = (gotPage == 0) ? 0 : gotPage*size;
+        for (int i = iter; i < iter + size; i++) {
+            ProductDTO product = ProductConverter.toDTO(productRepository.findAll().get(i));
+            listToReturn.add(product);
+        }
+        return listToReturn;
     }
 
     public ProductDTO getProductById(Long id) {
