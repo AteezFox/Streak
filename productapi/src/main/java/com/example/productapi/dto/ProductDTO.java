@@ -6,6 +6,7 @@ import lombok.*;
 @Getter
 @Setter
 public class ProductDTO {
+    private Long id;
     private Long companyId;
     private String name;
     private String description;
@@ -13,6 +14,15 @@ public class ProductDTO {
     private Double price;
 
     public ProductDTO() {
+    }
+
+    public ProductDTO(Long id, Long companyId, String name, String description, Category category, Double price) {
+        this.id = id;
+        this.companyId = companyId;
+        this.name = name;
+        this.description = description;
+        this.category = category;
+        this.price = price;
     }
 
     public ProductDTO(Long companyId, String name, String description, Category category, Double price) {
