@@ -3,7 +3,6 @@ package com.example.productapi.utils;
 import com.example.productapi.enums.Category;
 import com.example.productapi.model.Product;
 import com.example.productapi.repository.ProductRepository;
-import lombok.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 

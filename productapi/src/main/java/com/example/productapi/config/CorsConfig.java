@@ -1,12 +1,4 @@
-Változtatások:
-
-KELL
-PAGINATION
-MAX 8 DB
-
-1 CEO 1 CÉG (One to One)
-
-
+package com.example.productapi.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -29,12 +21,3 @@ public class CorsConfig {
         };
     }
 }
-
-🔒 CORS egy adott kontroller metódusra
-
-@CrossOrigin(origins = "http://localhost:3000")
-@GetMapping("/streak/api/products/get")
-public ResponseEntity<List<Product>> getProducts() {
-    return ResponseEntity.ok(productService.getAllProducts());
-}
-localhost

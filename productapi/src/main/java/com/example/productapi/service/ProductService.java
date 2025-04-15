@@ -25,7 +25,8 @@ public class ProductService {
         List<ProductDTO> listToReturn = new ArrayList<>();
         int gotPage = page - 1;
         int iter = (gotPage == 0) ? 0 : gotPage*size;
-        for (int i = iter; i < iter + size; i++) {
+        int max = ((iter + size) > productRepository.findAll().size()) ? productRepository.findAll().size() : iter+size;
+        for (int i = iter; i < max; i++) {
             ProductDTO product = ProductConverter.toDTO(productRepository.findAll().get(i));
             listToReturn.add(product);
         }
