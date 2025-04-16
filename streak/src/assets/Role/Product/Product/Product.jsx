@@ -11,18 +11,15 @@ export default function Product() {
 
   const fetchProducts = () => {
     axios
-      .get('http://localhost:8080/streak/api/products/get/5/1')
+      .get('http://localhost:8080/streak/api/products/get/5/1', {
+
+      })
       .then((response) => {
         setProducts(response.data);
+        console.log("Ez teás kanna");
       })
       .catch((error) => {
-        if (!error) {
-          console.log('Ez teás kanna');
-          alert('Ez teás kanna');
-        } else {
           console.log('EZ NEM TEÁS KANNA', error);
-          console.log('EZ NEM TEÁS KANNA');
-        }
       });
   };
 
