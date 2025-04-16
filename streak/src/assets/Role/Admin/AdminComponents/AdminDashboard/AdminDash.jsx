@@ -27,7 +27,7 @@ export default function AdminDash() {
                         </AccordionSummary>
                         <AccordionDetails>
                             <Typography>
-                                #111 fasz
+                                
                             </Typography>
                         </AccordionDetails>
                     </Accordion>

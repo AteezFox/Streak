@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Modal, Box, TextField } from "@mui/material";
+import axios from 'axios';
 import styles from './loginModal.module.css';
 
 export default function LoginModal({ isOpen, onClose }) {
     const [openClass, setOpenClass] = useState('');
     const [login, setLogin] = useState('');
-    const loginArray = [
-        {id: '1', name: "Béla", email: "bela@email.com", password: "1234" }
-    ]
+    
     
     useEffect(() => {
         if (isOpen) {
@@ -16,6 +15,10 @@ export default function LoginModal({ isOpen, onClose }) {
             setOpenClass('');
         }
     }, [isOpen]);
+
+    useEffect(() => {
+        
+    })
         
     return (
         <Modal
