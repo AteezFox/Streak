@@ -7,21 +7,21 @@ import styles from './admindash.module.css';
 import Ceo from "../../../Ceo/CeoCeo/Ceo.jsx";
 import User from "../../../User/UserUser/User.jsx";
 import Courier from "../../../Courier/CourierCourier/Courier.jsx";
+import CreateCourier from '../../../Courier/CreateCourier/CreateCourier.jsx';
 import Product from "../../../Product/Product/Product.jsx";
 import Company from "../../../Company/Company/Company.jsx"
+import { useState } from 'react';
 
 export default function AdminDash() {
-    
+    const [isCourierModal, setIsCourierModal] = useState(false);
+
+
     return (
         <>
             <AdminNav />
             <Container className={styles.container}>
                 <div className={styles.body}>
                     <h1>Admin Dashboard</h1>
-                    <p>Here will be a series of requests at some point</p>
-
-                    
-
                     <Accordion className={styles.list}>
                         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                             <Typography>Companies</Typography>
@@ -39,6 +39,7 @@ export default function AdminDash() {
                         </AccordionSummary>
                         <AccordionDetails>
                             <Typography>
+                                <CreateCourier />
                                 <Courier />
                             </Typography>
                         </AccordionDetails>

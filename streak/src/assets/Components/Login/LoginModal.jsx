@@ -6,7 +6,6 @@ import { useNavigate } from 'react-router-dom';
 
 export default function LoginModal({ isOpen, onClose }) {
     const [openClass, setOpenClass] = useState('');
-    const [login, setLogin] = useState([]);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     
