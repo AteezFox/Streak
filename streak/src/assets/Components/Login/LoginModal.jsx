@@ -8,6 +8,10 @@ export default function LoginModal({ isOpen, onClose }) {
     const [openClass, setOpenClass] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [emailError, setEmailError] = useState(false);
+    const [passwordError, setPasswordError] = useState(false);
+    const [error, setError] = useState(null);
+
     
     const loggedIn = useNavigate();
 
@@ -25,6 +29,11 @@ export default function LoginModal({ isOpen, onClose }) {
     }, []);
 
     const loginUser = (() => {
+
+        setEmailError(false);
+        setPasswordError(false),
+        setError(null);
+
         axios.post("http://localhost:8080/streak/api/auth/login", {
             email,
             password
@@ -53,6 +62,9 @@ export default function LoginModal({ isOpen, onClose }) {
             })
             .catch((error) => {
                 console.log("Sikertelen bejelentkezés", error)
+                setError("Hibás email vagy jelszó! (vagy a mező üres)")
+                setEmailError(true);
+                setPasswordError(true)
             })
     })
 
@@ -77,6 +89,7 @@ export default function LoginModal({ isOpen, onClose }) {
                         type="email"
                         required={true}
                         onChange={(e) => setEmail(e.target.value)}
+                        error={emailError}
                     />
                     <TextField
                         value={password}
@@ -87,7 +100,9 @@ export default function LoginModal({ isOpen, onClose }) {
                         type="password"
                         required={true}
                         onChange={(e) => setPassword(e.target.value)}
+                        error={passwordError}
                     />
+                    {error && <p className={styles.error}>{error}</p>}
                     <div className={styles.buttons}>
                         <Button className={styles.button} onClick={loginUser} >Bejelentkezés</Button>
                         <Button className={styles.button} onClick={onClose}>Bezár</Button>

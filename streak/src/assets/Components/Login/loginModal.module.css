@@ -30,7 +30,6 @@
     width: 100%;
     height: auto;
     margin-bottom: 1.5rem !important;
-    border: #8B0000 solid 1px !important;
     border-radius: 0.5rem;
     padding: 0.5rem;
     background-color: #f9f9f9 !important;
@@ -69,6 +68,11 @@
     height: auto;
     margin-top: 1.5rem;
     margin-bottom: 0.5rem;
+}
+
+.error{
+    color: red !important;
+    margin-top: 10px;
 }
 
 @media (max-width: 768px) {
