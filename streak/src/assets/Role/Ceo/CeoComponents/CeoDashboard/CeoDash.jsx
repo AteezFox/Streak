@@ -4,7 +4,6 @@ import { Container } from '@mui/material';
 import CeoNav from '../CeoNavbar/CeoNav.jsx';
 import styles from './ceodash.module.css';
 import Company from '../../../Company/Company/Company.jsx';
-import Product from '../../../Product/Product/Product.jsx';
 
 export default function CeoDash() {
     return (

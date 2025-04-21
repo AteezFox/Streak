@@ -58,6 +58,7 @@ export default function CreateCeo() {
           />
           <TextField
             label="Email"
+            type='email'
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
