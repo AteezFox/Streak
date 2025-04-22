@@ -17,13 +17,13 @@ function App() {
         <Router>
             <Routes>
                 <Route path="/" element={<Body />} index={true} />
-                <Route path="/yourhome" element={<UserInterface/>} />
-                <Route path="/profile" element={<UserProfile />} />
-                <Route path="/orders" element={<Orders />} />
+                <Route path="/:id/:userType/home" element={<UserInterface/>} />
+                <Route path="../home/profile" element={<UserProfile />} />
+                <Route path="../home/orders" element={<Orders />} />
                 <Route path="*" ErrorBoundary={true} element={<ErrorPage />} />
-                <Route path="/admin" element={<AdminDash />} />
-                <Route path="/ceo" element={<CeoDash />} />
-                <Route path="/courier" element={<CourierDash />} />
+                <Route path=":id/:userType/dashboard" element={<AdminDash />} />
+                <Route path=":id/:userType/dashboard" element={<CeoDash />} />
+                <Route path="/:id/:userType/dashboard" element={<CourierDash />} />
                 <Route path='/products' element={<CompanySite />} />
                 <Route path='/summary' element={<Summary />}/>
                 <Route path='/edit/id' element={<Editor />}/>

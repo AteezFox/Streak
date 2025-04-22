@@ -75,7 +75,7 @@ export default function UserNav() {
             edge="start"
             aria-label="logo"
             className={styles.menuButton}
-            onClick={() => navigate('/yourhome')}
+            onClick={() => navigate('home')}
           >
             <img
               src="/icons/logo_icon.png"
@@ -87,7 +87,7 @@ export default function UserNav() {
           <IconButton
             className={styles.home}
             color="inherit"
-            onClick={() => navigate('/yourhome')}
+            onClick={() => navigate('home')}
           >
             <HomeIcon />
           </IconButton>

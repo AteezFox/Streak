@@ -45,13 +45,13 @@ export default function LoginModal({ isOpen, onClose }) {
                         const userType = userResponse.data.userType;
 
                         if(userType === 'ADMIN'){
-                            loggedIn("/admin");
+                            loggedIn(`${userId}/${userType}/dashboard`);
                         }else if(userType === 'CEO'){
-                            loggedIn("/ceo")
+                            loggedIn(`${userId}/${userType}/dashboard`);
                         }else if(userType === 'COURIER'){
-                            loggedIn('/courier')
+                            loggedIn(`${userId}/${userType}/dashboard`);
                         }else if(userType === 'USER'){
-                            loggedIn('/yourhome')
+                            loggedIn(`${userId}/${userType}/home`);
                         }
                         console.log("Felhasznló megtalálva")
                     })
