@@ -26,6 +26,11 @@ public class CompanyController {
         return companyService.getCompanyById(id);
     }
 
+    @GetMapping("/get/ceo/{id}")
+    public CompanyDTO getCompanyByCEO(@PathVariable Long ceoID){
+        return companyService.getByCEOID(ceoID);
+    }
+
     @PostMapping("/add")
     public ResponseEntity<CompanyDTO> addCompany(@RequestBody CompanyDTO companyDTO){
         CompanyDTO created = companyService.createCompany(companyDTO);
