@@ -28,6 +28,7 @@ export default function CreateCeo() {
       .then((response) => {
         console.log('Sikeres hozzáadás');
         setOpen(false); // modal bezárása
+        window.location.reload();
       })
       .catch((error) => {
         console.log('Nem sikerült hozzáadni', error);

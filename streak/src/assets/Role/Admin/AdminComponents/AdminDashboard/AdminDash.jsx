@@ -7,8 +7,9 @@ import styles from './admindash.module.css';
 import User from "../../../User/UserUser/User.jsx";
 import Courier from "../../../Courier/CourierCourier/Courier.jsx";
 import CreateCourier from '../../../Courier/CreateCourier/CreateCourier.jsx';
-import Company from "../../../Company/Company/Company.jsx"
 import CreateCeo from "../../../Ceo/CreateCeo/CreateCeo.jsx"
+import Admin from '../../Admin/Admin.jsx';
+import Ceo from '../../../Ceo/CeoCeo/Ceo.jsx'
 
 export default function AdminDash() {
 
@@ -19,13 +20,27 @@ export default function AdminDash() {
             <Container className={styles.container}>
                 <Box className={styles.body}>
                     <h1>Admin Dashboard</h1>
+                    
+                    <Accordion className={styles.list}>
+                        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                            <Typography>Admins</Typography>
+                        </AccordionSummary>
+                        <AccordionDetails>
+                            <Typography component={"div"}>
+                                <Admin />
+                            </Typography>
+                        </AccordionDetails>
+                    </Accordion>
+
+                    
                     <Accordion className={styles.list}>
                         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                             <Typography>CEOs</Typography>
                         </AccordionSummary>
                         <AccordionDetails>
-                            <Typography>
+                            <Typography component={"div"}>
                                 <CreateCeo />
+                                <Ceo />
                             </Typography>
                         </AccordionDetails>
                     </Accordion>
@@ -47,7 +62,7 @@ export default function AdminDash() {
                             <Typography>Customers</Typography>
                         </AccordionSummary>
                         <AccordionDetails>
-                            <Typography>
+                            <Typography component={"div"}>
                                 <User />
                             </Typography>
                         </AccordionDetails>

@@ -28,9 +28,12 @@ export default function CreateCourier() {
       .then((response) => {
         console.log('Sikeres hozzáadás');
         setOpen(false); // modal bezárása
+        setLoading(true)
+        window.location.reload();
       })
       .catch((error) => {
         console.log('Nem sikerült hozzáadni', error);
+        setLoading(false)
       });
   };
 

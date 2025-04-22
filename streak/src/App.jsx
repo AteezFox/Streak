@@ -10,6 +10,7 @@ import CeoDash from "./assets/Role/Ceo/CeoComponents/CeoDashboard/CeoDash.jsx";
 import CourierDash from "./assets/Role/Courier/CourierComponents/CourierDashboard/CourierDash.jsx";
 import CompanySite from './assets/Role/Company/CompanyComponents/CompanySite/CompanySite.jsx';
 import Summary from "./assets/Role/Order/OrderComponents/SummaryOrder/Summary.jsx"
+import Editor from "./assets/Role/Admin/AdminComponents/Editors/Editor.jsx"
 
 function App() {
     return (
@@ -25,6 +26,7 @@ function App() {
                 <Route path="/courier" element={<CourierDash />} />
                 <Route path='/products' element={<CompanySite />} />
                 <Route path='/summary' element={<Summary />}/>
+                <Route path='/edit/id' element={<Editor />}/>
             </Routes>
         </Router>
     );
