@@ -1,7 +1,6 @@
 package com.example.productapi.controller;
 
 import com.example.productapi.dto.CompanyDTO;
-import com.example.productapi.model.Company;
 import com.example.productapi.service.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,18 +22,29 @@ public class CompanyController {
     }
 
     @GetMapping("/get/{id}")
-    public CompanyDTO getCompanyById(@PathVariable Long id) {
+    public CompanyDTO getCompanyById(@PathVariable Long id){
         return companyService.getCompanyById(id);
     }
 
+    @GetMapping("/get/ceo/{ceoID}")
+    public CompanyDTO getCompanyByCEO(@PathVariable Long ceoID){
+        return companyService.getByCEOID(ceoID);
+    }
+
+    @PostMapping("/add")
+    public ResponseEntity<CompanyDTO> addCompany(@RequestBody CompanyDTO companyDTO){
+        CompanyDTO created = companyService.createCompany(companyDTO);
+        return new ResponseEntity<>(created, HttpStatus.CREATED);
+    }
+
     @PutMapping("/update/{id}")
-    public ResponseEntity<CompanyDTO> updateCompany(@PathVariable Long id, @RequestBody CompanyDTO companyDTO) {
-        CompanyDTO updatedCompany = companyService.updateCompany(id, companyDTO);
-        return new ResponseEntity<>(updatedCompany, HttpStatus.OK);
+    public ResponseEntity<CompanyDTO> updateCompany(@PathVariable Long id, @RequestBody CompanyDTO companyDTO){
+        CompanyDTO updated = companyService.updateCompany(id, companyDTO);
+        return new ResponseEntity<>(updated, HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Void> deleteCompany(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteCompany(@PathVariable Long id){
         companyService.deleteCompanyById(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }

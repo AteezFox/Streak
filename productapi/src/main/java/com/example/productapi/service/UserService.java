@@ -2,6 +2,7 @@ package com.example.productapi.service;
 
 import com.example.productapi.converter.UserConverter;
 import com.example.productapi.dto.UserDTO;
+import com.example.productapi.enums.UserType;
 import com.example.productapi.model.User;
 import com.example.productapi.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,27 @@ public class UserService {
 
         return UserConverter.toDTO(user);
     }
+
+    public List<UserDTO> getUserByType_ADMIN() {
+        List<User> admins = userRepository.findByUserType(UserType.ADMIN).orElseThrow(() ->new RuntimeException("Admins not found"));
+        return admins.stream().map(UserConverter::toDTO).collect(Collectors.toList());
+    }
+
+    public List<UserDTO> getUserByType_USER() {
+        List<User> users = userRepository.findByUserType(UserType.USER).orElseThrow(() ->new RuntimeException("Users not found"));
+        return users.stream().map(UserConverter::toDTO).collect(Collectors.toList());
+    }
+
+    public List<UserDTO> getUserByUserType_COURIER() {
+        List<User> couriers = userRepository.findByUserType(UserType.COURIER).orElseThrow(() ->new RuntimeException("Couriers not found"));
+        return couriers.stream().map(UserConverter::toDTO).collect(Collectors.toList());
+    }
+
+    public List<UserDTO> getUserByUserType_CEO() {
+        List<User> CEOs = userRepository.findByUserType(UserType.CEO).orElseThrow(() ->new RuntimeException("CEOs not found"));
+        return CEOs.stream().map(UserConverter::toDTO).collect(Collectors.toList());
+    }
+
 
     public UserDTO createUser(UserDTO userDTO) {
         User user = UserConverter.toEntity(userDTO);

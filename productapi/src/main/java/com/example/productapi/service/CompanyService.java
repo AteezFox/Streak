@@ -40,7 +40,7 @@ public class CompanyService {
     }
 
     public CompanyDTO getByCEOID(Long ceoID) {
-        Company company = companyRepository.findByCEO(ceoID).orElseThrow(() -> new RuntimeException("Company not found"));
+        Company company = companyRepository.findByUserId(ceoID).orElseThrow(() -> new RuntimeException("Company not found"));
         return CompanyConverter.toDTO(company);
     }
 

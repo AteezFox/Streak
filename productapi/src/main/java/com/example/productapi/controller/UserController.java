@@ -26,6 +26,25 @@ public class UserController {
         return userService.getUserById(id);
     }
 
+    @GetMapping("/get/admins")
+    public List<UserDTO> getAllAdmins() {return userService.getUserByType_ADMIN();}
+
+    @GetMapping("get/users")
+    public List<UserDTO> getAllUsersByUserType_USER() {
+        return userService.getUserByType_USER();
+    }
+
+    @GetMapping("/get/ceos")
+    public List<UserDTO> getAllUsersByUserType_CEO() {
+        return userService.getUserByUserType_CEO();
+    }
+
+    @GetMapping("/get/couriers")
+    public List<UserDTO> getAllUsersByUserType_COURIER() {
+        return userService.getUserByUserType_COURIER();
+    }
+
+
     @PostMapping("/add")
     public ResponseEntity<UserDTO> addUser(@RequestBody UserDTO userDTO) {
         UserDTO created = userService.createUser(userDTO);
