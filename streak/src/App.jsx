@@ -18,8 +18,8 @@ function App() {
             <Routes>
                 <Route path="/" element={<Body />} index={true} />
                 <Route path="/:id/:userType/home" element={<UserInterface/>} />
-                <Route path="../home/profile" element={<UserProfile />} />
-                <Route path="../home/orders" element={<Orders />} />
+                <Route path="/:id/:userType/profile" element={<UserProfile />} />
+                <Route path="/:id/:userType/orders" element={<Orders />} />
                 <Route path="*" ErrorBoundary={true} element={<ErrorPage />} />
                 <Route path=":id/:userType/dashboard" element={<AdminDash />} />
                 <Route path=":id/:userType/dashboard" element={<CeoDash />} />

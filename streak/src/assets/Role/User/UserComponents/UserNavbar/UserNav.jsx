@@ -16,7 +16,7 @@ import { useNavigate } from 'react-router-dom';
 import UserCart from '../UserCart/UserCart';
 import styles from './usernav.module.css';
 
-export default function UserNav() {
+export default function UserNav({userId, userType}) {
   const [anchorEl, setAnchorEl] = useState(null);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 720);
   const [hidden, setHidden] = useState(false);
@@ -59,8 +59,8 @@ export default function UserNav() {
   };
 
   const navItems = [
-    { label: 'Orders', onClick: () => navigate('/orders') },
-    { label: 'Profile', onClick: () => navigate('/profile') },
+    { label: 'Orders', onClick: () => navigate(`/${userId}/${userType}/orders`) },
+    { label: 'Profile', onClick: () => navigate(`/${userId}/${userType}/profile`) },
     { label: 'Logout', onClick: () => navigate('/') },
   ];
 
@@ -75,7 +75,7 @@ export default function UserNav() {
             edge="start"
             aria-label="logo"
             className={styles.menuButton}
-            onClick={() => navigate('home')}
+            onClick={() => navigate(`/${userId}/${userType}/home`)}
           >
             <img
               src="/icons/logo_icon.png"
@@ -87,7 +87,7 @@ export default function UserNav() {
           <IconButton
             className={styles.home}
             color="inherit"
-            onClick={() => navigate('home')}
+            onClick={() => navigate(`/${userId}/${userType}/home`)}
           >
             <HomeIcon />
           </IconButton>
