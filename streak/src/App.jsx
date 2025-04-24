@@ -11,24 +11,27 @@ import CourierDash from "./assets/Role/Courier/CourierComponents/CourierDashboar
 import CompanySite from './assets/Role/Company/CompanyComponents/CompanySite/CompanySite.jsx';
 import Summary from "./assets/Role/Order/OrderComponents/SummaryOrder/Summary.jsx"
 import Editor from "./assets/Role/Admin/AdminComponents/Editors/Editor.jsx"
+import { AppProvider } from './assets/Context/AppContext';
 
 function App() {
     return (
-        <Router>
-            <Routes>
-                <Route path="/" element={<Body />} index={true} />
-                <Route path="/:id/:userType/home" element={<UserInterface/>} />
-                <Route path="/:id/:userType/profile" element={<UserProfile />} />
-                <Route path="/:id/:userType/orders" element={<Orders />} />
-                <Route path="*" ErrorBoundary={true} element={<ErrorPage />} />
-                <Route path=":id/:userType/dashboard" element={<AdminDash />} />
-                <Route path=":id/:userType/dashboard" element={<CeoDash />} />
-                <Route path="/:id/:userType/dashboard" element={<CourierDash />} />
-                <Route path='/products' element={<CompanySite />} />
-                <Route path='/summary' element={<Summary />}/>
-                <Route path='/edit/id' element={<Editor />}/>
-            </Routes>
-        </Router>
+        <AppProvider>
+            <Router>
+                <Routes>
+                    <Route path="/" element={<Body />} index={true} />
+                    <Route path="/:userType/:id/home" element={<UserInterface/>} />
+                    <Route path="/:userType/:id/profile" element={<UserProfile />} />
+                    <Route path="/:userType/:id/orders" element={<Orders />} />
+                    <Route path="*" ErrorBoundary={true} element={<ErrorPage />} />
+                    <Route path="/:userType/:id/dashboard" element={<AdminDash />} />
+                    <Route path="/:userType/:id/dashboard" element={<CeoDash />} />
+                    <Route path="/:userType/:id/dashboard" element={<CourierDash />} />
+                    <Route path='/products' element={<CompanySite />} />
+                    <Route path='/summary' element={<Summary />}/>
+                    <Route path='/edit/id' element={<Editor />}/>
+                </Routes>
+            </Router>
+        </AppProvider>
     );
 }
 

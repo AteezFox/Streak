@@ -31,6 +31,11 @@
     text-align: center;
     height: auto;
   }
+
+  .error{
+    color: red !important;
+    margin-top: 10px;
+  }
   
   @media (max-width: 768px) {
     .body {

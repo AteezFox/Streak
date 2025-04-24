@@ -1,13 +1,15 @@
 import React from 'react';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
-import { Button, Modal, Box, Container } from '@mui/material';
+import { Button, Modal, Box, Container, Typography } from '@mui/material';
 import styles from "./courier.module.css";
 import { useNavigate } from 'react-router-dom';
+import CreateCourier from '../CreateCourier/CreateCourier.jsx';
 
 export default function getCourier() {
   const [filterUsers, setFilterUsers] = useState([]);
   const [open, setOpen] = useState(false);
+  const [selectedUser, setSelectedUser] = useState(null);
   const edit = useNavigate();
 
   useEffect(() => {
@@ -19,7 +21,7 @@ export default function getCourier() {
       .get('http://localhost:8080/streak/api/users/get/couriers')
       .then((response) => {
         setFilterUsers(response.data);
-        setOpen(false); // modal bezárása
+        setOpen(false);
         console.log("Sikeres lekérés");
       })
       .catch((error) => {
@@ -27,24 +29,57 @@ export default function getCourier() {
       });
   };
 
-  const handleOpen = () => setOpen(true);
+  const handleOpen = (user) => {
+    setSelectedUser(user);
+    setOpen(true);
+  };
+  
   const handleClose = () => setOpen(false);
 
   return (
     <>
+      <CreateCourier refreshCourierList={getCourierData} />
       {filterUsers.map(user => (
-        <div className={styles.listing} key={user.id}>
-          <h1>#{user.id}</h1>
-          <h2>{user.firstName} {user.lastName}</h2>
-          <Button onClick={handleOpen}>További Információ</Button>
+        <div className={styles.userRow} key={user.id}>
+          <div className={styles.userInfo}>
+            <h2 className={styles.userText}>#{user.id}</h2>
+            <h2 className={styles.userText}>{user.firstName} {user.lastName}</h2>
+          </div>
+          <button className={styles.moreInfoButton} onClick={() => handleOpen(user)}>
+            További információk
+          </button>
         </div>
       ))}
+      
       <Modal open={open} onClose={handleClose}>
-        <Container className={styles.container}>
-          <Box className={styles.body}>
-            <h1>információk röviden majd itt jelennek meg</h1>
-            <Button onClick={() => {edit("/edit/id")}}>Szerekesztés</Button>
-            <Button>Törlés</Button>
+        <Container className={styles.modalContainer}>
+          <Box className={styles.modalContent}>
+            {selectedUser && (
+              <>
+                <Typography variant="h5" className={styles.modalTitle}>
+                  Futár részletei
+                </Typography>
+                <div>
+                  <p>Név: {selectedUser.firstName} {selectedUser.lastName}</p>
+                  <p>Azonosító: #{selectedUser.id}</p>
+                </div>
+                <div className={styles.modalButtons}>
+                  <Button 
+                    variant="contained" 
+                    className={styles.editButton}
+                    onClick={() => {edit(`/edit/${selectedUser.id}`)}}
+                  >
+                    Szerkesztés
+                  </Button>
+                  <Button 
+                    variant="outlined" 
+                    className={styles.deleteButton}
+                  >
+                    Törlés
+                  </Button>
+                </div>
+              </>
+            )}
           </Box>
         </Container>
       </Modal>

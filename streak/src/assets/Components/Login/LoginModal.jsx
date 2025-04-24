@@ -3,6 +3,7 @@ import { Button, Modal, Box, TextField } from "@mui/material";
 import styles from './loginModal.module.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { useAppContext } from '../../Context/AppContext';
 
 export default function LoginModal({ isOpen, onClose }) {
     const [openClass, setOpenClass] = useState('');
@@ -11,10 +12,9 @@ export default function LoginModal({ isOpen, onClose }) {
     const [emailError, setEmailError] = useState(false);
     const [passwordError, setPasswordError] = useState(false);
     const [error, setError] = useState(null);
-
     
-    const loggedIn = useNavigate();
-
+    const navigate = useNavigate();
+    const { updateUser } = useAppContext();
     
     useEffect(() => {
         if (isOpen) {
@@ -24,51 +24,49 @@ export default function LoginModal({ isOpen, onClose }) {
         }
     }, [isOpen]);
 
-    useEffect(() => {
-        loginUser
-    }, []);
-
-    const loginUser = (() => {
-
+    const loginUser = () => {
         setEmailError(false);
-        setPasswordError(false),
+        setPasswordError(false);
         setError(null);
+
+        if (!email || !password) {
+            setError("Minden mező kitöltése kötelező!");
+            setEmailError(!email);
+            setPasswordError(!password);
+            return;
+        }
 
         axios.post("http://localhost:8080/streak/api/auth/login", {
             email,
             password
         })
-            .then((response) => {
-               const userId = response.data.userId
-               axios.get(`http://localhost:8080/streak/api/users/get/${userId}`)
-                    .then((userResponse) => {
-                        const userType = userResponse.data.userType;
+        .then((response) => {
+            const userId = response.data.userId;
+            axios.get(`http://localhost:8080/streak/api/users/get/${userId}`)
+                .then((userResponse) => {
+                    const userType = userResponse.data.userType;
+                    updateUser(userId, userType);
 
-                        if(userType === 'ADMIN'){
-                            loggedIn(`${userId}/${userType}/dashboard`);
-                        }else if(userType === 'CEO'){
-                            loggedIn(`${userId}/${userType}/dashboard`);
-                        }else if(userType === 'COURIER'){
-                            loggedIn(`${userId}/${userType}/dashboard`);
-                        }else if(userType === 'USER'){
-                            loggedIn(`${userId}/${userType}/home`);
-                        }
-                        console.log("Felhasznló megtalálva")
-                    })
-                    .catch((error) => {
-                        console.log("Nincs felhasználó", error);
-                    })
-                    console.log("Sikeres bejelentkezés");
-            })
-            .catch((error) => {
-                console.log("Sikertelen bejelentkezés", error)
-                setError("Hibás email vagy jelszó! (vagy a mező üres)")
-                setEmailError(true);
-                setPasswordError(true)
-            })
-    })
-
-
+                    if (userType === 'ADMIN' || userType === 'CEO' || userType === 'COURIER') {
+                        navigate(`/${userType}/${userId}/dashboard`);
+                    } else if (userType === 'USER') {
+                        navigate(`/${userType}/${userId}/home`);
+                    }
+                    console.log("Felhasználó megtalálva");
+                    onClose();
+                })
+                .catch((error) => {
+                    console.error("Nincs felhasználó", error);
+                    setError("Felhasználó nem található");
+                });
+        })
+        .catch((error) => {
+            console.error("Sikertelen bejelentkezés", error);
+            setError("Hibás email vagy jelszó!");
+            setEmailError(true);
+            setPasswordError(true);
+        });
+    };
 
     return (
         <Modal
