@@ -21,6 +21,7 @@ public class RegisterService {
         user.setEmail(requestUser.getEmail());
         user.setPassword(requestUser.getPassword());
         user.setPhone(requestUser.getPhone());
+        user.setUserType(requestUser.getUserType());
         return UserConverter.toDTO(userRepository.save(user));
     }
 }
