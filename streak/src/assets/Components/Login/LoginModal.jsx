@@ -24,48 +24,89 @@ export default function LoginModal({ isOpen, onClose }) {
         }
     }, [isOpen]);
 
-    const loginUser = () => {
-        setEmailError(false);
-        setPasswordError(false);
-        setError(null);
+    const loginUser = async () => {
+        try {
+            setEmailError(false);
+            setPasswordError(false);
+            setError(null);
 
-        if (!email || !password) {
-            setError("Minden mező kitöltése kötelező!");
-            setEmailError(!email);
-            setPasswordError(!password);
-            return;
+            if (!email.trim() || !password) {
+                setError("Minden mező kitöltése kötelező!");
+                setEmailError(!email.trim());
+                setPasswordError(!password);
+                return;
+            }
+
+            const loginData = {
+                email: email.trim().toLowerCase(),
+                password: password
+            };
+
+            console.log('Bejelentkezési adatok:', loginData);
+
+            const loginResponse = await axios.post("http://localhost:8080/streak/api/auth/login", loginData);
+
+            if (!loginResponse.data || !loginResponse.data.userId) {
+                setError("Sikertelen bejelentkezés: hiányzó felhasználói azonosító");
+                return;
+            }
+
+            const { userId } = loginResponse.data;
+            
+            try {
+                const userResponse = await axios.get(`http://localhost:8080/streak/api/users/get/${userId}`);
+                
+                if (!userResponse.data || !userResponse.data.userType) {
+                    setError("Sikertelen bejelentkezés: hiányzó felhasználói típus");
+                    return;
+                }
+
+                const { userType } = userResponse.data;
+                
+                // Update the global user context
+                updateUser(userId, userType);
+                
+                if (userType === 'USER') {
+                    navigate(`/${userType}/${userId}/home`);
+                } else if (['ADMIN', 'CEO', 'COURIER'].includes(userType)) {
+                    navigate(`/${userType}/${userId}/dashboard`);
+                } else {
+                    setError("Ismeretlen felhasználói típus");
+                    return;
+                }
+                
+                console.log("Sikeres bejelentkezés");
+                onClose();
+            } catch (error) {
+                console.error("Felhasználói adatok lekérése sikertelen", error);
+                if (error.response && error.response.status === 401) {
+                    setError("A munkamenet lejárt. Kérjük, jelentkezzen be újra.");
+                } else {
+                    setError("Hiba történt a felhasználói adatok lekérése során");
+                }
+            }
+        } catch (error) {
+            console.error("Bejelentkezési hiba:", error);
+            if (error.response) {
+                switch (error.response.status) {
+                    case 401:
+                        setError("Hibás email vagy jelszó!");
+                        setEmailError(true);
+                        setPasswordError(true);
+                        break;
+                    case 404:
+                        setError("Felhasználó nem található");
+                        setEmailError(true);
+                        break;
+                    default:
+                        setError("Hiba történt a bejelentkezés során. Kérjük próbálja újra később.");
+                }
+            } else if (error.request) {
+                setError("Nem sikerült kapcsolódni a szerverhez. Kérjük ellenőrizze az internetkapcsolatot.");
+            } else {
+                setError("Váratlan hiba történt. Kérjük próbálja újra később.");
+            }
         }
-
-        axios.post("http://localhost:8080/streak/api/auth/login", {
-            email,
-            password
-        })
-        .then((response) => {
-            const userId = response.data.userId;
-            axios.get(`http://localhost:8080/streak/api/users/get/${userId}`)
-                .then((userResponse) => {
-                    const userType = userResponse.data.userType;
-                    updateUser(userId, userType);
-
-                    if (userType === 'ADMIN' || userType === 'CEO' || userType === 'COURIER') {
-                        navigate(`/${userType}/${userId}/dashboard`);
-                    } else if (userType === 'USER') {
-                        navigate(`/${userType}/${userId}/home`);
-                    }
-                    console.log("Felhasználó megtalálva");
-                    onClose();
-                })
-                .catch((error) => {
-                    console.error("Nincs felhasználó", error);
-                    setError("Felhasználó nem található");
-                });
-        })
-        .catch((error) => {
-            console.error("Sikertelen bejelentkezés", error);
-            setError("Hibás email vagy jelszó!");
-            setEmailError(true);
-            setPasswordError(true);
-        });
     };
 
     return (
@@ -75,37 +116,36 @@ export default function LoginModal({ isOpen, onClose }) {
             aria-labelledby="spring-modal-title"
             aria-describedby="spring-modal-description"
         >
-            
-                <Box className={`${styles.modal} ${openClass}`}>
-                    <h1>Bejelentkezés</h1>
-                    <TextField
-                        value={email}
-                        id="outlined-basic"
-                        variant={"outlined"}
-                        placeholder="Email"
-                        className={styles.input}
-                        type="email"
-                        required={true}
-                        onChange={(e) => setEmail(e.target.value)}
-                        error={emailError}
-                    />
-                    <TextField
-                        value={password}
-                        id="outlined-basic"
-                        variant={"outlined"}
-                        placeholder={"Jelszó"}
-                        className={styles.input}
-                        type="password"
-                        required={true}
-                        onChange={(e) => setPassword(e.target.value)}
-                        error={passwordError}
-                    />
-                    {error && <p className={styles.error}>{error}</p>}
-                    <div className={styles.buttons}>
-                        <Button className={styles.button} onClick={loginUser} >Bejelentkezés</Button>
-                        <Button className={styles.button} onClick={onClose}>Bezár</Button>
-                    </div>
-                </Box>
+            <Box className={`${styles.modal} ${openClass}`}>
+                <h1>Bejelentkezés</h1>
+                <TextField
+                    value={email}
+                    id="outlined-basic"
+                    variant={"outlined"}
+                    placeholder="Email"
+                    className={styles.input}
+                    type="email"
+                    required={true}
+                    onChange={(e) => setEmail(e.target.value)}
+                    error={emailError}
+                />
+                <TextField
+                    value={password}
+                    id="outlined-basic"
+                    variant={"outlined"}
+                    placeholder={"Jelszó"}
+                    className={styles.input}
+                    type="password"
+                    required={true}
+                    onChange={(e) => setPassword(e.target.value)}
+                    error={passwordError}
+                />
+                {error && <p className={styles.error}>{error}</p>}
+                <div className={styles.buttons}>
+                    <Button className={styles.button} onClick={loginUser}>Bejelentkezés</Button>
+                    <Button className={styles.button} onClick={onClose}>Bezár</Button>
+                </div>
+            </Box>
         </Modal>
     );
 }

@@ -6,8 +6,6 @@ import AdminNav from '../AdminNavbar/AdminNav.jsx';
 import styles from './admindash.module.css';
 import User from "../../../User/UserUser/User.jsx";
 import Courier from "../../../Courier/CourierCourier/Courier.jsx";
-import CreateCourier from '../../../Courier/CreateCourier/CreateCourier.jsx';
-import CreateCeo from "../../../Ceo/CreateCeo/CreateCeo.jsx"
 import Admin from '../../Admin/Admin.jsx';
 import Ceo from '../../../Ceo/CeoCeo/Ceo.jsx'
 

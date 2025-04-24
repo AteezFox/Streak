@@ -2,8 +2,8 @@ import { Card, CardContent, Typography } from '@mui/material';
 import styles from './devs.module.css';
 
 const developers = [
-    { name: "Gazdóf Ferenc", role: "Backend", image: "./images/jarvis.jpg" },
-    { name: "Gyurcsák Attila", role: "Frontend", image: "./images/iusearchbtw.webp" }
+    { name: "Gazdóf Ferenc", role: "Backend", image: "./images/feri.jpeg" },
+    { name: "Gyurcsák Attila", role: "Frontend", image: "./images/attila.png" }
 ];
 
 export default function DeveloperCards() {
