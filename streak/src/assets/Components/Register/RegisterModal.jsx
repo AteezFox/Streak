@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Modal, Box, TextField } from "@mui/material";
-import PropTypes from 'prop-types';
 import styles from './registerModal.module.css';
 
 export default function RegisterModal({ isOpen, onClose }) {
@@ -29,7 +28,7 @@ export default function RegisterModal({ isOpen, onClose }) {
                         variant={"outlined"}
                         placeholder={"Keresztnév"}
                         className={styles.input}
-                        required={true}
+                        required
                         type="text"
                     />
                     <TextField
@@ -37,7 +36,7 @@ export default function RegisterModal({ isOpen, onClose }) {
                         placeholder={"Vezetéknév"}
                         variant="outlined"
                         className={styles.input}
-                        required={true}
+                        required
                         type="text"
                     />
                 </div>
@@ -55,7 +54,7 @@ export default function RegisterModal({ isOpen, onClose }) {
                     variant="outlined"
                     className={styles.input}
                     type="email"
-                    required={true}
+                    required
                 />
                 <TextField
                     id="outlined-basic"
@@ -63,10 +62,10 @@ export default function RegisterModal({ isOpen, onClose }) {
                     variant="outlined"
                     className={styles.input}
                     type="password"
-                    required={true}
+                    required
                 />
                 <div className={styles.buttons}>
-                    <Button className={styles.button}>Bejelentkezés</Button>
+                    <Button className={styles.button}>Regisztráció</Button>
                     <Button className={styles.button} onClick={onClose}>Bezár</Button>
                 </div>
             </Box>
