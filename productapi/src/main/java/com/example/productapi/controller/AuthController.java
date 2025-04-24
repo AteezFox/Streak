@@ -31,7 +31,7 @@ public class AuthController {
 
         if (optionalUser.isPresent()) {
             User user = optionalUser.get();
-            if (loginRequest.getPassword().equals(FUNCTIONS.DO().DECRYPT.THIS(user.getPassword()))) {
+            if (loginRequest.getPassword().equals((user.getPassword()))) {
                 return ResponseEntity.ok(new LoginResponse(user.getId(), "Login successful"));
             }
         }
@@ -47,8 +47,10 @@ public class AuthController {
         if (optionalUser.isEmpty()) {
             User savedUser = UserConverter.toEntity(registerService.createUser(userRequest));
             return ResponseEntity.ok(new LoginResponse(userRepository.findByEmail(savedUser.getEmail()).get().getId(), "Register successful"));
+        }else {
+            return ResponseEntity.badRequest().body("Email already in use");
         }
-        return ResponseEntity.badRequest().body("Email already in use");
+
     }
 
 

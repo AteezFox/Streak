@@ -11,7 +11,7 @@ public class UserConverter {
         userDTO.setFirstName(user.getFirstName());
         userDTO.setLastName(user.getLastName());
         userDTO.setEmail(user.getEmail());
-        userDTO.setPassword(FUNCTIONS.DO().DECRYPT.THIS(user.getPassword()));
+        userDTO.setPassword(user.getPassword());
         userDTO.setPhone(user.getPhone());
         userDTO.setAddress(user.getAddress());
         userDTO.setUserType(user.getUserType());
@@ -23,7 +23,7 @@ public class UserConverter {
         user.setFirstName(userDTO.getFirstName());
         user.setLastName(userDTO.getLastName());
         user.setEmail(userDTO.getEmail());
-        user.setPassword(FUNCTIONS.DO().ENCRYPT.THIS(userDTO.getPassword()));
+        user.setPassword(userDTO.getPassword());
         user.setPhone(userDTO.getPhone());
         user.setAddress(userDTO.getAddress());
         user.setUserType(userDTO.getUserType());

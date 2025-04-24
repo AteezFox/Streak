@@ -1,6 +1,7 @@
 package com.example.productapi.model;
 
 import com.example.productapi.enums.UserType;
+import com.example.productapi.functions.FUNCTIONS;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -35,6 +36,14 @@ public class User {
         this.phone = phone;
         this.address = address;
         this.userType = userType;
+    }
+
+    public String getPassword() {
+        return FUNCTIONS.DO().DECRYPT.THIS(this.password);
+    }
+
+    public void setPassword(String password) {
+        this.password = FUNCTIONS.DO().ENCRYPT.THIS(password);
     }
 
     @Override
