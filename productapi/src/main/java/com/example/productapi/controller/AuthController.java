@@ -3,11 +3,11 @@ package com.example.productapi.controller;
 import com.example.productapi.converter.UserConverter;
 import com.example.productapi.dto.LoginRequest;
 import com.example.productapi.dto.LoginResponse;
-import com.example.productapi.dto.UserDTO;
+import com.example.productapi.dto.RegisterRequest;
 import com.example.productapi.functions.FUNCTIONS;
 import com.example.productapi.model.User;
 import com.example.productapi.repository.UserRepository;
-import com.example.productapi.service.UserService;
+import com.example.productapi.service.RegisterService;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +23,7 @@ public class AuthController {
     private UserRepository userRepository;
 
     @Autowired
-    private UserService userService;
+    private RegisterService registerService;
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
@@ -41,12 +41,12 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<?> register(@RequestBody UserDTO userRequest) {
+    public ResponseEntity<?> register(@RequestBody RegisterRequest userRequest) {
         Optional<User> optionalUser = userRepository.findByEmail(userRequest.getEmail());
 
         if (optionalUser.isEmpty()) {
-            User savedUser = UserConverter.toEntity(userService.createUser(userRequest));
-            return ResponseEntity.ok(new LoginResponse(savedUser.getId(), "Register successful"));
+            User savedUser = UserConverter.toEntity(registerService.createUser(userRequest));
+            return ResponseEntity.ok(new LoginResponse(userRepository.findByEmail(savedUser.getEmail()).get().getId(), "Register successful"));
         }
         return ResponseEntity.badRequest().body("Email already in use");
     }
