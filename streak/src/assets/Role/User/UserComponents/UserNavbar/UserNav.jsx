@@ -15,15 +15,14 @@ import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import { useNavigate } from 'react-router-dom';
 import UserCart from '../UserCart/UserCart';
 import styles from './usernav.module.css';
+import { useAppContext } from '../../../../Context/AppContext';
 
-export default function UserNav({userId, userType}) {
+export default function UserNav() {
+  const { selectedAddress, updateAddress, userId, userType, logout } = useAppContext();
   const [anchorEl, setAnchorEl] = useState(null);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 720);
   const [hidden, setHidden] = useState(false);
   const [addressAnchorEl, setAddressAnchorEl] = useState(null);
-  const [selectedAddress, setSelectedAddress] = useState(
-    localStorage.getItem('selectedAddress') || 'Select Address',
-  );
   const navigate = useNavigate();
 
   const addresses = ['Otthon', 'Munkahely', 'Cigánylak'];
@@ -45,6 +44,12 @@ export default function UserNav({userId, userType}) {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
+  useEffect(() => {
+    if (!userId || !userType) {
+      navigate('/');
+    }
+  }, [userId, userType, navigate]);
+
   const handleMenuOpen = (event) => setAnchorEl(event.currentTarget);
   const handleMenuClose = () => setAnchorEl(null);
 
@@ -53,15 +58,19 @@ export default function UserNav({userId, userType}) {
   const handleAddressMenuClose = () => setAddressAnchorEl(null);
 
   const handleAddressSelect = (address) => {
-    setSelectedAddress(address);
-    localStorage.setItem('selectedAddress', address);
+    updateAddress(address);
     handleAddressMenuClose();
   };
 
+  const handleLogout = () => {
+    logout();
+    navigate('/');
+  };
+
   const navItems = [
-    { label: 'Orders', onClick: () => navigate(`/${userId}/${userType}/orders`) },
-    { label: 'Profile', onClick: () => navigate(`/${userId}/${userType}/profile`) },
-    { label: 'Logout', onClick: () => navigate('/') },
+    { label: 'Orders', onClick: () => navigate(`/${userType}/${userId}/orders`) },
+    { label: 'Profile', onClick: () => navigate(`/${userType}/${userId}/profile`) },
+    { label: 'Logout', onClick: handleLogout },
   ];
 
   return (
@@ -75,7 +84,7 @@ export default function UserNav({userId, userType}) {
             edge="start"
             aria-label="logo"
             className={styles.menuButton}
-            onClick={() => navigate(`/${userId}/${userType}/home`)}
+            onClick={() => navigate(`/${userType}/${userId}/home`)}
           >
             <img
               src="/icons/logo_icon.png"
@@ -87,7 +96,7 @@ export default function UserNav({userId, userType}) {
           <IconButton
             className={styles.home}
             color="inherit"
-            onClick={() => navigate(`/${userId}/${userType}/home`)}
+            onClick={() => navigate(`/${userType}/${userId}/home`)}
           >
             <HomeIcon />
           </IconButton>

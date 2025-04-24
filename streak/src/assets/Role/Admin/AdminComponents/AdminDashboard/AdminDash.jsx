@@ -39,7 +39,6 @@ export default function AdminDash() {
                         </AccordionSummary>
                         <AccordionDetails>
                             <Typography component={"div"}>
-                                <CreateCeo />
                                 <Ceo />
                             </Typography>
                         </AccordionDetails>
@@ -51,7 +50,6 @@ export default function AdminDash() {
                         </AccordionSummary>
                         <AccordionDetails>
                             <Typography component={"div"}>
-                                <CreateCourier />
                                 <Courier />
                             </Typography>
                         </AccordionDetails>

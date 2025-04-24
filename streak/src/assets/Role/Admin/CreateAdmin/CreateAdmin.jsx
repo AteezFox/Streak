@@ -2,9 +2,9 @@ import React from 'react';
 import axios from 'axios';
 import { useState } from 'react';
 import { Button, Modal, Box, TextField, Container } from '@mui/material';
-import styles from "./createceo.module.css";
+import styles from "./createadmin.module.css";
 
-export default function CreateCeo({ refreshCeoList }) {
+export default function CreateAdmin({ refreshAdminList }) {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
@@ -18,7 +18,7 @@ export default function CreateCeo({ refreshCeoList }) {
 
   const [open, setOpen] = useState(false);
 
-  const createCeo = () => {
+  const createAdmin = () => {
     setEmailError(false);
     setTelError(false),
     setError(null);
@@ -32,12 +32,12 @@ export default function CreateCeo({ refreshCeoList }) {
         password,
         phone,
         address,
-        userType: 'CEO',
+        userType: 'ADMIN',
       })
       .then((response) => {
         console.log('Sikeres hozzáadás');
         setOpen(false); // modal bezárása
-        refreshCeoList(); // Refresh the Ceo list
+        refreshAdminList(); // Refresh the Admin list
       })
       .catch((error) => {
         console.log('Nem sikerült hozzáadni', error);
@@ -53,7 +53,7 @@ export default function CreateCeo({ refreshCeoList }) {
 
   return (
     <>
-      <Button onClick={handleOpen}>CEO hozzáadása</Button>
+      <Button onClick={handleOpen}>Admin hozzáadása</Button>
       
       <Modal open={open} onClose={handleClose}>
         <Container className={styles.container}>
@@ -112,7 +112,7 @@ export default function CreateCeo({ refreshCeoList }) {
             required
           />
           {error && <p className={styles.error}>{error}</p>}
-          <Button variant="contained" onClick={createCeo}>
+          <Button variant="contained" onClick={createAdmin}>
             Hozzáadás
           </Button>
         </Box>
