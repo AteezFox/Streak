@@ -2,6 +2,7 @@ package com.example.productapi.controller;
 
 import com.example.productapi.dto.LoginRequest;
 import com.example.productapi.dto.LoginResponse;
+import com.example.productapi.functions.FUNCTIONS;
 import com.example.productapi.model.User;
 import com.example.productapi.repository.UserRepository;
 import org.springframework.beans.factory.annotation.*;
@@ -28,7 +29,7 @@ public class AuthController {
 
         if (optionalUser.isPresent()) {
             User user = optionalUser.get();
-            if (loginRequest.getPassword().equals(user.getPassword())) {
+            if (loginRequest.getPassword().equals(FUNCTIONS.DO().DECRYPT.THIS(user.getPassword()))) {
                 return ResponseEntity.ok(new LoginResponse(user.getId(), "Login successful"));
             }
         }

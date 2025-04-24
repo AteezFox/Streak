@@ -1,8 +1,7 @@
 package hidden_gems;
 
 public class Encryptor {
-    public Encryptor() {
-    }
+    public Encryptor() {}
 
     public String THIS(String password) {
         String temp = "";

@@ -2,6 +2,7 @@ package hidden_gems;
 
 public class Decryptor {
     public Decryptor() {}
+
     public String THIS(String password) {
         String temp = "";
         for (int i = 0; i < password.length(); i++) {
