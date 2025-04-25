@@ -1,7 +1,6 @@
 package com.example.productapi.converter;
 
 import com.example.productapi.dto.UserDTO;
-import com.example.productapi.functions.FUNCTIONS;
 import com.example.productapi.model.User;
 
 public class UserConverter {

@@ -4,7 +4,6 @@ import com.example.productapi.converter.UserConverter;
 import com.example.productapi.dto.LoginRequest;
 import com.example.productapi.dto.LoginResponse;
 import com.example.productapi.dto.RegisterRequest;
-import com.example.productapi.functions.FUNCTIONS;
 import com.example.productapi.model.User;
 import com.example.productapi.repository.UserRepository;
 import com.example.productapi.service.RegisterService;

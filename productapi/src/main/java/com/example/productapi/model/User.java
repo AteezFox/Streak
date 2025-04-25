@@ -1,7 +1,7 @@
 package com.example.productapi.model;
 
 import com.example.productapi.enums.UserType;
-import com.example.productapi.functions.FUNCTIONS;
+import com.example.productapi.utils.FUNCTIONS;
 import jakarta.persistence.*;
 import lombok.*;
 

@@ -1,4 +1,4 @@
-package com.example.productapi.functions;
+package com.example.productapi.utils;
 
 import hidden_gems.Decryptor;
 import hidden_gems.Encryptor;
