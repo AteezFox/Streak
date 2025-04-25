@@ -3,7 +3,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Container } from '@mui/material';
 import CeoNav from '../CeoNavbar/CeoNav.jsx';
 import styles from './ceodash.module.css';
-import Company from '../../../Company/Company/Company.jsx';
+import CompanyByCeo from '../../../Company/CompanyByCeo/CompanyByCeo.jsx';
 
 export default function CeoDash() {
     return (
@@ -12,14 +12,13 @@ export default function CeoDash() {
             <Container className={styles.container}>
                 <div className={styles.body}>
                     <h1>Ceo Dashboard</h1>
-                    <p>Here will be a series of requests at some point</p>
                     <Accordion className={styles.list}>
                         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                            <Typography>Companies</Typography>
+                            <Typography>Az én cégem</Typography>
                         </AccordionSummary>
                         <AccordionDetails>
                             <Typography>
-                                    <Company />
+                                    <CompanyByCeo />
                             </Typography>
                         </AccordionDetails>
                     </Accordion>
