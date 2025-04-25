@@ -14,7 +14,6 @@ export default function CompanySite(){
             <CompanySide />
             <Container className={styles.container}>
                 <Box className={styles.body}>
-                    <Product></Product>
                     <ProductCards />
                 </Box>
             </Container>

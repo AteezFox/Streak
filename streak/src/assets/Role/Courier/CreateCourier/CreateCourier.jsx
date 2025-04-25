@@ -32,7 +32,7 @@ export default function CreateCourier({ refreshCourierList }) {
         password,
         phone,
         address,
-        userType: 'COURER',
+        userType: 'COURIER',
       })
       .then((response) => {
         console.log('Sikeres hozzáadás');

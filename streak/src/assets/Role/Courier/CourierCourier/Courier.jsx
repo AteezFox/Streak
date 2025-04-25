@@ -42,8 +42,8 @@ export default function getCourier() {
       {filterUsers.map(user => (
         <div className={styles.userRow} key={user.id}>
           <div className={styles.userInfo}>
-            <h2 className={styles.userText}>#{user.id}</h2>
-            <h2 className={styles.userText}>{user.firstName} {user.lastName}</h2>
+            <h2 className={styles.userText}>ID: #{user.id}</h2>
+            <h2 className={styles.userText}>Név: {user.firstName}, {user.lastName}</h2>
           </div>
           <button className={styles.moreInfoButton} onClick={() => handleOpen(user)}>
             További információk

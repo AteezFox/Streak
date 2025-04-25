@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, useEffect } from 'react';
 
-const AppContext = createContext();
+export const AppContext = createContext();
 
 export function AppProvider({ children }) {
     const [selectedAddress, setSelectedAddress] = useState(
@@ -13,6 +13,7 @@ export function AppProvider({ children }) {
         localStorage.getItem('userType') || null
     );
     const [cartItems, setCartItems] = useState([]);
+    const [filteredProducts, setFilteredProducts] = useState(null);
 
     const updateAddress = (address) => {
         setSelectedAddress(address);
@@ -48,7 +49,9 @@ export function AppProvider({ children }) {
                 updateUser,
                 cartItems,
                 updateCart,
-                logout
+                logout,
+                filteredProducts,
+                setFilteredProducts
             }}
         >
             {children}

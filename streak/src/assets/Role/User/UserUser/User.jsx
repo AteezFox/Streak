@@ -36,7 +36,7 @@ export default function getUser() {
         <div className={styles.userRow} key={user.id}>
           <div className={styles.userInfo}>
             <p className={styles.userText}>ID: #{user.id}</p>
-            <p className={styles.userText}>Teljes Név: {user.firstName}, {user.lastName}</p>
+            <p className={styles.userText}>Név: {user.firstName}, {user.lastName}</p>
           </div>
           <button className={styles.moreInfoButton} onClick={handleOpen}>
             További információk

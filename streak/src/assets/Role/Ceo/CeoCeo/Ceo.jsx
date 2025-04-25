@@ -12,22 +12,30 @@ export default function getCeo() {
   const [selectedUser, setSelectedUser] = useState(null);
   const edit = useNavigate();
 
-  useEffect(() => {
-    getCeoData();
-  }, []);
-
   const getCeoData = () => {
     axios
       .get('http://localhost:8080/streak/api/users/get/ceos')
       .then((response) => {
         setFilterUsers(response.data);
-        setOpen(false);
         console.log("Sikeres lekérés");
       })
       .catch((error) => {
         console.log('Valami gikszer', error);
       });
   };
+
+  useEffect(() => {
+    // Initial data fetch
+    getCeoData();
+
+    // Set up automatic refresh every 5 seconds
+    const interval = setInterval(() => {
+      getCeoData();
+    }, 5000);
+
+    // Cleanup interval on component unmount
+    return () => clearInterval(interval);
+  }, []);
 
   const handleOpen = (user) => {
     setSelectedUser(user);
@@ -42,8 +50,8 @@ export default function getCeo() {
       {filterUsers.map(user => (
         <div className={styles.userRow} key={user.id}>
           <div className={styles.userInfo}>
-            <h2 className={styles.userText}>#{user.id}</h2>
-            <h2 className={styles.userText}>{user.firstName} {user.lastName}</h2>
+            <h2 className={styles.userText}>ID: #{user.id}</h2>
+            <h2 className={styles.userText}>Név: {user.firstName}, {user.lastName}</h2>
           </div>
           <button className={styles.moreInfoButton} onClick={() => handleOpen(user)}>
             További információk
