@@ -17,6 +17,10 @@ public class Product {
     private Long companyId;
 
     private String name;
+
+    @Lob
+    private String image;
+
     private String description;
     private Category category;
     private Double price;
@@ -24,9 +28,10 @@ public class Product {
     public Product() {
     }
 
-    public Product(Long companyId, String name, String description, Category category, Double price) {
+    public Product(Long companyId, String name, String image, String description, Category category, Double price) {
         this.companyId = companyId;
         this.name = name;
+        this.image = image;
         this.description = description;
         this.category = category;
         this.price = price;

@@ -9,6 +9,7 @@ public class ProductConverter {
         productDTO.setId(product.getId());
         productDTO.setCompanyId(product.getCompanyId());
         productDTO.setName(product.getName());
+        productDTO.setImage(product.getImage());
         productDTO.setDescription(product.getDescription());
         productDTO.setCategory(product.getCategory());
         productDTO.setPrice(product.getPrice());
@@ -20,6 +21,7 @@ public class ProductConverter {
         product.setId(productDTO.getId());
         product.setCompanyId(productDTO.getCompanyId());
         product.setName(productDTO.getName());
+        product.setImage(productDTO.getImage());
         product.setDescription(productDTO.getDescription());
         product.setCategory(productDTO.getCategory());
         product.setPrice(productDTO.getPrice());

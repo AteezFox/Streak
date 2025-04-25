@@ -1,25 +1,25 @@
 package com.example.productapi.converter;
 
 import com.example.productapi.dto.OrderDTO;
-import com.example.productapi.model.Order;
+import com.example.productapi.model.UserOrder;
 
 public class OrderConverter {
 
-    public static OrderDTO toDTO(Order order) {
+    public static OrderDTO toDTO(UserOrder userOrder) {
         OrderDTO orderDTO = new OrderDTO();
-        orderDTO.setId(order.getId());
-        orderDTO.setProductIds(order.getProductIds());
-        orderDTO.setTotalPrice(order.getTotalPrice());
-        orderDTO.setState(order.getState());
+        orderDTO.setId(userOrder.getId());
+        orderDTO.setProductIds(userOrder.getProductIds());
+        orderDTO.setTotalPrice(userOrder.getTotalPrice());
+        orderDTO.setState(userOrder.getState());
         return orderDTO;
     }
 
-    public static Order toEntity(OrderDTO orderDTO) {
-        Order order = new Order();
-        order.setId(orderDTO.getId());
-        order.setProductIds(orderDTO.getProductIds());
-        order.setTotalPrice(orderDTO.getTotalPrice());
-        order.setState(orderDTO.getState());
-        return order;
+    public static UserOrder toEntity(OrderDTO orderDTO) {
+        UserOrder userOrder = new UserOrder();
+        userOrder.setId(orderDTO.getId());
+        userOrder.setProductIds(orderDTO.getProductIds());
+        userOrder.setTotalPrice(orderDTO.getTotalPrice());
+        userOrder.setState(orderDTO.getState());
+        return userOrder;
     }
 }

@@ -48,6 +48,7 @@ public class ProductService {
         Product product = productRepository.findById(id).orElseThrow(() -> new RuntimeException("Product not found"));
         product.setCompanyId(productDTO.getCompanyId());
         product.setName(productDTO.getName());
+        product.setImage(productDTO.getImage());
         product.setDescription(productDTO.getDescription());
         product.setCategory(productDTO.getCategory());
         product.setPrice(productDTO.getPrice());

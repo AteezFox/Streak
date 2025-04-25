@@ -9,7 +9,7 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
-public class Order {
+public class UserOrder {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,10 +22,10 @@ public class Order {
 
     private OrderState state;
 
-    public Order() {
+    public UserOrder() {
     }
 
-    public Order(List<Long> productIds, Double totalPrice, OrderState state) {
+    public UserOrder(List<Long> productIds, Double totalPrice, OrderState state) {
         this.productIds = productIds;
         this.totalPrice = totalPrice;
         this.state = state;
