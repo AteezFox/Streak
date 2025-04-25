@@ -68,8 +68,13 @@ export default function LoginModal({ isOpen, onClose }) {
                 
                 if (userType === 'USER') {
                     navigate(`/${userType}/${userId}/home`);
-                } else if (['ADMIN', 'CEO', 'COURIER'].includes(userType)) {
-                    navigate(`/${userType}/${userId}/dashboard`);
+                }
+                else if (userType === 'ADMIN') {
+                    navigate(`/${userType}/${userId}/admindashboard`);
+                } else if (userType === 'CEO') {
+                    navigate(`/${userType}/${userId}/ceodashboard`);
+                } else if (userType === 'COURIER') {
+                    navigate(`/${userType}/${userId}/courierdashboard`);
                 } else {
                     setError("Ismeretlen felhasználói típus");
                     return;

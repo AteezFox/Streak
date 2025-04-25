@@ -23,9 +23,9 @@ function App() {
                     <Route path="/:userType/:id/profile" element={<UserProfile />} />
                     <Route path="/:userType/:id/orders" element={<Orders />} />
                     <Route path="*" ErrorBoundary={true} element={<ErrorPage />} />
-                    <Route path="/:userType/:id/dashboard" element={<AdminDash />} />
-                    <Route path="/:userType/:id/dashboard" element={<CeoDash />} />
-                    <Route path="/:userType/:id/dashboard" element={<CourierDash />} />
+                    <Route path="/:userType/:id/admindashboard" element={<AdminDash />} />
+                    <Route path="/:userType/:id/ceodashboard" element={<CeoDash />} />
+                    <Route path="/:userType/:id/courierdashboard" element={<CourierDash />} />
                     <Route path='/products' element={<CompanySite />} />
                     <Route path='/summary' element={<Summary />}/>
                     <Route path='/edit/id' element={<Editor />}/>
