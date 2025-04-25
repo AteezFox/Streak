@@ -1,6 +1,6 @@
 import UserNav from "../UserNavbar/UserNav.jsx";
 import styles from "./userinterface.module.css";
-import { Container, Button } from "@mui/material";
+import { Container, Button, Box } from "@mui/material";
 import Company from "../../../Company/Company/Company.jsx"
 
 export default function UserInterface() {
@@ -8,12 +8,7 @@ export default function UserInterface() {
         <>
             <UserNav />
             <Container className={styles.container}>
-                <div className={styles.body}>
-                    <h3>
-                        Mostanában vásároltál ezekben:
-
-                    </h3>
-                    <br/>
+                <Box className={styles.body}>
                     <p>
                         <Company />
                     </p>
@@ -24,7 +19,7 @@ export default function UserInterface() {
                     <p>
                         <Company />
                     </p>
-                </div>
+                </Box>
             </Container>
         </>
     );
