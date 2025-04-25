@@ -14,6 +14,7 @@ import AdminEditor from "./assets/Components/Editors/AdminEditor/AdminEditor.jsx
 import CeoEditor from "./assets/Components/Editors/CeoEditor/CeoEditor.jsx";
 import CourierEditor from "./assets/Components/Editors/CourierEditor/CourierEditor.jsx";
 import UserEditor from "./assets/Components/Editors/UserEditor/UserEditor.jsx";
+import CompanyEditor from "./assets/Components/Editors/CompanyEditor/CompanyEditor.jsx";
 import { AppProvider } from './assets/Context/AppContext';
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
                     <Route path="/ceo/edit/:id" element={<CeoEditor />} />
                     <Route path="/courier/edit/:id" element={<CourierEditor />} />
                     <Route path="/user/edit/:id" element={<UserEditor />} />
+                    <Route path="/company/edit/:id" element={<CompanyEditor />} />
                 </Routes>
             </Router>
         </AppProvider>

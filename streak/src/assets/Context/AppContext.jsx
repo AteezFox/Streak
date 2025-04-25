@@ -15,6 +15,11 @@ export function AppProvider({ children }) {
     const [cartItems, setCartItems] = useState([]);
     const [filteredProducts, setFilteredProducts] = useState(null);
 
+    const user = {
+        userId,
+        userType
+    };
+
     const updateAddress = (address) => {
         setSelectedAddress(address);
         localStorage.setItem('selectedAddress', address);
@@ -46,6 +51,7 @@ export function AppProvider({ children }) {
                 updateAddress,
                 userId,
                 userType,
+                user,
                 updateUser,
                 cartItems,
                 updateCart,
