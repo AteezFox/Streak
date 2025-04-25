@@ -5,6 +5,7 @@ import { Button, Modal, Box, Container, Typography } from '@mui/material';
 import styles from "./ceo.module.css";
 import { useNavigate } from 'react-router-dom';
 import CreateCeo from '../CreateCeo/CreateCeo';
+import CompanyByCeo from '../../Company/CompanyByCeo/CompanyByCeo';
 
 export default function getCeo() {
   const [filterUsers, setFilterUsers] = useState([]);
@@ -70,8 +71,10 @@ export default function getCeo() {
                 <div>
                   <p>Név: {selectedUser.firstName} {selectedUser.lastName}</p>
                   <p>Azonosító: #{selectedUser.id}</p>
-                  <p>Cég: {selectedUser.companyName || 'Nincs megadva'}</p>
+                  <p>Email: {selectedUser.email}</p>
+                  <p>Telefonszám: {selectedUser.phoneNumber}</p>
                 </div>
+                <CompanyByCeo></CompanyByCeo>
                 <div className={styles.modalButtons}>
                   <Button 
                     variant="contained" 
