@@ -9,6 +9,7 @@ import CreateAdmin from '../CreateAdmin/CreateAdmin.jsx';
 export default function getAdmin() {
   const [filterUsers, setFilterUsers] = useState([]);
   const [open, setOpen] = useState(false);
+  const [selectedAdmin, setSelectedAdmin] = useState(null); // State to store selected admin
   const edit = useNavigate();
 
   useEffect(() => {
@@ -28,7 +29,11 @@ export default function getAdmin() {
       });
   };
 
-  const handleOpen = () => setOpen(true);
+  const handleOpen = (admin) => {
+    setSelectedAdmin(admin); // Set the selected admin
+    setOpen(true);
+  };
+
   const handleClose = () => setOpen(false);
 
   return (
@@ -40,7 +45,7 @@ export default function getAdmin() {
             <p className={styles.userText}>ID: #{user.id}</p>
             <p className={styles.userText}>Név: {user.firstName}, {user.lastName}</p>
           </div>
-          <button className={styles.moreInfoButton} onClick={handleOpen}>
+          <button className={styles.moreInfoButton} onClick={() => handleOpen(user)}>
             További információk
           </button>
         </div>
@@ -52,11 +57,18 @@ export default function getAdmin() {
             <Typography variant="h5" className={styles.modalTitle}>
               Admin részletei
             </Typography>
+            {selectedAdmin && (
+              <div className={styles.adminDetails}>
+                <p>ID: #{selectedAdmin.id}</p>
+                <p>Név: {selectedAdmin.firstName} {selectedAdmin.lastName}</p>
+                <p>Email: {selectedAdmin.email}</p>
+              </div>
+            )}
             <div className={styles.modalButtons}>
               <Button 
                 variant="contained" 
                 className={styles.editButton}
-                onClick={() => {edit("/edit/id")}}
+                onClick={() => {edit(`/admin/edit/${selectedAdmin?.id}`)}}
               >
                 Szerkesztés
               </Button>

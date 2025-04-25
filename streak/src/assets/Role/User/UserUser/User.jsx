@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 export default function getUser() {
   const [filterUsers, setFilterUsers] = useState([]);
   const [open, setOpen] = useState(false);
+  const [selectedUser, setSelectedUser] = useState(null); // State to store selected user
   const edit = useNavigate();
 
   useEffect(() => {
@@ -27,7 +28,10 @@ export default function getUser() {
       });
   };
 
-  const handleOpen = () => setOpen(true);
+  const handleOpen = (user) => {
+    setSelectedUser(user); // Set the selected user
+    setOpen(true);
+  };
   const handleClose = () => setOpen(false);
 
   return (
@@ -38,7 +42,7 @@ export default function getUser() {
             <p className={styles.userText}>ID: #{user.id}</p>
             <p className={styles.userText}>Név: {user.firstName}, {user.lastName}</p>
           </div>
-          <button className={styles.moreInfoButton} onClick={handleOpen}>
+          <button className={styles.moreInfoButton} onClick={() => handleOpen(user)}>
             További információk
           </button>
         </div>
@@ -50,11 +54,20 @@ export default function getUser() {
             <Typography variant="h5" className={styles.modalTitle}>
               Felhasználó részletei
             </Typography>
+            {selectedUser && (
+              <div className={styles.userDetails}>
+                <p>ID: #{selectedUser.id}</p>
+                <p>Név: {selectedUser.firstName} {selectedUser.lastName}</p>
+                <p>Email: {selectedUser.email}</p>
+                <p>Telefonszám: {selectedUser.phoneNumber}</p>
+                <p>Cím(ek): {selectedUser.address}</p>
+              </div>
+            )}
             <div className={styles.modalButtons}>
               <Button 
                 variant="contained" 
                 className={styles.editButton}
-                onClick={() => {edit("/edit/id")}}
+                onClick={() => {edit(`/user/edit/${selectedUser?.id}`)}}
               >
                 Szerkesztés
               </Button>

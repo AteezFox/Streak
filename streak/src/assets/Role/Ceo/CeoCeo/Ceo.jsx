@@ -70,12 +70,13 @@ export default function getCeo() {
                 <div>
                   <p>Név: {selectedUser.firstName} {selectedUser.lastName}</p>
                   <p>Azonosító: #{selectedUser.id}</p>
+                  <p>Cég: {selectedUser.companyName || 'Nincs megadva'}</p>
                 </div>
                 <div className={styles.modalButtons}>
                   <Button 
                     variant="contained" 
                     className={styles.editButton}
-                    onClick={() => {edit(`/edit/${selectedUser.id}`)}}
+                    onClick={() => {edit(`/ceo/edit/${selectedUser.id}`)}}
                   >
                     Szerkesztés
                   </Button>

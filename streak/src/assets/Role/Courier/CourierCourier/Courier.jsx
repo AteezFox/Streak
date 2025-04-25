@@ -60,14 +60,16 @@ export default function getCourier() {
                   Futár részletei
                 </Typography>
                 <div>
-                  <p>Név: {selectedUser.firstName} {selectedUser.lastName}</p>
-                  <p>Azonosító: #{selectedUser.id}</p>
+                  <p><strong>Név:</strong> {selectedUser.firstName} {selectedUser.lastName}</p>
+                  <p><strong>Azonosító:</strong> #{selectedUser.id}</p>
+                  <p><strong>Email:</strong> {selectedUser.email || 'Nincs megadva'}</p>
+                  <p><strong>Telefonszám:</strong> {selectedUser.phone || 'Nincs megadva'}</p>
                 </div>
                 <div className={styles.modalButtons}>
                   <Button 
                     variant="contained" 
                     className={styles.editButton}
-                    onClick={() => {edit(`/edit/${selectedUser.id}`)}}
+                    onClick={() => edit(`/courier/edit/${selectedUser.id}`)}
                   >
                     Szerkesztés
                   </Button>
