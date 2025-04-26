@@ -4,8 +4,12 @@ import { Container } from '@mui/material';
 import CeoNav from '../CeoNavbar/CeoNav.jsx';
 import styles from './ceodash.module.css';
 import CompanyByCeo from '../../../Company/CompanyByCeo/CompanyByCeo.jsx';
+import CreateCompany from '../../../Company/CreateCompany/CreateCompany.jsx';
+import { useAppContext } from '../../../../Context/AppContext.jsx'; // Import the context to get the logged-in user
 
 export default function CeoDash() {
+    const { user } = useAppContext(); // Get the logged-in user from context
+
     return (
         <div>
             <CeoNav />
@@ -17,8 +21,8 @@ export default function CeoDash() {
                             <Typography>Az én cégem</Typography>
                         </AccordionSummary>
                         <AccordionDetails>
-                            <Typography>
-                                    <CompanyByCeo />
+                            <Typography component="div">
+                                <CompanyByCeo />
                             </Typography>
                         </AccordionDetails>
                     </Accordion>

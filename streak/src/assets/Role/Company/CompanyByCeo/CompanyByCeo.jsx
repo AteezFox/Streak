@@ -25,8 +25,9 @@ export default function CompanyByCeo() {
       return;
     }
 
-    axios.get(`http://localhost:8080/streak/api/users/get/${user.userId}`)
+    axios.get(`http://localhost:8080/streak/api/companies/get/${user.userId}`)
       .then((response) => {
+        console.log('API Response:', response.data); // Debug log to check API response
         setFilterUser(Array.isArray(response.data) ? response.data : [response.data]); // Ensure it's an array
         console.log("Sikeres lekérés");
       })
@@ -67,7 +68,7 @@ export default function CompanyByCeo() {
               <div className={styles.CompanyDetails}>
                 <p>ID: #{selectedCompany.id}</p>
                 <p>Név: {selectedCompany.name}</p>
-                <p>Tulaj: {selectedCompany.userId}</p>
+                <p>Tulaj: #{selectedCompany.userId}</p>
               </div>
             )}
             <div className={styles.modalButtons}>
