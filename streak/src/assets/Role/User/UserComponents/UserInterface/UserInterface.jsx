@@ -1,6 +1,6 @@
 import UserNav from "../UserNavbar/UserNav.jsx";
 import styles from "./userinterface.module.css";
-import { Container, Button, Box } from "@mui/material";
+import { Container, Box } from "@mui/material";
 import Company from "../../../Company/Company/Company.jsx"
 
 export default function UserInterface() {

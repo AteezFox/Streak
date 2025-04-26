@@ -1,112 +1,77 @@
-/* General container styling */
-.editorContainer {
+.container {
     display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-/* Title styling */
-.editorContainer h2 {
-    font-size: 24px;
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 20px;
-}
-
-/* Form styling */
-form {
+    align-items: center;
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-label {
-    display: flex;
-    flex-direction: column;
-    font-size: 14px;
-    color: #555;
-}
-
-input {
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    outline: none;
-    transition: border-color 0.3s;
-}
-
-input:focus {
-    border-color: #007bff;
-}
-
-/* Button group styling */
-.buttonGroup {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-}
-
-button {
-    padding: 10px 20px;
-    font-size: 16px;
-    color: #fff;
-    background-color: #007bff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-button:hover {
-    background-color: #0056b3;
-}
-
-button[type="button"]:nth-child(2) {
-    background-color: #6c757d;
-}
-
-button[type="button"]:nth-child(2):hover {
-    background-color: #5a6268;
-}
-
-/* Error message styling */
-.error {
-    color: #d9534f;
-    font-size: 14px;
-    margin-bottom: 15px;
+    height: auto;
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: #B87333;
+    color: black;
     text-align: center;
+    opacity: 0.95;
+    padding: 1rem;
+    border: #8B0000 solid 1px;
+    border-radius: 1rem;
 }
 
-/* Responsive design for smaller screens */
-@media screen and (max-width: 768px) {
-    .editorContainer {
-        padding: 15px;
-    }
-
-    .editorContainer h2 {
-        font-size: 20px;
-    }
-
-    form {
-        gap: 12px;
-    }
+.body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    background-color: #F5E1C8;
+    border: #8B0000 solid 5px;
+    border-radius: 10px;
+    color: black;
+    padding: 30px;
+    height: auto;
 }
 
-@media screen and (max-width: 480px) {
-    .editorContainer {
-        padding: 10px;
+h1, h2, h3, p {
+    opacity: 1;
+}
+
+p {
+    font-size: 1.2rem;
+}
+
+.name{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 1000px;
+    gap: 1cap;
+    margin-top: 2rem !important;
+    margin-bottom: 0.3rem !important;
+
+}
+
+.input {
+    width: 100%;
+    height: auto;
+    margin-bottom: 1.5rem !important;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    background-color: #f9f9f9 !important;
+}
+
+
+
+@media (max-width: 768px) {
+    .body {
+        padding: 20px;
     }
 
-    .editorContainer h2 {
-        font-size: 18px;
+    h1 {
+        font-size: 2rem;
+    }
+
+    p {
+        font-size: 1rem;
     }
 }

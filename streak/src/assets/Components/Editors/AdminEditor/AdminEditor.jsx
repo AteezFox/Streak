@@ -1,109 +1,133 @@
-import React, { useState } from "react";
-import { Container, Box, TextField, Button } from '@mui/material/';
+import React, { useEffect } from 'react';
 import axios from 'axios';
+import { useForm } from 'react-hook-form';
+import { data, useNavigate } from 'react-router-dom';
+import { Container, Button, Typography, TextField, Box } from '@mui/material';
+import styles from './admineditor.module.css';
 
-export default function Editor() {
-    const [adminData, setAdminData] = useState({
-        id: "",
-        firstName: "",
-        lastName: "",
-        email: "",
-        password: "",
-        phone: "",
-        address: "",
-        userType: "ADMIN"
-    });
+export default function AdminEditor() {
+    const { register, handleSubmit, setValue, watch, formState: { errors } } = useForm();
+    const navigate = useNavigate();
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setAdminData({ ...adminData, [name]: value });
-    };
+    useEffect(() => {
+        const fetchAdminData = async () => {
+            try {
+                const userId = "selectedAdminId"; // Replace with logic to get the selected admin's userId dynamically
+                const response = await axios.get(`https://localhost:8080/api/users/get/admins/${userId}`);
+                const adminData = response.data;
 
-    const handleSave = async () => {
+                setValue('firstname', adminData.firstname);
+                setValue('lastname', adminData.lastname);
+                setValue('email', adminData.email);
+                setValue('password', adminData.password);
+                setValue('address', adminData.address);
+                setValue('userType', adminData.userType);
+            } catch (error) {
+                console.error('Error fetching admin data:', error);
+                alert('Failed to load admin data.');
+            }
+        };
+
+        fetchAdminData();
+    }, [setValue]);
+
+    const onSubmit = async (data) => {
         try {
-            const response = await axios.put(`http://localhost:8080/streak/api/users/update/${adminData.id}`, {
-                id: adminData.id,
-                firstName: adminData.firstName,
-                lastName: adminData.lastName,
-                email: adminData.email,
-                password: adminData.password,
-                phone: adminData.phone,
-                address: adminData.address,
-                userType: "ADMIN"
-            });
-            console.log("Admin data updated successfully:", response.data);
+            const userId = "selectedAdminId"; // Replace with logic to get the selected admin's userId dynamically
+            const apiUrl = `https://localhost:8080/api/users/update/${userId}`;
+            await axios.put(apiUrl, data);
+            alert('Admin updated successfully!');
+            navigate(`/${data.userType}/${userId}/admindashboard`);
         } catch (error) {
-            console.error("Error updating admin data:", error);
+            console.error('Error updating admin:', error);
+
+            if (error.response) {
+                console.error('Response data:', error.response.data);
+                console.error('Response status:', error.response.status);
+                console.error('Response headers:', error.response.headers);
+                alert(`Failed to update admin: ${error.response.data.message || 'Unknown error'}`);
+            } else if (error.request) {
+                console.error('Request data:', error.request);
+                alert('Failed to update admin: No response from server.');
+            } else {
+                console.error('Error message:', error.message);
+                alert(`Failed to update admin: ${error.message}`);
+            }
         }
     };
 
     return (
-        <Container>
-            <Box>
-                <TextField
-                    label="ID"
-                    name="id"
-                    value={adminData.id}
-                    onChange={handleChange}
-                    fullWidth
-                    margin="normal"
-                />
-                <TextField
-                    label="First Name"
-                    name="firstName"
-                    value={adminData.firstName}
-                    onChange={handleChange}
-                    fullWidth
-                    margin="normal"
-                />
-                <TextField
-                    label="Last Name"
-                    name="lastName"
-                    value={adminData.lastName}
-                    onChange={handleChange}
-                    fullWidth
-                    margin="normal"
-                />
-                <TextField
-                    label="Email"
-                    name="email"
-                    value={adminData.email}
-                    onChange={handleChange}
-                    fullWidth
-                    margin="normal"
-                />
-                <TextField
-                    label="Password"
-                    name="password"
-                    value={adminData.password}
-                    onChange={handleChange}
-                    fullWidth
-                    margin="normal"
-                />
-                <TextField
-                    label="Phone"
-                    name="phone"
-                    value={adminData.phone}
-                    onChange={handleChange}
-                    fullWidth
-                    margin="normal"
-                />
-                <TextField
-                    label="Address"
-                    name="address"
-                    value={adminData.address}
-                    onChange={handleChange}
-                    fullWidth
-                    margin="normal"
-                />
-                <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={handleSave}
-                >
-                    Save
-                </Button>
-            </Box>
-        </Container>
+        <>
+            <Container className={styles.container}>
+                <Box className={styles.body}>
+                    <Typography variant="h4" component="h1" gutterBottom>
+                        Edit the selected admin here
+                    </Typography>
+                    <form onSubmit={handleSubmit(onSubmit)}>
+                        <Typography component={"div"} className={styles.name}>
+                            <TextField
+                              label="Firstname"
+                              variant="outlined"
+                              className={styles.input}
+                              {...register('firstname'  )}
+                              error={!!errors.firstname}
+                              helperText={errors.firstname?.message}
+                            />
+                            <TextField
+                              label="Lastname"
+                              variant="outlined"
+                              className={styles.input}
+                              {...register('lastname' )}
+                              error={!!errors.lastname}
+                              helperText={errors.lastname?.message}
+                            />
+                        </Typography>
+
+                        <TextField
+                            type="email"
+                            className={styles.input}
+                            label="Email"
+                            variant="outlined"
+                            {...register('email', {
+                                pattern: {
+                                    value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                                    message: 'Invalid email address'
+                                }
+                            })}
+                            error={!!errors.email}
+                            helperText={errors.email?.message}
+                        />
+                        <TextField
+                            label="Jelszó"
+                            variant="outlined"
+                            type="password"
+                            className={styles.input}
+                            {...register('password' )}
+                            error={!!errors.password}
+                            helperText={errors.password?.message}
+                        />
+                        <TextField
+                            label="Állandó lakcím"
+                            className={styles.input}
+                            variant="outlined"
+                            {...register('address', )}
+                            error={!!errors.address}
+                            helperText={errors.address?.message}
+                        />
+                        <TextField
+                            variant="outlined"
+                            placeholder = "ADMIN"
+                            className={styles.input}
+                            value={watch('userType') || ''} // Display the current value
+                            InputProps={{ readOnly: true }} // Make the field read-only
+                            style={{ pointerEvents: 'none' }}
+                        />
+                        <Button type="submit" variant="contained" color="primary">
+                            Adat Frissítés
+                        </Button>
+                    </form>
+                </Box>
+            </Container>
+        </>
     );
 }

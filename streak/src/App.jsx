@@ -11,10 +11,12 @@ import CourierDash from "./assets/Role/Courier/CourierComponents/CourierDashboar
 import CompanySite from './assets/Role/Company/CompanyComponents/CompanySite/CompanySite.jsx';
 import Summary from "./assets/Role/Order/OrderComponents/SummaryOrder/Summary.jsx"
 import AdminEditor from "./assets/Components/Editors/AdminEditor/AdminEditor.jsx"
+/*
 import CeoEditor from "./assets/Components/Editors/CeoEditor/CeoEditor.jsx";
 import CourierEditor from "./assets/Components/Editors/CourierEditor/CourierEditor.jsx";
 import UserEditor from "./assets/Components/Editors/UserEditor/UserEditor.jsx";
 import CompanyEditor from "./assets/Components/Editors/CompanyEditor/CompanyEditor.jsx";
+*/
 import { AppProvider } from './assets/Context/AppContext';
 
 function App() {
@@ -32,12 +34,8 @@ function App() {
                     <Route path="/:userType/:id/courierdashboard" element={<CourierDash />} />
                     <Route path='/:usertype/:id/:compnayName/products' element={<CompanySite />} />
                     <Route path='/:userType/:id/:orderId/summary' element={<Summary />}/>
-                    <Route path="/admin/edit/:id" element={<AdminEditor />} />
-                    <Route path="/ceo/edit/:id" element={<CeoEditor />} />
-                    <Route path="/courier/edit/:id" element={<CourierEditor />} />
-                    <Route path="/user/edit/:id" element={<UserEditor />} />
-                    <Route path="/company/edit/:id" element={<CompanyEditor />} />
                     <Route path='/USER/:companyName/:id/products' element={<CompanySite />} />
+                    <Route path='/admin/edit/:id' element={<AdminEditor />} />
                 </Routes>
             </Router>
         </AppProvider>
