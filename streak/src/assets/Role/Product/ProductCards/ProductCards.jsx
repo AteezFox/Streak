@@ -3,7 +3,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import { CardActions } from '@mui/material';
+import { CardActions, Modal, Box } from '@mui/material';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import styles from './productcards.module.css';
 import axios from 'axios';
@@ -12,6 +12,8 @@ import { AppContext } from '../../../Context/AppContext';
 export default function ProductCards() {
     const [products, setProducts] = useState([]);
     const { filteredProducts } = useContext(AppContext);
+    const [selectedProduct, setSelectedProduct] = useState(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     useEffect(() => {
         if (!filteredProducts) {
@@ -32,10 +34,20 @@ export default function ProductCards() {
             });
     };
 
+    const handleCardClick = (product) => {
+        setSelectedProduct(product);
+        setIsModalOpen(true);
+    };
+
+    const handleCloseModal = () => {
+        setIsModalOpen(false);
+        setSelectedProduct(null);
+    };
+
     return (
         <div className={styles.cardContainer}>
             {products.map((product) => (
-                <Card key={product.id} className={styles.card}> 
+                <Card key={product.id} className={styles.card} onClick={() => handleCardClick(product)}> 
                     <div className={styles.cardImageContainer}>
                         <img 
                             src={product.image || './public/images/jarvis.jpg'} 
@@ -67,6 +79,30 @@ export default function ProductCards() {
                     </CardActions>
                 </Card>
             ))}
+
+            {selectedProduct && (
+                <Modal open={isModalOpen} onClose={handleCloseModal}>
+                    <Box className={styles.modalBox}>
+                        <img 
+                            src={selectedProduct.image || './public/images/jarvis.jpg'} 
+                            alt={selectedProduct.name}
+                            className={styles.modalImage}
+                        />
+                        <Typography variant="h4" className={styles.modalTitle}>
+                            {selectedProduct.name}
+                        </Typography>
+                        <Typography className={styles.modalDescription}>
+                            {selectedProduct.longDescription || selectedProduct.description}
+                        </Typography>
+                        <Typography className={styles.modalPrice}>
+                            HUF {selectedProduct.price}
+                        </Typography>
+                        <IconButton aria-label="add to cart" className={styles.modalAddButton}>
+                            <AddShoppingCartIcon />
+                        </IconButton>
+                    </Box>
+                </Modal>
+            )}
         </div>
     );
 }

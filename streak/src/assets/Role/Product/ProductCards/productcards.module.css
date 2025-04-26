@@ -105,6 +105,66 @@
     background-color: rgba(46, 125, 50, 0.1) !important;
 }
 
+.modalBox {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 600px;
+    background-color: white;
+    border-radius: 1rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+.modalImage {
+    width: 100%;
+    height: auto;
+    max-height: 300px;
+    object-fit: cover;
+    border-radius: 1rem;
+    border: 1px solid #B87333;
+}
+
+.modalTitle {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+}
+
+.modalDescription {
+    font-size: 1rem;
+    color: #666;
+    text-align: justify;
+    margin: 0;
+}
+
+.modalPrice {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #B87333;
+    margin-top: 8px;
+}
+
+.modalAddButton {
+    background-color: #2e7d32;
+    color: white;
+    font-size: 1.25rem;
+    padding: 10px 20px;
+    border-radius: 0.5rem;
+    transition: background-color 0.3s ease;
+}
+
+.modalAddButton:hover {
+    background-color: #1b5e20;
+}
+
 /* Asztali nézet */
 @media (min-width: 1024px) {
     .cardContainer {
