@@ -68,7 +68,7 @@ export default function CompanyByCeo() {
               <div className={styles.CompanyDetails}>
                 <p>ID: #{selectedCompany.id}</p>
                 <p>Név: {selectedCompany.name}</p>
-                <p>Tulaj: #{selectedCompany.userId}</p>
+                <p>Tulaj: #{selectedCompany.userId} felhasználó</p>
               </div>
             )}
             <div className={styles.modalButtons}>

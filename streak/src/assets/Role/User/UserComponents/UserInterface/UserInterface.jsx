@@ -9,9 +9,6 @@ export default function UserInterface() {
             <UserNav />
             <Container className={styles.container}>
                 <Box className={styles.body}>
-                    <p>
-                        <Company />
-                    </p>
                     <h3>
                         Boltok a környékeden:
                     </h3>

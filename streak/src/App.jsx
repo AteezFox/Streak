@@ -30,13 +30,14 @@ function App() {
                     <Route path="/:userType/:id/admindashboard" element={<AdminDash />} />
                     <Route path="/:userType/:id/ceodashboard" element={<CeoDash />} />
                     <Route path="/:userType/:id/courierdashboard" element={<CourierDash />} />
-                    <Route path='/:usertype/:id/:companyName/products' element={<CompanySite />} />
+                    <Route path='/:usertype/:id/:compnayName/products' element={<CompanySite />} />
                     <Route path='/:userType/:id/:orderId/summary' element={<Summary />}/>
                     <Route path="/admin/edit/:id" element={<AdminEditor />} />
                     <Route path="/ceo/edit/:id" element={<CeoEditor />} />
                     <Route path="/courier/edit/:id" element={<CourierEditor />} />
                     <Route path="/user/edit/:id" element={<UserEditor />} />
                     <Route path="/company/edit/:id" element={<CompanyEditor />} />
+                    <Route path='/USER/:companyName/:id/products' element={<CompanySite />} />
                 </Routes>
             </Router>
         </AppProvider>
