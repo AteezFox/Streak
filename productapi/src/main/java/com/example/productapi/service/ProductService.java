@@ -61,4 +61,8 @@ public class ProductService {
         }
         productRepository.deleteById(id);
     }
+    public void deleteProductsByCompanyId(Long companyId) {
+        List<Product> productsAtCompany = productRepository.findProductByCompanyId(companyId).orElseThrow(() -> new RuntimeException("Products not found"));
+        productRepository.deleteAll(productsAtCompany);
+    }
 }

@@ -51,5 +51,17 @@ public class CompanyService {
         companyRepository.deleteById(companyId);
     }
 
+   @Autowired
+   ProductService productService;
+    public void deleteCompanyByUserId(Long userId) {
+        if(!companyRepository.existsById(userId)) {
+            throw new RuntimeException("User not found");
+        }
+        Company toDelete = companyRepository.findByUserId(userId).orElseThrow(() -> new RuntimeException("User not found"));
+        productService.deleteProductsByCompanyId(toDelete.getId());
+        companyRepository.delete(toDelete);
+
+    }
+
 
 }

@@ -66,9 +66,25 @@ public class UserService {
         return UserConverter.toDTO(userRepository.save(user));
     }
 
+    @Autowired
+    ProductService productService;
+
+    @Autowired
+    CompanyService companyService;
+
     public void deleteUserById(long id) {
         if(!userRepository.existsById(id)) {
             throw new RuntimeException("User not found");
+        }
+        userRepository.deleteById(id);
+    }
+
+    public void deleteCEOById(long id) {
+        if(!userRepository.existsById(id)) {
+            throw new RuntimeException("User not found");
+        }else if (userRepository.findById(id).get().getUserType() == UserType.CEO) {
+            productService.deleteProductsByCompanyId(companyService.getByCEOID(id).getId());
+            companyService.deleteCompanyByUserId(id);
         }
         userRepository.deleteById(id);
     }

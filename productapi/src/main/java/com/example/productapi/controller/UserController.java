@@ -103,4 +103,10 @@ public class UserController {
         userService.deleteUserById(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
+    @DeleteMapping("/delete/ceo/{id}")
+    public ResponseEntity<Void> deleteCeo(@PathVariable long id) {
+        userService.deleteCEOById(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 }
