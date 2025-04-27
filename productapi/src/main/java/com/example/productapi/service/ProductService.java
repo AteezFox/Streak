@@ -34,7 +34,8 @@ public class ProductService {
     }
 
     public List<ProductDTO> getProductsByCompanyId(Long companyId) {
-        return productRepository.findAll().stream().map(ProductConverter::toDTO).collect(Collectors.toList());
+        List<Product> list = productRepository.findProductByCompanyId(companyId).get();
+        return list.stream().map(ProductConverter::toDTO).collect(Collectors.toList());
     }
 
     public ProductDTO getProductById(Long id) {
