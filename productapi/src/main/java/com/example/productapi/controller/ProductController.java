@@ -35,6 +35,11 @@ public class ProductController {
         return productService.getProductById(id);
     }
 
+    @GetMapping("/get/company/{id}")
+    public List<ProductDTO> getProductsByCompanyId(@PathVariable Long id) {
+        return productService.getProductsByCompanyId(id);
+    }
+
     @PostMapping("/add")
     public ResponseEntity<ProductDTO> addProduct(@RequestBody ProductDTO productDTO) {
         ProductDTO created = productService.createProduct(productDTO);

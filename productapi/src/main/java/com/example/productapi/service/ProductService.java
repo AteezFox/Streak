@@ -33,6 +33,10 @@ public class ProductService {
         return listToReturn;
     }
 
+    public List<ProductDTO> getProductsByCompanyId(Long companyId) {
+        return productRepository.findAll().stream().map(ProductConverter::toDTO).collect(Collectors.toList());
+    }
+
     public ProductDTO getProductById(Long id) {
         Product product = productRepository.findById(id).orElseThrow(() -> new RuntimeException("Product not found"));
         return ProductConverter.toDTO(product);
