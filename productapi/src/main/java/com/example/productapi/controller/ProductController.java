@@ -40,6 +40,7 @@ public class ProductController {
         return productService.getProductsByCompanyId(id);
     }
 
+
     @PostMapping("/add")
     public ResponseEntity<ProductDTO> addProduct(@RequestBody ProductDTO productDTO) {
         ProductDTO created = productService.createProduct(productDTO);

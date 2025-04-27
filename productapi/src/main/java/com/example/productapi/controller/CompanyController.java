@@ -41,13 +41,6 @@ public class CompanyController {
         return new ResponseEntity<>(created, HttpStatus.CREATED);
     }
 
-    /*@PutMapping("/update/{id}")
-    public ResponseEntity<CompanyDTO> updateCompany(@PathVariable Long id, @RequestBody CompanyDTO companyDTO){
-        CompanyDTO updated = companyService.updateCompany(id, companyDTO);
-        return new ResponseEntity<>(updated, HttpStatus.OK);
-    }
-
-    */
     @Autowired
     CompanyRepository companyRepository;
     @PatchMapping("/update/{id}")

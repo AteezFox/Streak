@@ -32,12 +32,6 @@ public class CompanyService {
         return CompanyConverter.toDTO(savedCompany);
     }
 
-    public CompanyDTO updateCompany(Long companyId, CompanyDTO companyDTO) {
-        Company company = companyRepository.findById(companyId).orElseThrow(() -> new RuntimeException("Company not found"));
-        company.setName(companyDTO.getName());
-        Company updatedCompany = companyRepository.save(company);
-        return CompanyConverter.toDTO(updatedCompany);
-    }
 
     public CompanyDTO getByCEOID(Long ceoID) {
         Company company = companyRepository.findByUserId(ceoID).orElseThrow(() -> new RuntimeException("Company not found"));
