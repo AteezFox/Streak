@@ -121,7 +121,7 @@ export default function getCeo() {
                   >
                     Szerkesztés
                   </Button>
-                  <DeleteCeo />
+                  <DeleteCeo ceo={selectedUser} refreshCeoList={getCeoData} />
                 </div>
               </>
             )}

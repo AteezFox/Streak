@@ -75,7 +75,7 @@ export default function getAdmin() {
               >
                 Szerkesztés
               </Button>
-              <DeleteAdmin />
+              <DeleteAdmin admin={selectedAdmin} refreshAdminList={getAdminData} />
             </div>
           </Box>
         </Container>

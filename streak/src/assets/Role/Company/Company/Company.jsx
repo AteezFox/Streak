@@ -71,7 +71,7 @@ export default function getCompany() {
                           >
                               Szerkesztés
                           </Button>
-                          <DeleteCompany />
+                          <DeleteCompany company={selectedCompany} refreshCompanyList={getCompanyData} />
                       </div>
                   </Box>
               </Container>

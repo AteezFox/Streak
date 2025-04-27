@@ -72,7 +72,7 @@ export default function getUser() {
               >
                 Szerkesztés
               </Button>
-              <DeleteUser />
+              <DeleteUser user={selectedUser} refreshUserList={getUserData} />
             </div>
           </Box>
         </Container>

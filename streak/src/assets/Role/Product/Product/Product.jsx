@@ -74,7 +74,7 @@ export default function getProduct() {
               >
                 Szerkesztés
               </Button>
-              <DeleteProduct />
+              <DeleteProduct product={selectedProduct} refreshProductList={getProductData} />
             </div>
           </Box>
         </Container>
