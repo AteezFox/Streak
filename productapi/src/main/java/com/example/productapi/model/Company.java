@@ -13,7 +13,7 @@ public class Company {
     private Long id;
 
     @Column(unique = true)
-    private Long userId;
+    private Long userId; //Where userType = CEO
 
     private String name;
 

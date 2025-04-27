@@ -19,7 +19,7 @@ public class Product {
     private String name;
 
     @Lob
-    private String image;
+    private String image; //Base64
 
     private String description;
     private Category category;
