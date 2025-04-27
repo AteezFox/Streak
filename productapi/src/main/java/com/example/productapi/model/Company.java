@@ -14,7 +14,7 @@ public class Company {
 
     @Column(unique = true)
     private Long userId;
-
+    
     private String name;
 
     public Company() {

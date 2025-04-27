@@ -46,6 +46,7 @@ public class UserController {
         return userService.getUserByUserType_COURIER();
     }
 
+
     @PostMapping("/add")
     public ResponseEntity<UserDTO> addUser(@RequestBody UserDTO userDTO) {
         UserDTO created = userService.createUser(userDTO);
