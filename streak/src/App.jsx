@@ -33,7 +33,7 @@ function App() {
                     <Route path="/:userType/:id/ceodashboard" element={<CeoDash />} />
                     <Route path="/:userType/:id/courierdashboard" element={<CourierDash />} />
                     <Route path='/:usertype/:id/:compnayName/products' element={<CompanySite />} />
-                    <Route path='/:userType/:id/:orderId/summary' element={<Summary />}/>
+                    <Route path='/summary' element={<Summary />}/>
                     <Route path='/USER/:companyName/:id/products' element={<CompanySite />} />
                     <Route path='/admin/edit/:id' element={<UpdateAdmin />} />
                 </Routes>

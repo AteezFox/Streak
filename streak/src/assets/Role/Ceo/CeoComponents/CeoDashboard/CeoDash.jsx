@@ -4,8 +4,8 @@ import { Container } from '@mui/material';
 import CeoNav from '../CeoNavbar/CeoNav.jsx';
 import styles from './ceodash.module.css';
 import CompanyByCeo from '../../../Company/CompanyByCeo/CompanyByCeo.jsx';
-import CreateCompany from '../../../Company/CreateCompany/CreateCompany.jsx';
 import { useAppContext } from '../../../../Context/AppContext.jsx'; // Import the context to get the logged-in user
+import CeoProducts from '../../CeoProducts/CeoProducts.jsx'; // Import the CeoProducts component
 
 export default function CeoDash() {
     const { user } = useAppContext(); // Get the logged-in user from context
@@ -23,6 +23,16 @@ export default function CeoDash() {
                         <AccordionDetails>
                             <Typography component="div">
                                 <CompanyByCeo />
+                            </Typography>
+                        </AccordionDetails>
+                    </Accordion>
+                    <Accordion className={styles.list}>
+                        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                            <Typography>Termékeim</Typography>
+                        </AccordionSummary>
+                        <AccordionDetails>
+                            <Typography component="div">
+                                <CeoProducts />
                             </Typography>
                         </AccordionDetails>
                     </Accordion>

@@ -39,7 +39,7 @@
     overflow: hidden;
 }
 
-.userRow {
+.productRow {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -51,19 +51,19 @@
     transition: all 0.3s ease;
 }
 
-.userRow:hover {
+.productRow:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.userInfo {
+.productInfo {
     display: flex;
     align-items: center;
     gap: 30px;
     flex: 1;
 }
 
-.userText {
+.productText {
     font-size: 16px;
     color: #495057;
     margin: 0;
@@ -71,18 +71,12 @@
     transition: color 0.3s ease;
 }
 
-.userText:hover {
+.productText:hover {
     color: #228be6;
 }
 
-.ceoDetails {
+.adminDetails {
     display: grid;
-    gap: 2rem;
-    flex-direction: row;
-}
-
-.companyDetails{
-    display: flex;
     gap: 2rem;
     flex-direction: row;
 }
@@ -160,19 +154,19 @@
 
 /* Mobile view */
 @media screen and (max-width: 768px) {
-    .userContainer {
+    .productContainer {
         padding: 10px;
         margin: 10px;
     }
 
-    .userRow {
+    .productRow {
         flex-direction: column;
         align-items: flex-start;
         gap: 15px;
         padding: 15px;
     }
 
-    .userInfo {
+    .productInfo {
         flex-direction: column;
         align-items: flex-start;
         width: 100%;
@@ -185,7 +179,7 @@
         padding: 12px 20px;
     }
 
-    .userText {
+    .productText {
         font-size: 14px;
     }
 

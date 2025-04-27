@@ -69,7 +69,7 @@ export default function getCourier() {
               </Typography>
             )}
             <div className={styles.modalButtons}>
-              <UpdateCourier />
+              <UpdateCourier courier={selectedCourier} refreshCourierList={getCourierData}/>
               <DeleteCourier courier={selectedCourier} refreshCourierList={getCourierData} />
             </div>
           </Box>

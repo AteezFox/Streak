@@ -1,8 +1,7 @@
 import UserNav from "../UserNavbar/UserNav.jsx";
 import styles from "./userinterface.module.css";
 import { Container, Box } from "@mui/material";
-import Company from "../../../Company/Company/Company.jsx"
-
+import UserShop from "../../UserShop/UserShop.jsx";
 export default function UserInterface() {
     return (
         <>
@@ -14,7 +13,7 @@ export default function UserInterface() {
                     </h3>
                     <br/>
                     <p>
-                        <Company />
+                        <UserShop />
                     </p>
                 </Box>
             </Container>

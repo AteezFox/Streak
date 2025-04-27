@@ -5,7 +5,6 @@ import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import ProductCards from "../../../Product/ProductCards/ProductCards";
 import CompanySide from "../CompanySide/CompanySide";
-import Product from "../../../Product/Product/Product";
 
 export default function CompanySite(){
     return(
