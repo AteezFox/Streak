@@ -10,12 +10,12 @@ import CeoDash from "./assets/Role/Ceo/CeoComponents/CeoDashboard/CeoDash.jsx";
 import CourierDash from "./assets/Role/Courier/CourierComponents/CourierDashboard/CourierDash.jsx";
 import CompanySite from './assets/Role/Company/CompanyComponents/CompanySite/CompanySite.jsx';
 import Summary from "./assets/Role/Order/OrderComponents/SummaryOrder/Summary.jsx"
-import AdminEditor from "./assets/Components/Editors/AdminEditor/AdminEditor.jsx"
+import UpdateAdmin from "./assets/Role/Admin/UpdateAdmin/UpdateAdmin.jsx"
 /*
-import CeoEditor from "./assets/Components/Editors/CeoEditor/CeoEditor.jsx";
+import UpdateCeo from "./assets/Components/Editors/UpdateCeo/UpdateCeo.jsx";
 import CourierEditor from "./assets/Components/Editors/CourierEditor/CourierEditor.jsx";
-import UserEditor from "./assets/Components/Editors/UserEditor/UserEditor.jsx";
-import CompanyEditor from "./assets/Components/Editors/CompanyEditor/CompanyEditor.jsx";
+import UpdateUser from "./assets/Components/Editors/UpdateUser/UpdateUser.jsx";
+import UpdateCompany from "./assets/Components/Editors/UpdateCompany/UpdateCompany.jsx";
 */
 import { AppProvider } from './assets/Context/AppContext';
 
@@ -35,7 +35,7 @@ function App() {
                     <Route path='/:usertype/:id/:compnayName/products' element={<CompanySite />} />
                     <Route path='/:userType/:id/:orderId/summary' element={<Summary />}/>
                     <Route path='/USER/:companyName/:id/products' element={<CompanySite />} />
-                    <Route path='/admin/edit/:id' element={<AdminEditor />} />
+                    <Route path='/admin/edit/:id' element={<UpdateAdmin />} />
                 </Routes>
             </Router>
         </AppProvider>
