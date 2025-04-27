@@ -2,6 +2,8 @@ package com.example.productapi.service;
 
 import com.example.productapi.converter.UserConverter;
 import com.example.productapi.dto.UserDTO;
+import com.example.productapi.dto.UserRequestDTO;
+import com.example.productapi.dto.UserResponseDTO;
 import com.example.productapi.enums.UserType;
 import com.example.productapi.model.User;
 import com.example.productapi.repository.UserRepository;
@@ -54,7 +56,7 @@ public class UserService {
         return UserConverter.toDTO(savedUser);
     }
 
-    public UserDTO updateUser(long id, UserDTO userDTO) {
+    /*public UserDTO updateUser(long id, UserDTO userDTO) {
         User user = userRepository.findById(id).orElseThrow(() ->new RuntimeException("User not found"));
         user.setFirstName(userDTO.getFirstName());
         user.setLastName(userDTO.getLastName());
@@ -65,6 +67,30 @@ public class UserService {
         user.setUserType(userDTO.getUserType());
         return UserConverter.toDTO(userRepository.save(user));
     }
+    */
+
+    public UserResponseDTO updateUser(Long id, UserRequestDTO userRequestDTO) {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        if (userRequestDTO.getUsername() != null) {
+            user.setUsername(userRequestDTO.getUsername());
+        }
+        if (userRequestDTO.getEmail() != null) {
+            user.setEmail(userRequestDTO.getEmail());
+        }
+        if (userRequestDTO.getPassword() != null) {
+            user.setPassword(userRequestDTO.getPassword());
+        }
+        if (userRequestDTO.getUserType() != null) {
+            user.setUserType(userRequestDTO.getUserType());
+        }
+
+        userRepository.save(user);
+
+        return userConverter.toResponseDTO(user);
+    }
+
 
     public void deleteUserById(long id) {
         if(!userRepository.existsById(id)) {
