@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { Button, Modal, Box, Container, Typography } from '@mui/material';
 import styles from "./user.module.css";
 import { useNavigate } from 'react-router-dom';
+import DeleteUser from '../DeleteUser/DeleteUser.jsx';
 
 export default function getUser() {
   const [filterUsers, setFilterUsers] = useState([]);
@@ -49,19 +50,19 @@ export default function getUser() {
       ))}
       
       <Modal open={open} onClose={handleClose}>
-        <Container className={`${styles.container} ${styles.modalContainer}`}>
-          <Box className={`${styles.body} ${styles.modalContent}`}>
+        <Container className={styles.container}>
+          <Box className={styles.body}>
             <Typography variant="h5" className={styles.modalTitle}>
               Felhasználó részletei
             </Typography>
             {selectedUser && (
-              <div className={styles.userDetails}>
-                <p>ID: #{selectedUser.id}</p>
-                <p>Név: {selectedUser.firstName} {selectedUser.lastName}</p>
-                <p>Email: {selectedUser.email}</p>
-                <p>Telefonszám: {selectedUser.phoneNumber}</p>
-                <p>Cím(ek): {selectedUser.address}</p>
-              </div>
+              <Typography component={"div"} className={styles.userDetails}>
+                <Typography component={"p"}>ID: #{selectedUser.id}</Typography>
+                <Typography component={"p"}>Név: {selectedUser.firstName} {selectedUser.lastName}</Typography>
+                <Typography component={"p"}>Email: {selectedUser.email}</Typography>
+                <Typography component={"p"}>Telefonszám: {selectedUser.phoneNumber}</Typography>
+                <Typography component={"p"}>Cím(ek): {selectedUser.address}</Typography>
+              </Typography>
             )}
             <div className={styles.modalButtons}>
               <Button 
@@ -71,12 +72,7 @@ export default function getUser() {
               >
                 Szerkesztés
               </Button>
-              <Button 
-                variant="outlined" 
-                className={styles.deleteButton}
-              >
-                Törlés
-              </Button>
+              <DeleteUser />
             </div>
           </Box>
         </Container>

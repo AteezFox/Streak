@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useState, useEffect } from 'react';
 import { Button, Modal, Box, Container, Typography } from '@mui/material';
 import styles from "./companybyceo.module.css";
 import { useNavigate } from 'react-router-dom';
@@ -8,12 +7,12 @@ import CreateCompany from '../CreateCompany/CreateCompany.jsx';
 import { useAppContext } from '../../../Context/AppContext';
 
 export default function CompanyByCeo() {
-  const [filterUser, setFilterUser] = useState([]); // Initialize as an array
+  const [filterUser, setFilterUser] = useState([]);
+  const [selectedCompany, setSelectedCompany] = useState(null);
   const [open, setOpen] = useState(false);
-  const [selectedCompany, setSelectedCompany] = useState(null); // State to store selected Company
-  const edit = useNavigate();
+  const navigate = useNavigate();
 
-  const { user } = useAppContext(); // Get the logged-in user from context
+  const { user } = useAppContext();
 
   useEffect(() => {
     getCompanyData();
@@ -21,48 +20,64 @@ export default function CompanyByCeo() {
 
   const getCompanyData = () => {
     if (!user || !user.userId) {
-      console.error('User ID is undefined');
       return;
     }
 
-    axios.get(`http://localhost:8080/streak/api/companies/get/${user.userId}`)
+    axios.get(`http://localhost:8080/streak/api/companies/get/ceo/${user.userId}`)
       .then((response) => {
-        console.log('API Response:', response.data); // Debug log to check API response
-        setFilterUser(Array.isArray(response.data) ? response.data : [response.data]); // Ensure it's an array
-        console.log("Sikeres lekérés");
+        setFilterUser(Array.isArray(response.data) ? response.data : [response.data]);
       })
       .catch((error) => {
-        console.error('Hiba a cégadatok lekérésekor:', error);
+        console.error("Hiba a cég adatok lekérésekor:", error);
       });
   };
 
   const handleOpen = (company) => {
-    setSelectedCompany(company); // Set the selected Company
+    setSelectedCompany(company);
     setOpen(true);
   };
 
   const handleClose = () => setOpen(false);
 
+  const handleDelete = (companyId) => {
+    if (!companyId) return;
+
+    axios.delete(`http://localhost:8080/streak/api/companies/delete/${companyId}`)
+      .then(() => {
+        handleClose();
+        getCompanyData();
+      })
+      .catch((error) => {
+        console.error("Hiba a cég törlésekor:", error);
+      });
+  };
+
   return (
     <>
       <CreateCompany refreshCompanyList={getCompanyData} />
-      {filterUser.map(company => (
-        <div className={styles.userRow} key={company.id}>
-          <div className={styles.userInfo}>
-            <p className={styles.userText}>ID: #{company.id}</p>
-            <p className={styles.userText}>Név: {company.name}</p>
+      {filterUser.length === 0 ? (
+        <Typography className={styles.noCompany}>
+          Nincs még céged. Hozz létre egyet a fenti gombbal.
+        </Typography>
+      ) : (
+        filterUser.map(company => (
+          <div className={styles.userRow} key={company.id}>
+            <div className={styles.userInfo}>
+              <p className={styles.userText}>ID: #{company.id}</p>
+              <p className={styles.userText}>Név: {company.name}</p>
+            </div>
+            <button className={styles.moreInfoButton} onClick={() => handleOpen(company)}>
+              További információk
+            </button>
           </div>
-          <button className={styles.moreInfoButton} onClick={() => handleOpen(company)}>
-            További információk
-          </button>
-        </div>
-      ))}
-      
+        ))
+      )}
+
       <Modal open={open} onClose={handleClose}>
         <Container className={styles.modalContainer}>
           <Box className={styles.modalContent}>
             <Typography variant="h5" className={styles.modalTitle}>
-              Company részletei
+              Cég részletei
             </Typography>
             {selectedCompany && (
               <div className={styles.CompanyDetails}>
@@ -72,16 +87,17 @@ export default function CompanyByCeo() {
               </div>
             )}
             <div className={styles.modalButtons}>
-              <Button 
-                variant="contained" 
+              <Button
+                variant="contained"
                 className={styles.editButton}
-                onClick={() => {edit(`/company/edit/${selectedCompany?.id}`)}}
+                onClick={() => {navigate(`/company/edit/${selectedCompany?.id}`)}}
               >
                 Szerkesztés
               </Button>
-              <Button 
-                variant="outlined" 
+              <Button
+                variant="outlined"
                 className={styles.deleteButton}
+                onClick={() => handleDelete(selectedCompany?.id)}
               >
                 Törlés
               </Button>

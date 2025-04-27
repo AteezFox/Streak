@@ -1,178 +1,193 @@
-*{
-    opacity: 1;
-}
-
-.cardContainer {
-    display: grid;
-    gap: 20px;
-    padding: 20px;
-    width: 100%;
-    max-width: 1400px;
-    margin: 0 auto;
-    background-color: transparent;
-}
-
-.card {
-    display: flex !important;
-    flex-direction: row !important;
-    background-color: white !important;
-    border: #8B0000 solid 1px  !important;
-    border-radius: 1rem !important;
-    overflow: hidden;
-    position: relative;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
-}
-
-.cardContent {
-    flex: 1;
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: flex-start !important;
-    align-items: flex-start !important;
-    padding: 16px !important;
-    gap: 8px;
-}
-
-.cardTitle {
-    color: #333 !important;
-    font-size: 1.25rem !important;
-    font-weight: bold !important;
-    text-align: left !important;
-    margin: 0 !important;
-    padding: 0 !important;
-}
-
-.cardDescription {
-    color: #666 !important;
-    font-size: 0.9rem !important;
-    text-align: left !important;
-    margin: 0 !important;
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-            line-clamp: 3; 
-    -webkit-box-orient: vertical;
-}
-
-.cardPrice {
-    color: #B87333 !important;
-    font-size: 1.1rem !important;
-    font-weight: bold !important;
-    margin-top: auto !important;
-}
-
-.cardImageContainer {
+.container {
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    margin: 16px;
-}
-
-.cardImage {
     width: 100%;
     height: auto;
-    max-width: 200px;
-    object-fit: cover;
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #B87333;
+    color: black;
+    text-align: center;
+    opacity: 0.95;
+    padding: 1rem;
+    border: #8B0000 solid 1px;
     border-radius: 1rem;
-    border: #B87333 1px solid;
+    position: fixed; /* fixed position biztosítja, hogy a viewport-hoz viszonyítva legyen középen */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    outline: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
 }
 
-.addButton {
-    color: #2e7d32 !important;
-    font-size: 24px !important;
-    min-width: 40px !important;
-    width: 100% !important;
-    height: auto !important;
-    max-width: 40px;
-    padding: 8px !important;
-    border-radius: 50% !important;
-    margin-top: 8px;
+.body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: #F5E1C8;
+    border: #8B0000 solid 5px;
+    border-radius: 10px;
+    color: black;
+    padding: 30px;
+    height: auto;
+    overflow: hidden;
 }
 
-.shopMobile{
-    color: #2e7d32 !important;
-    font-size: 24px !important;
-    min-width: 40px !important;
-    width: 100% !important;
-    height: auto !important;
-    max-width: 40px;
-    padding: 8px !important;
-    border-radius: 1rem !important;
-    margin-top: 8px;
+.companyRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    border-bottom: 1px solid #e9ecef;
+    margin-bottom: 10px;
+    background-color: white;
+    border-radius: 6px;
+    transition: all 0.3s ease;
 }
 
-.addButton:hover {
-    background-color: rgba(46, 125, 50, 0.1) !important;
+.companyRow:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-/* Asztali nézet */
-@media (min-width: 1024px) {
-    .cardContainer {
-        grid-template-columns: repeat(4, 1fr);
-        gap: 24px;
-        padding: 24px;
-    }
-
-    .card {
-        flex-direction: column !important;
-    }
-
-    .shopMobile{
-        display: none !important;
-    }
+.companyInfo {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    flex: 1;
 }
 
-/* Mobil nézet */
-@media (max-width: 767px) {
-    .cardContainer {
-        grid-template-columns: 1fr;
-        gap: 2px;
-        padding: 0;
+.companyText {
+    font-size: 16px;
+    color: #495057;
+    margin: 0;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.companyText:hover {
+    color: #228be6;
+}
+
+.adminDetails {
+    display: grid;
+    gap: 2rem;
+    flex-direction: row;
+}
+
+.moreInfoButton {
+    background-color: #228be6;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(34, 139, 230, 0.2);
+}
+
+.moreInfoButton:hover {
+    background-color: #1c7ed6;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(34, 139, 230, 0.3);
+}
+
+.moreInfoButton:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(34, 139, 230, 0.2);
+}
+
+/* Modal styles */
+.modalContainer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border-radius: 8px;
+    padding: 0;
+    outline: none;
+    min-width: 300px;
+    max-width: 500px;
+    width: 90%;
+}
+
+.modalContent {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.modalTitle {
+    color: #1a1a1a;
+    margin-bottom: 16px !important;
+    font-weight: 600 !important;
+}
+
+.modalButtons {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.editButton {
+    background-color: #228be6 !important;
+    color: white !important;
+    text-transform: none !important;
+    margin-right: 10rem !important;
+}
+
+.editButton:hover {
+    background-color: #1c7ed6 !important;
+}
+
+/* Mobile view */
+@media screen and (max-width: 768px) {
+    .companyContainer {
+        padding: 10px;
+        margin: 10px;
     }
 
-    .card {
-        margin-bottom: 2px;
-        background-color: white !important;
+    .companyRow {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+        padding: 15px;
     }
 
-    .cardContent {
-        padding: 16px !important;
+    .companyInfo {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+        gap: 10px;
     }
 
-    .cardImageContainer {
-        margin: 12px;
-    }
-
-    .cardImage {
-        width: 100px;
-        height: 100px;
-    }
-
-    .shopMobile {
+    .moreInfoButton {
+        width: 100%;
         margin-top: 10px;
+        padding: 12px 20px;
     }
 
-    .addButton{
-        display: none !important;
+    .companyText {
+        font-size: 14px;
     }
 
-    .cardDescription{
-        overflow: hidden;
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-                line-clamp: 2; 
-        -webkit-box-orient: vertical;
-    }
-}
-
-/* Animációk */
-@media (hover: hover) {
-    .card {
-        transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    .modalButtons {
+        flex-direction: column;
     }
 
-    .card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    .modalContent {
+        padding: 16px;
     }
 }

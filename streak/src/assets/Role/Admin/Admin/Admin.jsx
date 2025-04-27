@@ -5,6 +5,7 @@ import { Button, Modal, Box, Container, Typography } from '@mui/material';
 import styles from "./admin.module.css";
 import { useNavigate } from 'react-router-dom';
 import CreateAdmin from '../CreateAdmin/CreateAdmin.jsx';
+import DeleteAdmin from '../DeleteAdmin/DeleteAdmin.jsx';
 
 export default function getAdmin() {
   const [filterUsers, setFilterUsers] = useState([]);
@@ -52,17 +53,19 @@ export default function getAdmin() {
       ))}
       
       <Modal open={open} onClose={handleClose}>
-        <Container className={styles.modalContainer}>
-          <Box className={styles.modalContent}>
+        <Container className={styles.container}>
+          <Box className={styles.body}>
             <Typography variant="h5" className={styles.modalTitle}>
               Admin részletei
             </Typography>
             {selectedAdmin && (
-              <div className={styles.adminDetails}>
-                <p>ID: #{selectedAdmin.id}</p>
-                <p>Név: {selectedAdmin.firstName} {selectedAdmin.lastName}</p>
-                <p>Email: {selectedAdmin.email}</p>
-              </div>
+              <Typography component={"div"} className={styles.adminDetails}>
+                <Typography component={"p"}>ID: #{selectedAdmin.id}</Typography>
+                <Typography component={"p"}>Név: {selectedAdmin.firstName} {selectedAdmin.lastName}</Typography>
+                <Typography component={"p"}>Email: {selectedAdmin.email}</Typography>
+                <Typography component={"p"}>Állandó lakcím: {selectedAdmin.address}</Typography>
+                <Typography component={"p"}>Telefon: {selectedAdmin.phone}</Typography>
+              </Typography>
             )}
             <div className={styles.modalButtons}>
               <Button 
@@ -72,12 +75,7 @@ export default function getAdmin() {
               >
                 Szerkesztés
               </Button>
-              <Button 
-                variant="outlined" 
-                className={styles.deleteButton}
-              >
-                Törlés
-              </Button>
+              <DeleteAdmin />
             </div>
           </Box>
         </Container>

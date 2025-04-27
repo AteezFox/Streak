@@ -8,6 +8,8 @@ import User from "../../../User/UserUser/User.jsx";
 import Courier from "../../../Courier/CourierCourier/Courier.jsx";
 import Admin from '../../Admin/Admin.jsx';
 import Ceo from '../../../Ceo/CeoCeo/Ceo.jsx'
+import Company from '../../../Company/Company/Company.jsx'
+import Product from '../../../Product/Product/Product.jsx';
 
 export default function AdminDash() {
 
@@ -38,6 +40,28 @@ export default function AdminDash() {
                         <AccordionDetails>
                             <Typography component={"div"}>
                                 <Ceo />
+                            </Typography>
+                        </AccordionDetails>
+                    </Accordion>
+
+                    <Accordion className={styles.list}>
+                        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                            <Typography>Companies</Typography>
+                        </AccordionSummary>
+                        <AccordionDetails>
+                            <Typography component={"div"}>
+                                <Company />
+                            </Typography>
+                        </AccordionDetails>
+                    </Accordion>
+
+                    <Accordion className={styles.list}>
+                        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                            <Typography>Products</Typography>
+                        </AccordionSummary>
+                        <AccordionDetails>
+                            <Typography component={"div"}>
+                                <Product />
                             </Typography>
                         </AccordionDetails>
                     </Accordion>
