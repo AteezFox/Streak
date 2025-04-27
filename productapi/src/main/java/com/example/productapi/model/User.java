@@ -32,7 +32,7 @@ public class User {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.password = password;
+        this.password = FUNCTIONS.DO().ENCRYPT.THIS(password);
         this.phone = phone;
         this.address = address;
         this.userType = userType;
