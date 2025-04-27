@@ -6,6 +6,7 @@ import styles from "./ceo.module.css";
 import { useNavigate } from 'react-router-dom';
 import CreateCeo from '../CreateCeo/CreateCeo';
 import DeleteCeo from '../DeleteCeo/DeleteCeo';
+import UpdateCeo from '../UpdateCeo/UpdateCeo';
 
 export default function getCeo() {
   const [filterUsers, setFilterUsers] = useState([]);
@@ -114,13 +115,7 @@ export default function getCeo() {
                 )}
 
                 <div className={styles.modalButtons}>
-                  <Button
-                    variant="contained"
-                    className={styles.editButton}
-                    onClick={() => {edit(`/ceo/edit/${selectedUser.id}`)}}
-                  >
-                    Szerkesztés
-                  </Button>
+                  <UpdateCeo ceo={selectedUser} refreshAdminList={getCeoData} />
                   <DeleteCeo ceo={selectedUser} refreshCeoList={getCeoData} />
                 </div>
               </>

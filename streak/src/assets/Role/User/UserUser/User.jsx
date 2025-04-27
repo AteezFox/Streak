@@ -5,6 +5,7 @@ import { Button, Modal, Box, Container, Typography } from '@mui/material';
 import styles from "./user.module.css";
 import { useNavigate } from 'react-router-dom';
 import DeleteUser from '../DeleteUser/DeleteUser.jsx';
+import UpdateUser from '../UpdateUser/UpdateUser.jsx';
 
 export default function getUser() {
   const [filterUsers, setFilterUsers] = useState([]);
@@ -65,13 +66,7 @@ export default function getUser() {
               </Typography>
             )}
             <div className={styles.modalButtons}>
-              <Button 
-                variant="contained" 
-                className={styles.editButton}
-                onClick={() => {edit(`/user/edit/${selectedUser?.id}`)}}
-              >
-                Szerkesztés
-              </Button>
+              <UpdateUser user={selectedUser} refreshUserList={getUserData} />
               <DeleteUser user={selectedUser} refreshUserList={getUserData} />
             </div>
           </Box>

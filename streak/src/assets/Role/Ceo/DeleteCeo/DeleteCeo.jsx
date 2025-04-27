@@ -23,7 +23,7 @@ export default function DeleteCeo({ ceo, refreshCeoList }) {
   const handleDelete = () => {
     if (ceo && ceo.id) {
       axios
-        .delete(`http://localhost:8080/streak/api/users/delete/${ceo.id}`)
+        .delete(`http://localhost:8080/streak/api/users/delete/ceo/${ceo.id}`)
         .then(() => {
           console.log("Ceo törlése sikeres");
           toggleDialog(); // Close dialog after successful deletion

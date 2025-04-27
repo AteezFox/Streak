@@ -1,63 +1,42 @@
-.listing {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 20px;
-    border-bottom: 1px solid #e9ecef;
-    margin-bottom: 10px;
-    background-color: white;
-    border-radius: 6px;
-    transition: all 0.3s ease;
-    color: black;
-}
-
-.listing:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
 .container {
-    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #B87333;
+    color: black;
+    text-align: center;
+    opacity: 0.95;
+    padding: 1rem;
+    border: #8B0000 solid 1px;
+    border-radius: 1rem;
+    position: fixed; /* fixed position biztosítja, hogy a viewport-hoz viszonyítva legyen középen */
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: white;
-    border-radius: 8px;
-    padding: 0;
     outline: none;
-    min-width: 300px;
-    max-width: 500px;
-    width: 90%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
 }
 
 .body {
-    padding: 24px;
     display: flex;
     flex-direction: column;
-    gap: 20px;
-}
-
-.body h1 {
-    color: #1a1a1a;
-    margin-bottom: 16px !important;
-    font-weight: 600 !important;
-}
-
-@media screen and (max-width: 768px) {
-    .listing {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 15px;
-        padding: 15px;
-    }
-
-    .body {
-        padding: 16px;
-    }
-
-    .container {
-        width: 95%;
-    }
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: #F5E1C8;
+    border: #8B0000 solid 5px;
+    border-radius: 10px;
+    color: black;
+    padding: 30px;
+    height: auto;
+    overflow: hidden;
 }
 
 .userRow {
@@ -94,6 +73,12 @@
 
 .userText:hover {
     color: #228be6;
+}
+
+.adminDetails {
+    display: grid;
+    gap: 2rem;
+    flex-direction: row;
 }
 
 .moreInfoButton {
@@ -140,7 +125,6 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
-    color: black;
 }
 
 .modalTitle {
@@ -152,28 +136,20 @@
 .modalButtons {
     display: flex;
     gap: 12px;
-    justify-content: flex-end;
     margin-top: 20px;
+    justify-content: center;
+    align-items: center;
 }
 
 .editButton {
     background-color: #228be6 !important;
     color: white !important;
     text-transform: none !important;
+    margin-right: 10rem !important;
 }
 
 .editButton:hover {
     background-color: #1c7ed6 !important;
-}
-
-.deleteButton {
-    border-color: #e03131 !important;
-    color: #e03131 !important;
-    text-transform: none !important;
-}
-
-.deleteButton:hover {
-    background-color: rgba(224, 49, 49, 0.04) !important;
 }
 
 /* Mobile view */

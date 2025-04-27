@@ -6,6 +6,7 @@ import styles from "./courier.module.css";
 import { useNavigate } from 'react-router-dom';
 import CreateCourier from '../CreateCourier/CreateCourier.jsx';
 import DeleteCourier from '../DeleteCourier/DeleteCourier.jsx';
+import UpdateCourier from '../UpdateCourier/UpdateCourier.jsx';
 
 export default function getCourier() {
   const [filterUsers, setFilterUsers] = useState([]);
@@ -68,13 +69,7 @@ export default function getCourier() {
               </Typography>
             )}
             <div className={styles.modalButtons}>
-              <Button
-                variant="contained"
-                className={styles.editButton}
-                onClick={() => {edit(`/courier/edit/${selectedCourier?.id}`)}}
-              >
-                Szerkesztés
-              </Button>
+              <UpdateCourier />
               <DeleteCourier courier={selectedCourier} refreshCourierList={getCourierData} />
             </div>
           </Box>

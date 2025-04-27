@@ -1,17 +1,16 @@
 import React from 'react';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
-import { Button, Modal, Box, Container, Typography } from '@mui/material';
+import { Modal, Box, Container, Typography } from '@mui/material';
 import styles from "./admin.module.css";
-import { useNavigate } from 'react-router-dom';
 import CreateAdmin from '../CreateAdmin/CreateAdmin.jsx';
 import DeleteAdmin from '../DeleteAdmin/DeleteAdmin.jsx';
+import UpdateAdmin from '../UpdateAdmin/UpdateAdmin.jsx';
 
 export default function getAdmin() {
   const [filterUsers, setFilterUsers] = useState([]);
   const [open, setOpen] = useState(false);
   const [selectedAdmin, setSelectedAdmin] = useState(null); // State to store selected admin
-  const edit = useNavigate();
 
   useEffect(() => {
     getAdminData();
@@ -68,13 +67,7 @@ export default function getAdmin() {
               </Typography>
             )}
             <div className={styles.modalButtons}>
-              <Button 
-                variant="contained" 
-                className={styles.editButton}
-                onClick={() => {edit(`/admin/edit/${selectedAdmin?.id}`)}}
-              >
-                Szerkesztés
-              </Button>
+              <UpdateAdmin admin={selectedAdmin} refreshAdminList={getAdminData} />
               <DeleteAdmin admin={selectedAdmin} refreshAdminList={getAdminData} />
             </div>
           </Box>

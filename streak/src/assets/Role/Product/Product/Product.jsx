@@ -5,6 +5,7 @@ import { Button, Modal, Box, Container, Typography } from '@mui/material';
 import styles from "./product.module.css";
 import { useNavigate } from 'react-router-dom';
 import DeleteProduct from '../DeleteProduct/DeleteProduct.jsx';
+import UpdateProduct from '../UpdateProduct/UpdateProduct.jsx';
 
 export default function getProduct() {
   const [filterproducts, setFilterproducts] = useState([]);
@@ -67,13 +68,7 @@ export default function getProduct() {
               </Typography>
             )}
             <div className={styles.modalButtons}>
-              <Button
-                variant="contained"
-                className={styles.editButton}
-                onClick={() => {edit(`/Product/edit/${selectedProduct?.id}`)}}
-              >
-                Szerkesztés
-              </Button>
+              <UpdateProduct />
               <DeleteProduct product={selectedProduct} refreshProductList={getProductData} />
             </div>
           </Box>

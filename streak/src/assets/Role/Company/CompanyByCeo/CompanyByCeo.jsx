@@ -1,36 +1,53 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Button, Modal, Box, Container, Typography } from '@mui/material';
+import { Modal, Box, Container, Typography, Button } from '@mui/material';
 import styles from "./companybyceo.module.css";
-import { useNavigate } from 'react-router-dom';
 import CreateCompany from '../CreateCompany/CreateCompany.jsx';
+import DeleteCompany from '../DeleteCompany/DeleteCompany.jsx';
+import UpdateCompany from '../UpdateCompany/UpdateCompany.jsx';
 import { useAppContext } from '../../../Context/AppContext';
 
 export default function CompanyByCeo() {
-  const [filterUser, setFilterUser] = useState([]);
+  const [companies, setCompanies] = useState([]);
   const [selectedCompany, setSelectedCompany] = useState(null);
   const [open, setOpen] = useState(false);
-  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const { user } = useAppContext();
 
-  useEffect(() => {
-    getCompanyData();
-  }, []);
-
   const getCompanyData = () => {
     if (!user || !user.userId) {
+      setError("Nincs bejelentkezett felhasználó");
       return;
     }
 
+    setLoading(true);
+    setError(null);
+
     axios.get(`http://localhost:8080/streak/api/companies/get/ceo/${user.userId}`)
       .then((response) => {
-        setFilterUser(Array.isArray(response.data) ? response.data : [response.data]);
+        if (response.data) {
+          // Handle both single object and array responses
+          const companyData = Array.isArray(response.data) ? response.data : [response.data];
+          setCompanies(companyData.filter(item => item && item.id)); // Filter out null or invalid entries
+          setLoading(false);
+        } else {
+          setCompanies([]);
+          setLoading(false);
+        }
       })
       .catch((error) => {
         console.error("Hiba a cég adatok lekérésekor:", error);
+        setError("Nem sikerült betölteni a cég adatokat");
+        setCompanies([]);
+        setLoading(false);
       });
   };
+
+  useEffect(() => {
+    getCompanyData();
+  }, [user?.userId]); // Re-fetch when userId changes
 
   const handleOpen = (company) => {
     setSelectedCompany(company);
@@ -39,43 +56,35 @@ export default function CompanyByCeo() {
 
   const handleClose = () => setOpen(false);
 
-  const handleDelete = (companyId) => {
-    if (!companyId) return;
-
-    axios.delete(`http://localhost:8080/streak/api/companies/delete/${companyId}`)
-      .then(() => {
-        handleClose();
-        getCompanyData();
-      })
-      .catch((error) => {
-        console.error("Hiba a cég törlésekor:", error);
-      });
-  };
-
   return (
     <>
       <CreateCompany refreshCompanyList={getCompanyData} />
-      {filterUser.length === 0 ? (
+
+      {loading && <Typography className={styles.loadingMessage}>Betöltés...</Typography>}
+
+      {error && <Typography className={styles.errorMessage}>{error}</Typography>}
+
+      {!loading && !error && companies.length === 0 && (
         <Typography className={styles.noCompany}>
           Nincs még céged. Hozz létre egyet a fenti gombbal.
         </Typography>
-      ) : (
-        filterUser.map(company => (
-          <div className={styles.userRow} key={company.id}>
-            <div className={styles.userInfo}>
-              <p className={styles.userText}>ID: #{company.id}</p>
-              <p className={styles.userText}>Név: {company.name}</p>
-            </div>
-            <button className={styles.moreInfoButton} onClick={() => handleOpen(company)}>
-              További információk
-            </button>
-          </div>
-        ))
       )}
 
+      {!loading && companies.map(company => (
+        <div className={styles.userRow} key={company.id}>
+          <div className={styles.userInfo}>
+            <p className={styles.userText}>ID: #{company.id}</p>
+            <p className={styles.userText}>Név: {company.name}</p>
+          </div>
+          <button className={styles.moreInfoButton} onClick={() => handleOpen(company)}>
+            További információk
+          </button>
+        </div>
+      ))}
+
       <Modal open={open} onClose={handleClose}>
-        <Container className={styles.modalContainer}>
-          <Box className={styles.modalContent}>
+        <Container className={styles.container}>
+          <Box className={styles.body}>
             <Typography variant="h5" className={styles.modalTitle}>
               Cég részletei
             </Typography>
@@ -87,20 +96,8 @@ export default function CompanyByCeo() {
               </div>
             )}
             <div className={styles.modalButtons}>
-              <Button
-                variant="contained"
-                className={styles.editButton}
-                onClick={() => {navigate(`/company/edit/${selectedCompany?.id}`)}}
-              >
-                Szerkesztés
-              </Button>
-              <Button
-                variant="outlined"
-                className={styles.deleteButton}
-                onClick={() => handleDelete(selectedCompany?.id)}
-              >
-                Törlés
-              </Button>
+              <UpdateCompany company={selectedCompany} refreshCompanyList={getCompanyData} />
+              <DeleteCompany company={selectedCompany} refreshCompanyList={getCompanyData} />
             </div>
           </Box>
         </Container>

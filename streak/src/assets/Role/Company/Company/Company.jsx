@@ -5,6 +5,7 @@ import { Button, Modal, Box, Container, Typography } from '@mui/material';
 import styles from "./company.module.css";
 import { useNavigate } from 'react-router-dom';
 import DeleteCompany from '../DeleteCompany/DeleteCompany.jsx';
+import UpdateCompany from '../UpdateCompany/UpdateCompany.jsx';
 
 export default function getCompany() {
     const [filtercompanys, setFiltercompanys] = useState([]);
@@ -64,13 +65,7 @@ export default function getCompany() {
                         </Typography>
                       )}
                       <div className={styles.modalButtons}>
-                          <Button
-                            variant="contained"
-                            className={styles.editButton}
-                            onClick={() => {edit(`/company/edit/${selectedCompany?.id}`)}}
-                          >
-                              Szerkesztés
-                          </Button>
+                          <UpdateCompany company={selectedCompany} refreshCompanyList={getCompanyData} />
                           <DeleteCompany company={selectedCompany} refreshCompanyList={getCompanyData} />
                       </div>
                   </Box>

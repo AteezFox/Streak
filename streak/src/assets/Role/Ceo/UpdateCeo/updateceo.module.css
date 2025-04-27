@@ -60,6 +60,15 @@ p {
     background-color: #f9f9f9 !important;
 }
 
+.buttonContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 1000px;
+    gap: 50cap;
+    margin-top: 2rem !important;
+}
 
 
 @media (max-width: 768px) {
