@@ -2,8 +2,6 @@ package com.example.productapi.service;
 
 import com.example.productapi.converter.ProductConverter;
 import com.example.productapi.dto.ProductDTO;
-import com.example.productapi.dto.ProductRequestDTO;
-import com.example.productapi.dto.ProductResponseDTO;
 import com.example.productapi.model.Product;
 import com.example.productapi.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,7 +44,7 @@ public class ProductService {
         return ProductConverter.toDTO(savedProduct);
     }
 
-    /*public ProductDTO updateProduct(Long id, ProductDTO productDTO) {
+    public ProductDTO updateProduct(Long id, ProductDTO productDTO) {
         Product product = productRepository.findById(id).orElseThrow(() -> new RuntimeException("Product not found"));
         product.setCompanyId(productDTO.getCompanyId());
         product.setName(productDTO.getName());
@@ -56,27 +54,6 @@ public class ProductService {
         product.setPrice(productDTO.getPrice());
         return ProductConverter.toDTO(productRepository.save(product));
     }
-    */
-
-    public ProductResponseDTO updateProduct(Long id, ProductRequestDTO productRequestDTO) {
-        Product product = productRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Product not found"));
-
-        if (productRequestDTO.getName() != null) {
-            product.setName(productRequestDTO.getName());
-        }
-        if (productRequestDTO.getPrice() != null) {
-            product.setPrice(productRequestDTO.getPrice());
-        }
-        if (productRequestDTO.getCategory() != null) {
-            product.setCategory(productRequestDTO.getCategory());
-        }
-
-        productRepository.save(product);
-
-        return ProductConverter.toResponseDTO(product);
-    }
-
 
     public void deleteProduct(Long id) {
         if(!productRepository.existsById(id)) {

@@ -1,8 +1,6 @@
 package com.example.productapi.controller;
 
 import com.example.productapi.dto.UserDTO;
-import com.example.productapi.dto.UserRequestDTO;
-import com.example.productapi.dto.UserResponseDTO;
 import com.example.productapi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -52,21 +50,11 @@ public class UserController {
         return new ResponseEntity<>(created, HttpStatus.CREATED);
     }
 
-    /*@PutMapping("/update/{id}")
+    @PutMapping("/update/{id}")
     public ResponseEntity<UserDTO> updateUser(@PathVariable long id, @RequestBody UserDTO userDTO) {
         UserDTO updated = userService.updateUser(id, userDTO);
         return new ResponseEntity<>(updated, HttpStatus.OK);
     }
-    */
-
-    @PatchMapping("/update/{id}")
-    public ResponseEntity<UserResponseDTO> updateUser(
-            @PathVariable Long id,
-            @RequestBody UserRequestDTO userRequestDTO) {
-        UserResponseDTO updatedUser = userService.updateUser(id, userRequestDTO);
-        return ResponseEntity.ok(updatedUser);
-    }
-
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> deleteUser(@PathVariable long id) {
